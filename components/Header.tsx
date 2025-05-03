@@ -14,17 +14,17 @@ const menuItems = [
 
 export default function Header() {
   return (
-    <header className="bg-brand py-4 text-white shadow-md">
+    <header className=" py-4 text-black shadow-md">
       <Container className="relative flex items-center justify-between gap-4">
         {/* Logo */}
         <Link href="/" className="flex items-center">
-          <Image
+          {/* <Image
             src="/images/logo.png"
             alt="Tex N Wash Logo"
             width={120}
             height={40}
             className="object-contain"
-          />
+          /> */}
         </Link>
 
         {/* Nav Bar */}
@@ -36,7 +36,7 @@ export default function Header() {
                 <Link
                   href={url}
                   target={newTab ? "_blank" : "_self"}
-                  className="hover:text-gray-400"
+                  className="hover:text-brand"
                 >
                   {name}
                 </Link>
@@ -47,7 +47,7 @@ export default function Header() {
 
         {/* Buttons */}
         <div className="flex space-x-4">
-          <Button asChild>
+          <Button asChild className="bg-brand">
             <Link href={"/contact"}>
             <span>
             <Phone />
