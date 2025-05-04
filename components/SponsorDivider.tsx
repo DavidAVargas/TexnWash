@@ -1,0 +1,17 @@
+import React from 'react'
+
+export default function SponsorDivider() {
+  return (
+    <section className="bg-gray-100 py-8">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="flex justify-between items-center gap-6 flex-wrap">
+          <img src="/sponsor1.png" alt="Sponsor 1" className="h-12 object-contain" />
+          <img src="/sponsor2.png" alt="Sponsor 2" className="h-12 object-contain" />
+          <img src="/sponsor3.png" alt="Sponsor 3" className="h-12 object-contain" />
+          <img src="/sponsor4.png" alt="Sponsor 4" className="h-12 object-contain" />
+          <img src="/sponsor5.png" alt="Sponsor 5" className="h-12 object-contain" />
+        </div>
+      </div>
+    </section>
+  )
+}

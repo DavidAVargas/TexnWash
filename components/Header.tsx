@@ -18,13 +18,13 @@ export default function Header() {
       <Container className="relative flex items-center justify-between gap-4">
         {/* Logo */}
         <Link href="/" className="flex items-center">
-          {/* <Image
-            src="/images/logo.png"
+          <Image
+            src="/images/tw-removebg-preview.png" //need a better logo for this 
             alt="Tex N Wash Logo"
-            width={120}
+            width={40}
             height={40}
             className="object-contain"
-          /> */}
+          />
         </Link>
 
         {/* Nav Bar */}

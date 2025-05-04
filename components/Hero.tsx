@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 
 export default function Hero() {
   return (
-    <section className="pt-20">
+    <section className="pt-20 pb-20">
       <Container>
         <div className="flex flex-col md:flex-row items-center justify-center   gap-50">
           <div className="text-left max-w-xl">
