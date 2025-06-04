@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import ReviewsHome from "@/components/ReviewsHome";
 import ServiceHighlights from "@/components/ServiceHighlights";
 import SponsorDivider from "@/components/SponsorDivider";
 import { Button } from "@/components/ui/button";
@@ -10,6 +11,7 @@ export default function Home() {
        <Hero />
        <SponsorDivider />
        <ServiceHighlights />
+       <ReviewsHome />
     
     </>
   );
