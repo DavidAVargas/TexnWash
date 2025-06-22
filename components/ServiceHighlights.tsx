@@ -3,9 +3,14 @@ import Image from 'next/image'
 
 export default function ServiceHighlights() {
   return (
-    <section className="py-20 px-4">
+    <section className="relative py-20 px-4 bg-white">
+      <div className="absolute top-0 left-0 w-1/2 h-full bg-gray-100 opacity-30 rounded-r-full pointer-events-none -z-10" />
       {/* Title */}
-      <h2 className="text-4xl font-bold text-center mb-12">Choose The Best Wash for Your Property</h2>
+      <div className="text-center mb-12">
+        <h2 className="text-5xl font-extrabold text-brand inline-block relative after:content-[''] after:block after:h-1 after:bg-[#c3b091] after:w-24 after:mx-auto after:mt-4">
+          Choose The Best Wash for Your Property
+        </h2>
+      </div>
 
       {/* Services Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
@@ -39,6 +44,15 @@ export default function ServiceHighlights() {
         <div className="w-full md:w-1/2 h-80 relative">
           <Image src="/images/ytnw.png" alt="Why Tex N Wash" layout="fill" objectFit="cover" className="rounded" />
         </div>
+      </div>
+
+      {/* Call to Action */}
+      <div className="mt-20 bg-[#c3b091] text-white py-16 px-4 text-center rounded-lg shadow-lg">
+        <h3 className="text-4xl font-bold mb-4">Ready to Make Your Property Shine?</h3>
+        <p className="text-lg mb-6">Let us do the dirty work — book your free quote today!</p>
+        <a href="/contact" className="inline-block bg-[#f0984a] text-black font-semibold py-3 px-6 rounded hover:bg-[#d88237] transition-colors">
+          Get Your Free Quote
+        </a>
       </div>
     </section>
   )
