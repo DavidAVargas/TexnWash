@@ -7,7 +7,7 @@ export default function ServiceHighlights() {
       <div className="absolute top-0 left-0 w-1/2 h-full bg-gray-100 opacity-30 rounded-r-full pointer-events-none -z-10" />
       {/* Title */}
       <div className="text-center mb-12">
-        <h2 className="text-5xl font-extrabold text-brand inline-block relative after:content-[''] after:block after:h-1 after:bg-[#c3b091] after:w-24 after:mx-auto after:mt-4">
+        <h2 className="text-5xl font-extrabold text-[#4E3629] inline-block relative after:content-[''] after:block after:h-1 after:bg-[#c3b091] after:w-24 after:mx-auto after:mt-4">
           Choose The Best Wash for Your Property
         </h2>
       </div>
@@ -47,10 +47,10 @@ export default function ServiceHighlights() {
       </div>
 
       {/* Call to Action */}
-      <div className="mt-20 bg-[#c3b091] text-white py-16 px-4 text-center rounded-lg shadow-lg">
+      <div className="mt-20 bg-[#c3b091] text-white py-12 px-4 text-center rounded-lg shadow-lg">
         <h3 className="text-4xl font-bold mb-4">Ready to Make Your Property Shine?</h3>
         <p className="text-lg mb-6">Let us do the dirty work — book your free quote today!</p>
-        <a href="/contact" className="inline-block bg-[#f0984a] text-black font-semibold py-3 px-6 rounded hover:bg-[#d88237] transition-colors">
+        <a href="/contact" className="inline-block bg-[#4E3629] text-white font-semibold py-3 px-6 rounded hover:bg-[#271a15] transition-colors">
           Get Your Free Quote
         </a>
       </div>

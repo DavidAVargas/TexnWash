@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import NewsLetter from "@/components/NewsLetter";
 import ReviewsHome from "@/components/ReviewsHome";
 import ServiceHighlights from "@/components/ServiceHighlights";
 import SponsorDivider from "@/components/SponsorDivider";
@@ -12,6 +13,7 @@ export default function Home() {
        <SponsorDivider />
        <ServiceHighlights />
        <ReviewsHome />
+       <NewsLetter />
     
     </>
   );
