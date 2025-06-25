@@ -13,7 +13,7 @@ export default function PricesPage() {
           We base our pricing on square footage or by unit, depending on the service. Below you’ll find average prices and helpful examples so you know what to expect.
         </p>
         <div className="flex justify-center">
-          <Image src="/images/logo.png" width={600} height={400} alt="Pricing Example" className="rounded-lg shadow-md" />
+          <Image src="/images/guide.png" width={600} height={400} alt="Pricing Example" className="rounded-lg shadow-md" />
         </div>
       </section>
 
@@ -150,7 +150,7 @@ export default function PricesPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Storefront/Walkway Cleaning */}
           <section className="bg-white rounded-lg p-6 shadow-md flex flex-col items-center">
-            <Image src="/images/storefront.png" alt="Storefront Cleaning" width={300} height={200} className="rounded-lg object-cover mb-4" />
+            <Image src="/images/storefront.png" alt="Storefront Cleaning" width={3000} height={200} className="rounded-lg object-cover mb-4" />
             <div>
               <h2 className="text-3xl font-bold text-[#BD5700] mb-2">Storefront & Walkway</h2>
               <p className="text-gray-700 text-base">
@@ -169,7 +169,7 @@ export default function PricesPage() {
 
           {/* Parking Lot Cleaning */}
           <section className="bg-white rounded-lg p-6 shadow-md flex flex-col items-center">
-            <Image src="/images/parkinglot.png" alt="Parking Lot Cleaning" width={300} height={200} className="rounded-lg object-cover mb-4" />
+            <Image src="/images/parkinglot.png" alt="Parking Lot Cleaning" width={3000} height={200} className="rounded-lg object-cover mb-4" />
             <div>
               <h2 className="text-3xl font-bold text-[#BD5700] mb-2">Parking Lot</h2>
               <p className="text-gray-700 text-base">
@@ -189,7 +189,7 @@ export default function PricesPage() {
 
           {/* Store Wall Cleaning */}
           <section className="bg-white rounded-lg p-6 shadow-md flex flex-col items-center">
-            <Image src="/images/storewalls.png" alt="Store Wall Cleaning" width={300} height={200} className="rounded-lg object-cover mb-4" />
+            <Image src="/images/storewalls.png" alt="Store Wall Cleaning" width={3000} height={200} className="rounded-lg object-cover mb-4" />
             <div>
               <h2 className="text-3xl font-bold text-[#BD5700] mb-2">Store Walls</h2>
               <p className="text-gray-700 text-base">
@@ -202,7 +202,7 @@ export default function PricesPage() {
 
           {/* Signage Cleaning */}
           <section className="bg-white rounded-lg p-6 shadow-md flex flex-col items-center">
-            <Image src="/images/signage.png" alt="Signage Cleaning" width={300} height={200} className="rounded-lg object-cover mb-4" />
+            <Image src="/images/sign.png" alt="Signage Cleaning" width={3000} height={200} className="rounded-lg object-cover mb-4" />
             <div>
               <h2 className="text-3xl font-bold text-[#BD5700] mb-2">Signage Cleaning</h2>
               <p className="text-gray-700 text-base">
