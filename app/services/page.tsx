@@ -144,6 +144,15 @@ export default function PricesPage() {
           </p>
           <p className="text-xl text-[#BD5700] font-bold">Ask about our current promo rates!</p>
         </section>
+
+        <div className="text-center mt-12">
+          <a
+            href="/quote"
+            className="inline-block bg-[#BD5700] text-white font-semibold py-3 px-6 rounded hover:bg-black transition-colors"
+          >
+            Get Your Free Quote
+          </a>
+        </div>
       </div>
 
       <div id="commercial" className="hidden space-y-8">
@@ -211,6 +220,14 @@ export default function PricesPage() {
               <p className="text-gray-800 mt-3 font-semibold text-lg">Flat Rate: $75 per sign</p>
             </div>
           </section>
+        </div>
+          <div className="text-center mt-12">
+          <a
+            href="/quote"
+            className="inline-block bg-[#BD5700] text-white font-semibold py-3 px-6 rounded hover:bg-black transition-colors"
+          >
+            Get Your Free Quote
+          </a>
         </div>
       </div>
     </main>

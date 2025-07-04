@@ -21,6 +21,9 @@ export default function Hero() {
               <p className="text-2xl text-black">
                 Your neighbors will ask who cleaned it — trust us.
               </p>
+              <p className="text-2xl text-[#BD5700] font-semibold mt-4">
+                “Tex N Wash: Just Text, and We Wash ”
+              </p>
               <div>
                 <Button className="bg-brand text-white mt-8">
                   <a href="/quote">Free Quote</a>

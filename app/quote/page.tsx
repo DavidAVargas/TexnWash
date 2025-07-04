@@ -123,7 +123,7 @@ export default function QuotePage() {
 
           <button
             type="submit"
-            className="bg-[#BD5700] hover:bg-orange-700 text-white font-semibold px-6 py-3 rounded transition-colors"
+            className="bg-[#BD5700] hover:bg-black text-white font-semibold px-6 py-3 rounded transition-colors"
           >
             Request Quote
           </button>

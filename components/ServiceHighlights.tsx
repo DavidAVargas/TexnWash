@@ -50,7 +50,7 @@ export default function ServiceHighlights() {
       <div className="mt-20 bg-[#c3b091] text-white py-12 px-4 text-center rounded-lg shadow-lg">
         <h3 className="text-4xl font-bold mb-4">Ready to Make Your Property Shine?</h3>
         <p className="text-lg mb-6">Let us do the dirty work — book your free quote today!</p>
-        <a href="/contact" className="inline-block bg-[#4E3629] text-white font-semibold py-3 px-6 rounded hover:bg-[#271a15] transition-colors">
+        <a href="/quote" className="inline-block bg-[#4E3629] text-white font-semibold py-3 px-6 rounded hover:bg-[#271a15] transition-colors">
           Get Your Free Quote
         </a>
       </div>
