@@ -39,7 +39,7 @@ export default function RootLayout({
           >
             <div className="grid h-[100dvh] grid-rows-[auto_1fr_auto]">
               <Header/>
-              <main>
+              <main className="pt-1">
               {children}
               </main>
               <Footer/>

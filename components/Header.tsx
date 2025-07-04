@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Container from "./Container";
 import { Button } from "./ui/button";
-import { Phone } from "lucide-react";
+import { Phone, PizzaIcon, PointerIcon, QuoteIcon } from "lucide-react";
 
 const menuItems = [
   { name: "Home", url: "/", newTab: false },
@@ -48,10 +48,10 @@ export default function Header() {
         {/* Buttons */}
         <div className="flex space-x-4">
           <Button asChild className="bg-brand">
-            <Link href={"/contact"}>
+            <Link href={"/quote"}>
             <span>
-            <Phone />
-            </span>Get In Touch
+            <PointerIcon />
+            </span>Free Quote
             </Link>
             
           </Button>

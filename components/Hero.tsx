@@ -23,7 +23,7 @@ export default function Hero() {
               </p>
               <div>
                 <Button className="bg-brand text-white mt-8">
-                  <a href="/contact">Free Quote</a>
+                  <a href="/quote">Free Quote</a>
                 </Button>
                 <p className="mt-2 text-lg">Get an estimate for any service you need hassle free.</p>
               </div>
