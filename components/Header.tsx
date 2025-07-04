@@ -8,6 +8,7 @@ import { Phone, PizzaIcon, PointerIcon, QuoteIcon } from "lucide-react";
 const menuItems = [
   { name: "Home", url: "/", newTab: false },
   { name: "Services", url: "/services", newTab: false },
+  { name: "Gallery", url: "/gallery", newTab: false },
   { name: "About", url: "/about", newTab: false },
   { name: "Contact", url: "/contact", newTab: false },
 ];
