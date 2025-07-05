@@ -38,25 +38,29 @@ export default function QuotePage() {
         </div>
 
         {/* Quote form */}
-        <form className="space-y-6 mt-6">
+        <form
+          className="space-y-6 mt-6"
+          action="https://formspree.io/f/mzzgqrya"
+          method="POST"
+        >
           {activeTab === "residential" && (
             <>
               <h2 className="text-2xl font-semibold">Select Residential Services</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <label className="flex items-center gap-2">
-                  <input type="checkbox" name="driveway" className="accent-[#BD5700]" /> Driveway / Sidewalks
+                  <input type="checkbox" name="services" value="Driveway / Sidewalks" className="accent-[#BD5700]" /> Driveway / Sidewalks
                 </label>
                 <label className="flex items-center gap-2">
-                  <input type="checkbox" name="house" className="accent-[#BD5700]" /> House Wash
+                  <input type="checkbox" name="services" value="House Wash" className="accent-[#BD5700]" /> House Wash
                 </label>
                 <label className="flex items-center gap-2">
-                  <input type="checkbox" name="bins" className="accent-[#BD5700]" /> Garbage Bin Cleaning
+                  <input type="checkbox" name="services" value="Garbage Bin Cleaning" className="accent-[#BD5700]" /> Garbage Bin Cleaning
                 </label>
                 <label className="flex items-center gap-2">
-                  <input type="checkbox" name="fence" className="accent-[#BD5700]" /> Fence / Deck
+                  <input type="checkbox" name="services" value="Fence / Deck" className="accent-[#BD5700]" /> Fence / Deck
                 </label>
                 <label className="flex items-center gap-2">
-                  <input type="checkbox" name="combo" className="accent-[#BD5700]" /> Curb Appeal Refresh Package
+                  <input type="checkbox" name="services" value="Curb Appeal Refresh Package" className="accent-[#BD5700]" /> Curb Appeal Refresh Package
                 </label>
               </div>
             </>
@@ -66,16 +70,16 @@ export default function QuotePage() {
               <h2 className="text-2xl font-semibold">Select Commercial Services</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <label className="flex items-center gap-2">
-                  <input type="checkbox" name="storefront" className="accent-[#BD5700]" /> Storefront / Walkway
+                  <input type="checkbox" name="services" value="Storefront / Walkway" className="accent-[#BD5700]" /> Storefront / Walkway
                 </label>
                 <label className="flex items-center gap-2">
-                  <input type="checkbox" name="parking" className="accent-[#BD5700]" /> Parking Lot
+                  <input type="checkbox" name="services" value="Parking Lot" className="accent-[#BD5700]" /> Parking Lot
                 </label>
                 <label className="flex items-center gap-2">
-                  <input type="checkbox" name="storewalls" className="accent-[#BD5700]" /> Store Walls
+                  <input type="checkbox" name="services" value="Store Walls" className="accent-[#BD5700]" /> Store Walls
                 </label>
                 <label className="flex items-center gap-2">
-                  <input type="checkbox" name="signage" className="accent-[#BD5700]" /> Signage Cleaning
+                  <input type="checkbox" name="services" value="Signage Cleaning" className="accent-[#BD5700]" /> Signage Cleaning
                 </label>
               </div>
             </>
@@ -86,24 +90,28 @@ export default function QuotePage() {
             <input
               type="text"
               placeholder="Full Name"
+              name="fullName"
               className="border border-[#C3B091] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#BD5700]"
               required
             />
             <input
               type="email"
               placeholder="Email Address"
+              name="email"
               className="border border-[#C3B091] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#BD5700]"
               required
             />
             <input
               type="tel"
               placeholder="Phone Number"
+              name="phone"
               className="border border-[#C3B091] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#BD5700]"
               required
             />
             <input
               type="text"
               placeholder="Property Address"
+              name="address"
               className="border border-[#C3B091] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#BD5700]"
               required
             />
@@ -111,6 +119,7 @@ export default function QuotePage() {
               <input
                 type="text"
                 placeholder="Business Name"
+                name="businessName"
                 className="border border-[#C3B091] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#BD5700]"
               />
             )}
@@ -118,6 +127,7 @@ export default function QuotePage() {
 
           <textarea
             placeholder="Any additional notes?"
+            name="notes"
             className="border border-[#C3B091] p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#BD5700]"
           />
 
