@@ -1,11 +1,56 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 
 export default function QuotePage() {
   const [activeTab, setActiveTab] = useState("residential");
   const [serviceSelected, setServiceSelected] = useState(false);
+
+  useEffect(() => {
+    const input = document.getElementById("addressInput") as HTMLInputElement;
+    if (!input) return;
+    const suggestionBox = document.createElement("div");
+    suggestionBox.className =
+      "absolute bg-white border border-gray-300 rounded shadow mt-1 z-50 w-full max-h-60 overflow-y-auto";
+    suggestionBox.style.display = "none";
+    input.parentElement?.appendChild(suggestionBox);
+
+    input.addEventListener("input", async () => {
+      const query = input.value.trim();
+      if (query.length < 3) {
+        suggestionBox.style.display = "none";
+        return;
+      }
+
+      const response = await fetch(
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
+          query
+        )}.json?access_token=${process.env.NEXT_PUBLIC_MAPBOX_TOKEN}&autocomplete=true&country=us&proximity=-97.3308,32.7555`
+      );
+      const data = await response.json();
+
+      suggestionBox.innerHTML = "";
+      data.features.forEach((feature: any) => {
+        const option = document.createElement("div");
+        option.className = "p-2 hover:bg-gray-100 cursor-pointer";
+        option.textContent = feature.place_name;
+        option.addEventListener("click", () => {
+          input.value = feature.place_name;
+          suggestionBox.style.display = "none";
+        });
+        suggestionBox.appendChild(option);
+      });
+
+      suggestionBox.style.display = data.features.length ? "block" : "none";
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!suggestionBox.contains(e.target as Node) && e.target !== input) {
+        suggestionBox.style.display = "none";
+      }
+    });
+  }, []);
 
   return (
     <section className="bg-white text-[#4E3629] py-12 px-4">
@@ -42,7 +87,7 @@ export default function QuotePage() {
         {/* Quote form */}
         <form
           className="space-y-6 mt-6"
-        //   action="https://formspree.io/f/mzzgqrya"
+          action="https://formspree.io/f/mzzgqrya"
           method="POST"
           onSubmit={(e) => {
             const form = e.target as HTMLFormElement;
@@ -247,22 +292,24 @@ export default function QuotePage() {
               type="tel"
               placeholder="Phone Number"
               name="phone"
-              className={`border border-[#C3B091] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#BD5700] ${
+              className={`border border-[#C3B091] p-3 rounded w-full mb-4 focus:outline-none focus:ring-2 focus:ring-[#BD5700] ${
                 !serviceSelected ? "opacity-50 text-gray-400" : "text-black"
               }`}
               required
               disabled={!serviceSelected}
             />
-            <input
-              type="text"
-              placeholder="Property Address"
-              name="address"
-              className={`border border-[#C3B091] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#BD5700] ${
-                !serviceSelected ? "opacity-50 text-gray-400" : "text-black"
-              }`}
-              required
-              disabled={!serviceSelected}
-            />
+            <div className="relative w-full mb-4">
+              <input
+                type="text"
+                id="addressInput"
+                name="address"
+                placeholder="Property Address"
+                className={`border border-[#C3B091] p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#BD5700] ${
+                  !serviceSelected ? "opacity-50 text-gray-400" : "text-black"
+                }`}
+                disabled={!serviceSelected}
+              />
+            </div>
             {activeTab === "commercial" && (
               <input
                 type="text"
