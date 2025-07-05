@@ -87,10 +87,10 @@ export default function QuotePage() {
         {/* Quote form */}
         <form
           className="space-y-6 mt-6"
-          action="https://formspree.io/f/mzzgqrya"
-          method="POST"
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
+            e.preventDefault();
             const form = e.target as HTMLFormElement;
+            const formData = new FormData(form);
             const fullName = form.fullName.value.trim();
             const phone = form.phone.value.trim();
             const email = form.email.value.trim();
@@ -108,7 +108,6 @@ export default function QuotePage() {
                 text: "Please enter your first and last name with letters only.",
                 confirmButtonColor: "#BD5700",
               });
-              e.preventDefault();
               return;
             }
             if (!phoneRegex.test(phone)) {
@@ -118,7 +117,6 @@ export default function QuotePage() {
                 text: "Please enter a valid 10-digit phone number.",
                 confirmButtonColor: "#BD5700",
               });
-              e.preventDefault();
               return;
             }
             if (!emailRegex.test(email)) {
@@ -128,7 +126,6 @@ export default function QuotePage() {
                 text: "Please enter a valid email address.",
                 confirmButtonColor: "#BD5700",
               });
-              e.preventDefault();
               return;
             }
             if (address.length < 5 || address.split(" ").length < 2) {
@@ -138,8 +135,36 @@ export default function QuotePage() {
                 text: "Please enter a more complete property address.",
                 confirmButtonColor: "#BD5700",
               });
-              e.preventDefault();
               return;
+            }
+
+            try {
+              const response = await fetch("https://formspree.io/f/mzzgqrya", {
+                method: "POST",
+                body: formData,
+                headers: {
+                  Accept: "application/json",
+                },
+              });
+              if (response.ok) {
+                Swal.fire({
+                  icon: "success",
+                  title: "Request Sent!",
+                  text: "Thanks for reaching out. We'll contact you shortly.",
+                  confirmButtonColor: "#BD5700",
+                });
+                form.reset();
+                setServiceSelected(false);
+              } else {
+                throw new Error("Network error");
+              }
+            } catch (error) {
+              Swal.fire({
+                icon: "error",
+                title: "Something went wrong",
+                text: "Please try again or contact us directly.",
+                confirmButtonColor: "#BD5700",
+              });
             }
           }}
         >
