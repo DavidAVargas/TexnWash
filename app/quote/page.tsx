@@ -56,6 +56,9 @@ export default function QuotePage() {
     <section className="bg-white text-[#4E3629] py-12 px-4">
       <div className="max-w-4xl mx-auto space-y-6">
         <h1 className="text-4xl font-bold text-center">Get Your Free Quote</h1>
+        <p className="text-center text-lg font-bold text-red-600">
+          *Currently serving Fort Worth and surrounding areas only*
+        </p>
         <p className="text-center text-lg text-[#4E3629]">
           No payment needed — just tell us what you need, and we’ll get back to you fast.
         </p>

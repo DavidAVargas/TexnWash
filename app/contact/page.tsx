@@ -57,6 +57,34 @@ export default function Contact() {
               <h3 className="text-xl font-bold text-[#BD5700]">Service Area</h3>
               <p>Fort Worth, TX and surrounding areas</p>
             </div>
+
+            <div>
+              <h3 className="text-xl font-bold text-[#BD5700]">Follow Our Journey</h3>
+              <p>Stay connected and see our latest work:</p>
+              <div className="flex space-x-4 mt-2">
+                <a href="https://www.instagram.com/texnwash/" target="_blank" aria-label="Instagram">
+                  <img src="/images/instagram.png" alt="Instagram" className="h-6 w-6" />
+                </a>
+                <a href="https://www.tiktok.com/@texnwash?_t=ZP-8xQSKcTy0OV&_r=1" target="_blank" aria-label="TikTok">
+                  <img src="/images/tiktok.png" alt="TikTok" className="h-6 w-6" />
+                </a>
+                <a href="https://www.facebook.com/people/Tex-N-Wash/pfbid0EvRoWbi8Vx12Z8YZMXwNsYb2tQMWdniRsUYQzvEuUpBbKakZKmCbwPEVmFb7Xv1Kl/?ref=_ig_profile_ac" target="_blank" aria-label="Facebook">
+                  <img src="/images/facebook.png" alt="Facebook" className="h-6 w-6" />
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold text-[#BD5700] mt-6">What People Say</h3>
+              <p>Check out what others are saying or leave your own review:</p>
+              <a
+                href="https://www.google.com/search?q=Tex+N+Wash+Fort+Worth+reviews"
+                target="_blank"
+                className="inline-block mt-2 bg-[#c3b091] text-black px-4 py-2 rounded hover:bg-[#b49f83] transition-colors"
+              >
+                Google Reviews
+              </a>
+            </div>
           </div>
         </div>
       </div>

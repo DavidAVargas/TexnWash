@@ -22,6 +22,9 @@ export default function About() {
             <p className="text-lg">
               We’re fully licensed and permitted, operating legally and professionally while focusing on quality results and honest service.
             </p>
+            <p className="bg-[#fff3e0] border-l-8 border-[#BD5700] p-6 rounded shadow-md font-medium text-[#4E3629] mt-4">
+              📍 Please note: We currently serve Fort Worth and surrounding areas only to ensure the highest quality and fastest service.
+            </p>
           </div>
 
           <div className="bg-gray-50 p-8 rounded-lg shadow-md">
@@ -35,6 +38,13 @@ export default function About() {
             <h3 className="text-2xl font-bold mb-4 text-[#4E3629]">The Inspiration</h3>
             <p>
               I started this company after needing some home services myself and realizing there were very few companies that had a great website, solid communication, or even showed up on time. That’s where Tex N Wash comes in — we’re setting a new standard in Fort Worth for what it means to be professional, easy to work with, and proud of our work.
+            </p>
+          </div>
+
+          <div className="bg-gray-50 p-8 rounded-lg shadow-md">
+            <h3 className="text-2xl font-bold mb-4 text-[#4E3629]">Payments & Security</h3>
+            <p>
+              For your convenience, we accept secure payments through Chase Business Invoicing. This partnership allows you to pay with confidence, knowing your transactions are processed by a trusted national banking partner. <span className="bg-[#fff3e0] border-l-4 border-[#BD5700] px-2 py-1 rounded font-semibold">All services include the required 8.25% Texas sales tax, and Chase applies a processing fee of 3.5% plus $0.10 per transaction for debit/credit payments.</span> We believe in transparent, secure, and simple payment options for every customer.
             </p>
           </div>
         </div>
@@ -65,6 +75,13 @@ export default function About() {
             </p>
             <p className="bg-[#fff3e0] border-l-8 border-[#BD5700] p-6 rounded shadow-md font-medium text-[#4E3629]">
               ⚠️ Many companies skip proper containment — but unmanaged chemical runoff can lead to hefty fines (up to $25,000 per day) for both the business and homeowner. At <span className="font-bold">Tex N Wash</span>, we go the extra mile to protect your property, the environment, and your peace of mind.
+            </p>
+          </div>
+          {/* Photo & Video Transparency Notice */}
+          <div className="bg-[#c3b091] p-8 rounded-lg shadow-md">
+            <h3 className="text-2xl font-bold mb-4 text-[#4E3629]">Photo & Video Transparency</h3>
+            <p>
+              📸 At Tex N Wash, we document your project with photos and videos — not only for our records and marketing, but to give you before-and-after proof of our results as part of your invoice and service summary.
             </p>
           </div>
         </div>
