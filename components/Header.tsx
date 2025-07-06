@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Container from "./Container";
+import Container from "./container";
 import { Button } from "./ui/button";
 import { Phone, PizzaIcon, PointerIcon, QuoteIcon } from "lucide-react";
 
@@ -15,12 +15,12 @@ const menuItems = [
 
 export default function Header() {
   return (
-    <header className=" py-4 text-black shadow-md">
+    <header className="py-4 text-black shadow-md">
       <Container className="relative flex items-center justify-between gap-4">
         {/* Logo */}
         <Link href="/" className="flex items-center">
           <Image
-            src="/images/tw-removebg-preview.png" //need a better logo for this 
+            src="/images/tw-removebg-preview.png" //need a better logo for this
             alt="Tex N Wash Logo"
             width={40}
             height={40}
@@ -50,11 +50,11 @@ export default function Header() {
         <div className="flex space-x-4">
           <Button asChild className="bg-brand">
             <Link href={"/quote"}>
-            <span>
-            <PointerIcon />
-            </span>Free Quote
+              <span>
+                <PointerIcon />
+              </span>
+              Free Quote
             </Link>
-            
           </Button>
         </div>
       </Container>
