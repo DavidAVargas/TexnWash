@@ -182,7 +182,7 @@ export default function QuotePage() {
                     name="services"
                     value="Driveway "
                     className="accent-[#BD5700]"
-                    onChange={(e) => {
+                    onChange={() => {
                       const anyChecked = document.querySelectorAll('input[name="services"]:checked').length > 0;
                       setServiceSelected(anyChecked);
                     }}
@@ -194,7 +194,7 @@ export default function QuotePage() {
                     name="services"
                     value="House Wash"
                     className="accent-[#BD5700]"
-                    onChange={(e) => {
+                    onChange={() => {
                       const anyChecked = document.querySelectorAll('input[name="services"]:checked').length > 0;
                       setServiceSelected(anyChecked);
                     }}
@@ -206,7 +206,7 @@ export default function QuotePage() {
                     name="services"
                     value="Garbage Bin Cleaning"
                     className="accent-[#BD5700]"
-                    onChange={(e) => {
+                    onChange={() => {
                       const anyChecked = document.querySelectorAll('input[name="services"]:checked').length > 0;
                       setServiceSelected(anyChecked);
                     }}
@@ -218,7 +218,7 @@ export default function QuotePage() {
                     name="services"
                     value="Fence / Deck"
                     className="accent-[#BD5700]"
-                    onChange={(e) => {
+                    onChange={() => {
                       const anyChecked = document.querySelectorAll('input[name="services"]:checked').length > 0;
                       setServiceSelected(anyChecked);
                     }}
@@ -230,7 +230,7 @@ export default function QuotePage() {
                     name="services"
                     value="Curb Appeal Refresh Package"
                     className="accent-[#BD5700]"
-                    onChange={(e) => {
+                    onChange={() => {
                       const anyChecked = document.querySelectorAll('input[name="services"]:checked').length > 0;
                       setServiceSelected(anyChecked);
                     }}
@@ -249,7 +249,7 @@ export default function QuotePage() {
                     name="services"
                     value="Storefront / Walkway"
                     className="accent-[#BD5700]"
-                    onChange={(e) => {
+                    onChange={() => {
                       const anyChecked = document.querySelectorAll('input[name="services"]:checked').length > 0;
                       setServiceSelected(anyChecked);
                     }}
@@ -261,7 +261,7 @@ export default function QuotePage() {
                     name="services"
                     value="Parking Lot"
                     className="accent-[#BD5700]"
-                    onChange={(e) => {
+                    onChange={() => {
                       const anyChecked = document.querySelectorAll('input[name="services"]:checked').length > 0;
                       setServiceSelected(anyChecked);
                     }}
@@ -273,7 +273,7 @@ export default function QuotePage() {
                     name="services"
                     value="Store Walls"
                     className="accent-[#BD5700]"
-                    onChange={(e) => {
+                    onChange={() => {
                       const anyChecked = document.querySelectorAll('input[name="services"]:checked').length > 0;
                       setServiceSelected(anyChecked);
                     }}
@@ -285,7 +285,7 @@ export default function QuotePage() {
                     name="services"
                     value="Signage Cleaning"
                     className="accent-[#BD5700]"
-                    onChange={(e) => {
+                    onChange={() => {
                       const anyChecked = document.querySelectorAll('input[name="services"]:checked').length > 0;
                       setServiceSelected(anyChecked);
                     }}
