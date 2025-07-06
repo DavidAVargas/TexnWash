@@ -1,8 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import Swal from "sweetalert2";
 
 export default function Contact() {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
   return (
     <section className="bg-white text-[#4E3629] py-20 px-6">
       <div className="max-w-5xl mx-auto">
@@ -15,25 +20,112 @@ export default function Contact() {
 
         <div className="grid md:grid-cols-2 gap-10">
           {/* Contact Form */}
-          <form className="space-y-4">
+          <form
+            className="space-y-4"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              const form = e.target as HTMLFormElement;
+              const honeypot = form.honey.value;
+
+              if (honeypot !== "") {
+                // bot detected
+                return;
+              }
+
+              const fullName = form.fullName.value;
+              const email = form.email.value;
+              const message = form.message.value;
+              const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+              const wordCount = message.trim().split(/\s+/).length;
+
+              if (fullName.length < 2 || /[^a-zA-Z\s]/.test(fullName)) {
+                Swal.fire({
+                  icon: "warning",
+                  title: "Invalid Name",
+                  text: "Please enter your full name with letters only.",
+                  confirmButtonColor: "#BD5700",
+                });
+                return;
+              }
+              if (!emailRegex.test(email)) {
+                Swal.fire({
+                  icon: "warning",
+                  title: "Invalid Email",
+                  text: "Please enter a valid email address.",
+                  confirmButtonColor: "#BD5700",
+                });
+                return;
+              }
+              if (wordCount < 3) {
+                Swal.fire({
+                  icon: "warning",
+                  title: "Message Too Short",
+                  text: "Please enter at least three words.",
+                  confirmButtonColor: "#BD5700",
+                });
+                return;
+              }
+
+              try {
+                const response = await fetch("https://formspree.io/f/xpwreryr", {
+                  method: "POST",
+                  body: new FormData(form),
+                  headers: { Accept: "application/json" },
+                });
+                if (response.ok) {
+                  Swal.fire({
+                    icon: "success",
+                    title: "Message Sent!",
+                    text: "Thanks for reaching out. We'll get back to you shortly.",
+                    confirmButtonColor: "#BD5700",
+                  });
+                  setFullName("");
+                  setEmail("");
+                  setMessage("");
+                  form.reset();
+                } else {
+                  throw new Error("Network error");
+                }
+              } catch (error) {
+                Swal.fire({
+                  icon: "error",
+                  title: "Something went wrong",
+                  text: "Please try again or contact us directly by phone.",
+                  confirmButtonColor: "#BD5700",
+                });
+              }
+            }}
+          >
             <input
               type="text"
+              name="fullName"
               placeholder="Full Name"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
               className="w-full px-4 py-3 border border-gray-300 rounded text-black"
             />
             <input
               type="email"
+              name="email"
               placeholder="Email Address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 border border-gray-300 rounded text-black"
             />
             <textarea
+              name="message"
               rows={5}
               placeholder="Your Message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               className="w-full px-4 py-3 border border-gray-300 rounded text-black"
             />
+            {/* honeypot */}
+            <input type="text" name="honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
             <button
               type="submit"
-              className="bg-[#BD5700] hover:bg-orange-700 text-white font-semibold px-6 py-3 rounded transition-colors"
+              disabled={!fullName || !email || !message}
+              className="bg-[#BD5700] hover:bg-black text-white font-semibold px-6 py-3 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Send Message
             </button>

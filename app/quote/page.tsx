@@ -179,13 +179,13 @@ export default function QuotePage() {
                   <input
                     type="checkbox"
                     name="services"
-                    value="Driveway / Sidewalks"
+                    value="Driveway "
                     className="accent-[#BD5700]"
                     onChange={(e) => {
                       const anyChecked = document.querySelectorAll('input[name="services"]:checked').length > 0;
                       setServiceSelected(anyChecked);
                     }}
-                  /> Driveway / Sidewalks
+                  /> Driveway
                 </label>
                 <label className="flex items-center gap-2">
                   <input
