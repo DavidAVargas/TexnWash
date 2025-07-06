@@ -12,7 +12,7 @@ const reviews = [
   { name: 'Jessica T.', rating: 4, text: 'Reliable and reasonably priced. My home looks great.', location: 'Fort Worth, TX' },
   { name: 'Evan H.', rating: 5, text: 'Quick and efficient! They really care about doing a good job.', location: 'Fort Worth, TX' },
   { name: 'Michelle W.', rating: 4.5, text: 'Our gutters and driveway look fantastic!', location: 'Fort Worth, TX' },
-  { name: 'Derrick P.', rating: 4, text: 'Solid work and fair pricing. I’m a happy customer.', location: 'Fort Worth, TX' },
+  { name: 'Derrick P.', rating: 4, text: 'Solid work and fair pricing. Im a happy customer.', location: 'Fort Worth, TX' },
 ]
 
 function renderStars(rating: number) {

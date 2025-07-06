@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Container from "./container";
 import { Button } from "./ui/button";
-import { Phone, PizzaIcon, PointerIcon, QuoteIcon } from "lucide-react";
+import { PointerIcon} from "lucide-react";
 
 const menuItems = [
   { name: "Home", url: "/", newTab: false },

@@ -15,7 +15,7 @@ export default function Contact() {
           Get in Touch with Tex N Wash
         </h1>
         <p className="text-lg text-center mb-10 text-[#4E3629]">
-          Questions? Quotes? We’re just a message away. Let’s keep your property looking its best!
+          Questions? Quotes? We&apos;re just a message away. Let&apos;s keep your property looking its best!
         </p>
 
         <div className="grid md:grid-cols-2 gap-10">
@@ -28,7 +28,6 @@ export default function Contact() {
               const honeypot = form.honey.value;
 
               if (honeypot !== "") {
-                // bot detected
                 return;
               }
 
@@ -76,7 +75,7 @@ export default function Contact() {
                   Swal.fire({
                     icon: "success",
                     title: "Message Sent!",
-                    text: "Thanks for reaching out. We'll get back to you shortly.",
+                    text: "Thanks for reaching out. We&apos;ll get back to you shortly.",
                     confirmButtonColor: "#BD5700",
                   });
                   setFullName("");

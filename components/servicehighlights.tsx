@@ -37,7 +37,7 @@ export default function ServiceHighlights() {
         <div className="max-w-xl">
           <h2 className="text-3xl font-bold mb-4">Why Tex N Wash?</h2>
           <p className="text-lg text-gray-700 mb-4">
-            At Tex N Wash, we treat every home and business like it's our own. Backed by professional-grade equipment and years of local experience, we go beyond just a surface clean. From concrete to siding, we target deep grime, buildup, and stains that other companies miss. We show up on time, communicate clearly, and leave your space sparkling — every single time.
+            At Tex N Wash, we treat every home and business like it&apos;s our own. Backed by professional-grade equipment and years of local experience, we go beyond just a surface clean. From concrete to siding, we target deep grime, buildup, and stains that other companies miss. We show up on time, communicate clearly, and leave your space sparkling — every single time.
           </p>
         </div>
         {/* Image */}

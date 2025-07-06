@@ -1,3 +1,4 @@
+type Feature = { place_name: string };
 "use client";
 
 import { useState, useEffect } from "react";
@@ -31,7 +32,7 @@ export default function QuotePage() {
       const data = await response.json();
 
       suggestionBox.innerHTML = "";
-      data.features.forEach((feature: any) => {
+      data.features.forEach((feature: Feature) => {
         const option = document.createElement("div");
         option.className = "p-2 hover:bg-gray-100 cursor-pointer";
         option.textContent = feature.place_name;
@@ -60,7 +61,7 @@ export default function QuotePage() {
           *Currently serving Fort Worth and surrounding areas only*
         </p>
         <p className="text-center text-lg text-[#4E3629]">
-          No payment needed — just tell us what you need, and we’ll get back to you fast.
+          No payment needed — just tell us what you need, and we&apos;ll get back to you fast.
         </p>
 
         {/* Residential/Commercial toggle */}
@@ -161,7 +162,7 @@ export default function QuotePage() {
               } else {
                 throw new Error("Network error");
               }
-            } catch (error) {
+            } catch {
               Swal.fire({
                 icon: "error",
                 title: "Something went wrong",

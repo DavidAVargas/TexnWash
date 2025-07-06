@@ -10,7 +10,7 @@ export default function PricesPage() {
       <section className="text-center space-y-4">
         <h1 className="text-4xl font-bold text-[#4E3629]">Our Pricing Guide</h1>
         <p className="text-gray-700 max-w-2xl mx-auto">
-          We base our pricing on square footage or by unit, depending on the service. Below you’ll find average prices and helpful examples so you know what to expect.
+          We base our pricing on square footage or by unit, depending on the service. Below you&rsquo;ll find average prices and helpful examples so you know what to expect.
         </p>
         <div className="flex justify-center">
           <Image src="/images/guide.png" width={600} height={400} alt="Pricing Example" className="rounded-lg shadow-md" />
