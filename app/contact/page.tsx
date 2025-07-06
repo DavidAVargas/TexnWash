@@ -85,7 +85,7 @@ export default function Contact() {
                 } else {
                   throw new Error("Network error");
                 }
-              } catch (error) {
+              } catch {
                 Swal.fire({
                   icon: "error",
                   title: "Something went wrong",

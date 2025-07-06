@@ -1,5 +1,5 @@
-type Feature = { place_name: string };
 "use client";
+type Feature = { place_name: string };
 
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
