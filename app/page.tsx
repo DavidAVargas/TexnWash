@@ -1,8 +1,8 @@
 import Hero from "@/components/hero";
-import NewsLetter from "@/components/newsLetter";
-import ReviewsHome from "@/components/reviewsHome";
-import ServiceHighlights from "@/components/serviceHighlights";
-import SponsorDivider from "@/components/sponsorDivider";
+import NewsLetter from "@/components/newsletter";
+import ReviewsHome from "@/components/reviewshome";
+import ServiceHighlights from "@/components/servicehighlights";
+import SponsorDivider from "@/components/sponsordivider";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
