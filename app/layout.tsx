@@ -5,6 +5,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { ModeToggle } from "@/components/modetoggle" 
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { inter } from "@/utils/font";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} antialiased`}
       >
         <ThemeProvider
             attribute="class"

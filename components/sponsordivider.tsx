@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function SponsorDivider() {
   return (
-    <section className="bg-gray-100 py-8">
+    <section className="bg-gray-100 py-8 relative">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center gap-6 flex-wrap">
           <Image src="/images/fwsp.png" alt="Sponsor 1" className="h-12 object-contain" width={100} height={100} />

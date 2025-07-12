@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { Button } from "./ui/button";
-import Container from "./container";
+import { Button } from "../ui/button";
+import Container from "../container";
 
 export default function Hero() {
   return (
-    <section className="pt-20 pb-20">
+    <section className="pt-30 pb-20">
       <Container>
         <div className="relative">
           {/* Subtle floating shapes */}
@@ -14,7 +14,7 @@ export default function Hero() {
           </div>
           <div className="relative z-10 flex flex-col items-center justify-center gap-50 md:flex-row">
             <div className="max-w-xl text-left">
-              <h1 className="text-brand mb-4 text-8xl font-bold md:text-8xl">
+              <h1 className="text-brand mb-4 text-8xl font-bold md:text-7xl">
                 Because First Impressions{""}
                 <span style={{ color: "#c3b091" }}> Start at the Curb </span>
               </h1>
