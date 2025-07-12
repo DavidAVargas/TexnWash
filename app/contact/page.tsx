@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 
@@ -154,13 +155,13 @@ export default function Contact() {
               <p>Stay connected and see our latest work:</p>
               <div className="flex space-x-4 mt-2">
                 <a href="https://www.instagram.com/texnwash/" target="_blank" aria-label="Instagram">
-                  <img src="/images/instagram.png" alt="Instagram" className="h-6 w-6" />
+                  <Image src="/images/instagram.png" alt="Instagram" className="size-6" width={24} height={24} />
                 </a>
                 <a href="https://www.tiktok.com/@texnwash?_t=ZP-8xQSKcTy0OV&_r=1" target="_blank" aria-label="TikTok">
-                  <img src="/images/tiktok.png" alt="TikTok" className="h-6 w-6" />
-                </a>
+                  <Image src="/images/tiktok.png" alt="TikTok" className="size-6" width={24} height={24} />
+                </a> 
                 <a href="https://www.facebook.com/people/Tex-N-Wash/pfbid0EvRoWbi8Vx12Z8YZMXwNsYb2tQMWdniRsUYQzvEuUpBbKakZKmCbwPEVmFb7Xv1Kl/?ref=_ig_profile_ac" target="_blank" aria-label="Facebook">
-                  <img src="/images/facebook.png" alt="Facebook" className="h-6 w-6" />
+                  <Image src="/images/facebook.png" alt="Facebook" className="size-6" width={24} height={24} />
                 </a>
               </div>
             </div>

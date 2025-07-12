@@ -13,17 +13,16 @@ const containerVariants = cva("mx-auto w-full px-4", {
   },
 });
 
-type ContainerProps = {
-  children: React.ReactNode;
-  className?: string;
-} & VariantProps<typeof containerVariants>;
+type ContainerBaseProps = React.HTMLAttributes<HTMLDivElement> &
+  VariantProps<typeof containerVariants>;
 
 export default function Container({
   size,
   children,
   className,
-}: ContainerProps) {
+  ...props
+}: ContainerBaseProps) {
   return (
-    <div className={cn(containerVariants({ size }), className)}>{children}</div>
+    <div className={cn(containerVariants({ size }), className)} {...props}>{children}</div>
   );
 }
