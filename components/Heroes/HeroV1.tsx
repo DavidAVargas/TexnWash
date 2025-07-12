@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { Button } from "../ui/button";
-import Container from "../container";
+// import Container from "../container";
 
 export default function Hero() {
   return (
     <section className="pt-30 pb-20">
-      <Container>
+      <div>
         <div className="relative">
           {/* Subtle floating shapes */}
           <div className="absolute inset-0 z-0 overflow-hidden">
@@ -43,7 +43,7 @@ export default function Hero() {
             </div>
           </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }
