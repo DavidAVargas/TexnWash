@@ -12,7 +12,44 @@ export default function Hero() {
             <div className="bg-brand animate-pulse-slow absolute top-1/4 left-1/3 h-32 w-32 rounded-full opacity-10 blur-3xl" />
             <div className="animate-pulse-slower absolute right-1/4 bottom-1/4 h-24 w-24 rounded-full bg-gray-400 opacity-5 blur-2xl" />
           </div>
-          <div className="relative z-10 flex flex-col items-center justify-center gap-50 md:flex-row">
+          
+          {/* Mobile: Image behind text */}
+          <div className="relative z-10 md:hidden">
+            <div className="absolute inset-0 z-0 flex items-center justify-center opacity-20">
+              <Image
+                src="/images/aitnw.png"
+                width={400}
+                height={400}
+                alt="Hero Image Background"
+                className="object-contain"
+              />
+            </div>
+            <div className="relative z-10 flex flex-col items-center justify-center gap-8 px-4">
+              <div className="max-w-xl text-center">
+                <h1 className="text-brand mb-4 text-6xl font-bold leading-tight">
+                  Because First Impressions{""}
+                  <span style={{ color: "#c3b091" }}> Start at the Curb </span>
+                </h1>
+                <p className="text-xl text-black">
+                  Your neighbors will ask who cleaned it — trust us.
+                </p>
+                <p className="mt-4 text-xl font-semibold text-[#BD5700]">
+                  "Tex N Wash: Just Text, and We Wash "
+                </p>
+                <div>
+                  <Button className="bg-brand mt-8 text-white">
+                    <a href="/quote">Free Quote</a>
+                  </Button>
+                  <p className="mt-2 text-base">
+                    Get an estimate for any service you need hassle free.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop: Original layout */}
+          <div className="relative z-10 hidden md:flex flex-col items-center justify-center gap-50 md:flex-row">
             <div className="max-w-xl text-left">
               <h1 className="text-brand mb-4 text-8xl font-bold md:text-7xl">
                 Because First Impressions{""}
@@ -22,7 +59,7 @@ export default function Hero() {
                 Your neighbors will ask who cleaned it — trust us.
               </p>
               <p className="mt-4 text-2xl font-semibold text-[#BD5700]">
-                “Tex N Wash: Just Text, and We Wash ”
+                "Tex N Wash: Just Text, and We Wash "
               </p>
               <div>
                 <Button className="bg-brand mt-8 text-white">

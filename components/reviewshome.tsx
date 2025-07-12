@@ -19,11 +19,11 @@ function renderStars(rating: number) {
   const stars = []
   for (let i = 1; i <= 5; i++) {
     if (rating >= i) {
-      stars.push(<Star key={i} className="w-4 h-4 text-yellow-400" fill="currentColor" />)
+      stars.push(<Star key={i} className="w-3 h-3 md:w-4 md:h-4 text-yellow-400" fill="currentColor" />)
     } else if (rating + 0.5 === i) {
-      stars.push(<StarHalf key={i} className="w-4 h-4 text-yellow-400" fill="currentColor" />)
+      stars.push(<StarHalf key={i} className="w-3 h-3 md:w-4 md:h-4 text-yellow-400" fill="currentColor" />)
     } else {
-      stars.push(<Star key={i} className="w-4 h-4 text-gray-300" />)
+      stars.push(<Star key={i} className="w-3 h-3 md:w-4 md:h-4 text-gray-300" />)
     }
   }
   return stars
@@ -31,28 +31,28 @@ function renderStars(rating: number) {
 
 export default function ReviewsHome() {
   return (
-    <section className="bg-gray-50 py-12 overflow-hidden">
+    <section className="bg-gray-50 py-8 md:py-12 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-6 text-center">What Fort Worth Homeowners Are Saying</h2>
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-center">What Fort Worth Homeowners Are Saying</h2>
         <div className="relative">
-          <div className="flex space-x-6 animate-scroll-slow">
+          <div className="flex space-x-4 md:space-x-6 animate-scroll-slow">
             {[...reviews, ...reviews].map((review, index) => (
               <div
                 key={index}
-                className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm min-w-[300px] max-w-sm flex-shrink-0"
+                className="bg-white border border-gray-200 rounded-lg p-3 md:p-4 shadow-sm min-w-[280px] md:min-w-[300px] max-w-[280px] md:max-w-sm flex-shrink-0"
               >
                 <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-center space-x-2 md:space-x-3">
                     <img
                       src={`https://i.pravatar.cc/150?img=${index + 10}`}
                       alt={review.name}
-                      className="w-10 h-10 rounded-full object-cover"
+                      className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover"
                     />
-                    <h3 className="font-semibold">{review.name}</h3>
+                    <h3 className="font-semibold text-sm md:text-base">{review.name}</h3>
                   </div>
-                  <div className="flex space-x-1">{renderStars(review.rating)}</div>
+                  <div className="flex space-x-0.5 md:space-x-1">{renderStars(review.rating)}</div>
                 </div>
-                <p className="text-sm text-gray-700 mb-1">"{review.text}"</p>
+                <p className="text-xs md:text-sm text-gray-700 mb-1">"{review.text}"</p>
                 <p className="text-xs text-gray-500">{review.location}</p>
               </div>
             ))}
@@ -71,7 +71,12 @@ export default function ReviewsHome() {
         }
         .animate-scroll-slow {
           display: flex;
-          animation: scroll-slow 30s linear infinite;
+          animation: scroll-slow 40s linear infinite;
+        }
+        @media (max-width: 768px) {
+          .animate-scroll-slow {
+            animation: scroll-slow 50s linear infinite;
+          }
         }
       `}</style>
     </section>
