@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
-import { ModeToggle } from "@/components/modetoggle" 
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { inter } from "@/utils/font";
@@ -29,8 +28,8 @@ export default function RootLayout({
       >
         <ThemeProvider
             attribute="class"
-            defaultTheme="system"
-            enableSystem
+            defaultTheme="light"
+            enableSystem={false}
             disableTransitionOnChange
           >
             <div className="grid min-h-[100dvh] grid-rows-[auto_1fr_auto]">
@@ -39,10 +38,6 @@ export default function RootLayout({
               {children}
               </main>
               <Footer/>
-            </div>
-
-            <div className="absolute bottom-5 right-5" >
-              <ModeToggle/>
             </div>
           </ThemeProvider>
         
