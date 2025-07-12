@@ -4,7 +4,8 @@ import Link from "next/link";
 
 import { Button } from "./ui/button";
 import { PointerIcon } from "lucide-react";
-import Container from "./Container";
+import Container from "./container";
+
 
 const menuItems = [
   { name: "Home", url: "/", newTab: false },
