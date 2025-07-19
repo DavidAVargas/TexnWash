@@ -54,7 +54,7 @@ export default function Hero() {
         <div className="bg-gray-50 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
           <img
             alt=""
-            src="/images/action10.png"
+            src="/images/herov3.png"
             className="aspect-3/2 object-cover object-top lg:aspect-auto lg:size-full"
           />
         </div>
