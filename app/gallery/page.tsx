@@ -44,7 +44,7 @@ export default function GalleryPage() {
       }
     }, duration);
     return () => clearTimeout(timer);
-  }, [currentSlide, queue]);
+  }, [currentSlide, queue, initialSlides]);
 
   useEffect(() => {
     setCurrentSlideProgress(0);
@@ -146,13 +146,13 @@ export default function GalleryPage() {
           <p>See even more behind-the-scenes and reviews:</p>
           <div className="flex justify-center space-x-4 mt-4">
             <a href="https://www.instagram.com/texnwash/" target="_blank" aria-label="Instagram">
-              <img src="/images/instagram.png" alt="Instagram" className="h-6 w-6" />
+              <Image src="/images/instagram.png" alt="Instagram" width={24} height={24} className="h-6 w-6" />
             </a>
             <a href="https://www.tiktok.com/@texnwash?_t=ZP-8xQSKcTy0OV&_r=1" target="_blank" aria-label="TikTok">
-              <img src="/images/tiktok.png" alt="TikTok" className="h-6 w-6" />
+              <Image src="/images/tiktok.png" alt="TikTok" width={24} height={24} className="h-6 w-6" />
             </a>
             <a href="https://www.facebook.com/people/Tex-N-Wash/pfbid0EvRoWbi8Vx12Z8YZMXwNsYb2tQMWdniRsUYQzvEuUpBbKakZKmCbwPEVmFb7Xv1Kl/?ref=_ig_profile_ac" target="_blank" aria-label="Facebook">
-              <img src="/images/facebook.png" alt="Facebook" className="h-6 w-6" />
+              <Image src="/images/facebook.png" alt="Facebook" width={24} height={24} className="h-6 w-6" />
             </a>
           </div>
           <a

@@ -1,11 +1,10 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from '../ui/button'
 
 export default function Hero() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
     <div className="bg-white">
@@ -52,9 +51,11 @@ export default function Hero() {
           </div>
         </div>
         <div className="bg-gray-50 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-          <img
-            alt=""
+          <Image
+            alt="Tex N Wash cleaning service"
             src="/images/herov3.png"
+            width={800}
+            height={600}
             className="aspect-3/2 object-cover object-top lg:aspect-auto lg:size-full"
           />
         </div>

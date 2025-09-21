@@ -19,13 +19,13 @@ export default function Footer() {
           <p>Phone: <a href="tel:+12102012123" className="text-gray-300 hover:underline">(210) 201-2123</a></p>
           <div className="flex space-x-4 mt-4">
             <Link href="https://www.instagram.com/texnwash/" target="_blank" aria-label="Instagram">
-              <img src="/images/instagram.png" alt="Instagram" className="h-6 w-6" />
+              <Image src="/images/instagram.png" alt="Instagram" width={24} height={24} className="h-6 w-6" />
             </Link>
             <Link href="https://www.tiktok.com/@texnwash?_t=ZP-8xQSKcTy0OV&_r=1" target="_blank" aria-label="TikTok">
-              <img src="/images/tiktok.png" alt="TikTok" className="h-6 w-6" />
+              <Image src="/images/tiktok.png" alt="TikTok" width={24} height={24} className="h-6 w-6" />
             </Link>
             <Link href="https://www.facebook.com/people/Tex-N-Wash/pfbid0EvRoWbi8Vx12Z8YZMXwNsYb2tQMWdniRsUYQzvEuUpBbKakZKmCbwPEVmFb7Xv1Kl/?ref=_ig_profile_ac" target="_blank" aria-label="Facebook">
-              <img src="/images/facebook.png" alt="Facebook" className="h-6 w-6" />
+              <Image src="/images/facebook.png" alt="Facebook" width={24} height={24} className="h-6 w-6" />
             </Link>
           </div>
         </div>
@@ -43,7 +43,7 @@ export default function Footer() {
       <div className="text-center text-white text-sm mt-10 flex flex-col items-center">
         <p>&copy; {new Date().getFullYear()} Tex N Wash. All rights reserved.</p>
         <a href="https://github.com/DavidAVargas" target="_blank" className="flex items-center mt-2 text-white hover:text-white">
-          <img src="/images/github.png" alt="GitHub" className="h-5 w-5 mr-1" />
+          <Image src="/images/github.png" alt="GitHub" width={20} height={20} className="h-5 w-5 mr-1" />
           Made by David A Vargas
         </a>
       </div>

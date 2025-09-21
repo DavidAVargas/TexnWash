@@ -1,5 +1,6 @@
 "use client";
 import React from 'react'
+import Image from 'next/image'
 import { Star, StarHalf } from 'lucide-react'
 
 const reviews = [
@@ -43,9 +44,11 @@ export default function ReviewsHome() {
               >
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center space-x-2 md:space-x-3">
-                    <img
+                    <Image
                       src={`https://i.pravatar.cc/150?img=${index + 10}`}
                       alt={review.name}
+                      width={40}
+                      height={40}
                       className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover"
                     />
                     <h3 className="font-semibold text-sm md:text-base">{review.name}</h3>
