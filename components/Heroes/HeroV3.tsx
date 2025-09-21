@@ -25,10 +25,10 @@ export default function Hero() {
                 <div className="hidden sm:mb-10 sm:flex">
                   <div className="relative rounded-full px-3 py-1 text-sm/6 text-gray-500 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
                     Transform your property instantly.{' '}
-                    <a href="#" className="font-semibold whitespace-nowrap text-indigo-600">
+                    <Link href="/gallery" className="font-semibold whitespace-nowrap text-indigo-600">
                       <span aria-hidden="true" className="absolute inset-0" />
                       See our work <span aria-hidden="true">&rarr;</span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <h1 className="text-5xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-7xl">

@@ -156,7 +156,7 @@ export default function GalleryPage() {
             </a>
           </div>
           <a
-            href="https://www.google.com/search?q=Tex+N+Wash+Fort+Worth+reviews"
+            href="https://www.google.com/search?client=safari&sca_esv=5e583c358de1f317&hl=en-us&sxsrf=AE3TifNvy--Ch4TVtYTFd01IvGIwp9b0Hw:1757370209357&q=texnwash.com+reviews&uds=AOm0WdEf7yfeY-wYiIL1xzIvWOlbjB1S700q0viTcJdSKFpYdWLgj9QaO1P5mMhObiPHInHvwgpTn5H-tYf7TB_6uvSqB5c80KAHuVDXxbOdCIXJbghTMrVWPA2qQBkT81hx98mSnjJNncKNIe3gfBfSPVVkaACrnNjBTsatClrm75nOQCi89oiwixFqEPqFnr99KwVpiP8o3yDxpZge1utjWPnxpn8m2Ferl9SVfkitFskr46B8ml-hP0FI3XTNgTDCRl7WTIyNsfK4roZVJmj48wV3Qzugn0nyQ_DBqsk7DtEFOPO6e4BdDg-t2m_O-D0yXMK_vO6f_ZCf4LTCPO5aDeLMNoJJ5CnzFp1MRKQ8AQhwIB4T02bHVpcxquP1eJvqZKdA3UtJp84iWU20AcoPyYqi_v7BMAukAoQYI4wicgjk-j3d258&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E34pHag2W29k0pim2O8IH-yhRwuA7Qvlc2b7Z-rDD_Nb-W6G5oMDk_bIxSa2HIj2vn4aWboTgj-sjrufuG2jZUJ4byjE&sa=X&ved=2ahUKEwjagsWYmsqPAxUIlmoFHX5oOBgQk8gLegQIeBAB&ictx=1&biw=430&bih=739&dpr=3&zx=1758293228753&no_sw_cr=1"
             target="_blank"
             className="inline-block mt-4 bg-[#c3b091] text-black px-4 py-2 rounded hover:bg-[#b49f83] transition-colors"
           >
