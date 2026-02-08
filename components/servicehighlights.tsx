@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function ServiceHighlights() {
   return (
@@ -21,7 +22,7 @@ export default function ServiceHighlights() {
         ].map((service, index) => (
           <div key={index} className="bg-white shadow-md hover:shadow-lg transition-shadow rounded overflow-hidden">
             <div className="h-60 md:h-80 relative">
-              <Image src={service.image} alt={service.title} layout="fill" objectFit="cover" />
+              <Image src={service.image} alt={service.title} fill className="object-cover" />
             </div>
             <div className="p-4">
               <h3 className="text-lg md:text-xl font-semibold mb-2">{service.title}</h3>
@@ -42,7 +43,7 @@ export default function ServiceHighlights() {
         </div>
         {/* Image */}
         <div className="w-full md:w-1/2 h-60 md:h-80 relative">
-          <Image src="/images/ytnw.png" alt="Why Tex N Wash" layout="fill" objectFit="cover" className="rounded" />
+          <Image src="/images/ytnw.png" alt="Why Tex N Wash" fill className="object-cover rounded" />
         </div>
       </div>
 
@@ -50,9 +51,9 @@ export default function ServiceHighlights() {
       <div className="mt-12 md:mt-20 bg-[#c3b091] text-white py-8 md:py-12 px-4 text-center rounded-lg shadow-lg">
         <h3 className="text-2xl md:text-4xl font-bold mb-4">Ready to Make Your Property Shine?</h3>
         <p className="text-base md:text-lg mb-6">Let us do the dirty work — book your free quote today!</p>
-        <a href="/quote" className="inline-block bg-[#4E3629] text-white font-semibold py-3 px-6 rounded hover:bg-[#271a15] transition-colors">
+        <Link href="/quote" className="inline-block bg-[#4E3629] text-white font-semibold py-3 px-6 rounded hover:bg-[#271a15] transition-colors">
           Get Your Free Quote
-        </a>
+        </Link>
       </div>
     </section>
   )

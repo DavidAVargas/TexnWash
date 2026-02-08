@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -18,15 +17,15 @@ export default function Footer() {
           <p>Email: <a href="mailto:contact@texnwash.com" className="text-gray-300 hover:underline">contact@texnwash.com</a></p>
           <p>Phone: <a href="tel:+12102012123" className="text-gray-300 hover:underline">(210) 201-2123</a></p>
           <div className="flex space-x-4 mt-4">
-            <Link href="https://www.instagram.com/texnwash/" target="_blank" aria-label="Instagram">
+            <a href="https://www.instagram.com/texnwash/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <Image src="/images/instagram.png" alt="Instagram" width={24} height={24} className="h-6 w-6" />
-            </Link>
-            <Link href="https://www.tiktok.com/@texnwash?_t=ZP-8xQSKcTy0OV&_r=1" target="_blank" aria-label="TikTok">
+            </a>
+            <a href="https://www.tiktok.com/@texnwash?_t=ZP-8xQSKcTy0OV&_r=1" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
               <Image src="/images/tiktok.png" alt="TikTok" width={24} height={24} className="h-6 w-6" />
-            </Link>
-            <Link href="https://www.facebook.com/people/Tex-N-Wash/pfbid0EvRoWbi8Vx12Z8YZMXwNsYb2tQMWdniRsUYQzvEuUpBbKakZKmCbwPEVmFb7Xv1Kl/?ref=_ig_profile_ac" target="_blank" aria-label="Facebook">
+            </a>
+            <a href="https://www.facebook.com/people/Tex-N-Wash/pfbid0EvRoWbi8Vx12Z8YZMXwNsYb2tQMWdniRsUYQzvEuUpBbKakZKmCbwPEVmFb7Xv1Kl/?ref=_ig_profile_ac" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               <Image src="/images/facebook.png" alt="Facebook" width={24} height={24} className="h-6 w-6" />
-            </Link>
+            </a>
           </div>
         </div>
 
@@ -34,15 +33,15 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold mb-2">What People Say</h3>
           <p className="text-gray-300 mb-2">Read and leave a review:</p>
-          <Link href="https://www.google.com/search?client=safari&sca_esv=5e583c358de1f317&hl=en-us&sxsrf=AE3TifNvy--Ch4TVtYTFd01IvGIwp9b0Hw:1757370209357&q=texnwash.com+reviews&uds=AOm0WdEf7yfeY-wYiIL1xzIvWOlbjB1S700q0viTcJdSKFpYdWLgj9QaO1P5mMhObiPHInHvwgpTn5H-tYf7TB_6uvSqB5c80KAHuVDXxbOdCIXJbghTMrVWPA2qQBkT81hx98mSnjJNncKNIe3gfBfSPVVkaACrnNjBTsatClrm75nOQCi89oiwixFqEPqFnr99KwVpiP8o3yDxpZge1utjWPnxpn8m2Ferl9SVfkitFskr46B8ml-hP0FI3XTNgTDCRl7WTIyNsfK4roZVJmj48wV3Qzugn0nyQ_DBqsk7DtEFOPO6e4BdDg-t2m_O-D0yXMK_vO6f_ZCf4LTCPO5aDeLMNoJJ5CnzFp1MRKQ8AQhwIB4T02bHVpcxquP1eJvqZKdA3UtJp84iWU20AcoPyYqi_v7BMAukAoQYI4wicgjk-j3d258&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E34pHag2W29k0pim2O8IH-yhRwuA7Qvlc2b7Z-rDD_Nb-W6G5oMDk_bIxSa2HIj2vn4aWboTgj-sjrufuG2jZUJ4byjE&sa=X&ved=2ahUKEwjagsWYmsqPAxUIlmoFHX5oOBgQk8gLegQIeBAB&ictx=1&biw=430&bih=739&dpr=3&zx=1758293228753&no_sw_cr=1" target="_blank" className="inline-block bg-[#c3b091] text-black px-4 py-2 rounded hover:bg-[#b49f83] transition-colors">
+          <a href="https://www.google.com/search?q=texnwash.com+reviews" target="_blank" rel="noopener noreferrer" className="inline-block bg-[#c3b091] text-black px-4 py-2 rounded hover:bg-[#b49f83] transition-colors">
             Google Reviews
-          </Link>
+          </a>
         </div>
       </div>
 
       <div className="text-center text-white text-sm mt-10 flex flex-col items-center">
         <p>&copy; {new Date().getFullYear()} Tex N Wash. All rights reserved.</p>
-        <a href="https://github.com/DavidAVargas" target="_blank" className="flex items-center mt-2 text-white hover:text-white">
+        <a href="https://github.com/DavidAVargas" target="_blank" rel="noopener noreferrer" className="flex items-center mt-2 text-white hover:text-white">
           <Image src="/images/github.png" alt="GitHub" width={20} height={20} className="h-5 w-5 mr-1" />
           Made by David A Vargas
         </a>

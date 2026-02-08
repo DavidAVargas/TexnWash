@@ -145,19 +145,20 @@ export default function GalleryPage() {
           <h3 className="text-2xl font-bold text-[#4E3629] mb-4">Follow Our Journey</h3>
           <p>See even more behind-the-scenes and reviews:</p>
           <div className="flex justify-center space-x-4 mt-4">
-            <a href="https://www.instagram.com/texnwash/" target="_blank" aria-label="Instagram">
+            <a href="https://www.instagram.com/texnwash/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <Image src="/images/instagram.png" alt="Instagram" width={24} height={24} className="h-6 w-6" />
             </a>
-            <a href="https://www.tiktok.com/@texnwash?_t=ZP-8xQSKcTy0OV&_r=1" target="_blank" aria-label="TikTok">
+            <a href="https://www.tiktok.com/@texnwash?_t=ZP-8xQSKcTy0OV&_r=1" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
               <Image src="/images/tiktok.png" alt="TikTok" width={24} height={24} className="h-6 w-6" />
             </a>
-            <a href="https://www.facebook.com/people/Tex-N-Wash/pfbid0EvRoWbi8Vx12Z8YZMXwNsYb2tQMWdniRsUYQzvEuUpBbKakZKmCbwPEVmFb7Xv1Kl/?ref=_ig_profile_ac" target="_blank" aria-label="Facebook">
+            <a href="https://www.facebook.com/people/Tex-N-Wash/pfbid0EvRoWbi8Vx12Z8YZMXwNsYb2tQMWdniRsUYQzvEuUpBbKakZKmCbwPEVmFb7Xv1Kl/?ref=_ig_profile_ac" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               <Image src="/images/facebook.png" alt="Facebook" width={24} height={24} className="h-6 w-6" />
             </a>
           </div>
           <a
-            href="https://www.google.com/search?client=safari&sca_esv=5e583c358de1f317&hl=en-us&sxsrf=AE3TifNvy--Ch4TVtYTFd01IvGIwp9b0Hw:1757370209357&q=texnwash.com+reviews&uds=AOm0WdEf7yfeY-wYiIL1xzIvWOlbjB1S700q0viTcJdSKFpYdWLgj9QaO1P5mMhObiPHInHvwgpTn5H-tYf7TB_6uvSqB5c80KAHuVDXxbOdCIXJbghTMrVWPA2qQBkT81hx98mSnjJNncKNIe3gfBfSPVVkaACrnNjBTsatClrm75nOQCi89oiwixFqEPqFnr99KwVpiP8o3yDxpZge1utjWPnxpn8m2Ferl9SVfkitFskr46B8ml-hP0FI3XTNgTDCRl7WTIyNsfK4roZVJmj48wV3Qzugn0nyQ_DBqsk7DtEFOPO6e4BdDg-t2m_O-D0yXMK_vO6f_ZCf4LTCPO5aDeLMNoJJ5CnzFp1MRKQ8AQhwIB4T02bHVpcxquP1eJvqZKdA3UtJp84iWU20AcoPyYqi_v7BMAukAoQYI4wicgjk-j3d258&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E34pHag2W29k0pim2O8IH-yhRwuA7Qvlc2b7Z-rDD_Nb-W6G5oMDk_bIxSa2HIj2vn4aWboTgj-sjrufuG2jZUJ4byjE&sa=X&ved=2ahUKEwjagsWYmsqPAxUIlmoFHX5oOBgQk8gLegQIeBAB&ictx=1&biw=430&bih=739&dpr=3&zx=1758293228753&no_sw_cr=1"
+            href="https://www.google.com/search?q=texnwash.com+reviews"
             target="_blank"
+            rel="noopener noreferrer"
             className="inline-block mt-4 bg-[#c3b091] text-black px-4 py-2 rounded hover:bg-[#b49f83] transition-colors"
           >
             Check Our Google Reviews

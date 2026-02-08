@@ -2,7 +2,16 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
+    if (!process.env.RECAPTCHA_SECRET_KEY || !process.env.BREVO_API_KEY) {
+      console.error('Missing required environment variables: RECAPTCHA_SECRET_KEY or BREVO_API_KEY');
+      return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
+    }
+
     const { email, name, recaptcha_token } = await request.json();
+
+    if (!email || !recaptcha_token) {
+      return NextResponse.json({ error: 'Email and reCAPTCHA token are required' }, { status: 400 });
+    }
 
     // Verify reCAPTCHA token
     const recaptchaResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
@@ -11,7 +20,7 @@ export async function POST(request: NextRequest) {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: new URLSearchParams({
-        secret: process.env.RECAPTCHA_SECRET_KEY || '',
+        secret: process.env.RECAPTCHA_SECRET_KEY,
         response: recaptcha_token,
       }),
     });
@@ -22,19 +31,21 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'reCAPTCHA verification failed' }, { status: 400 });
     }
 
-    // Submit to Brevo (replace with your actual Brevo API endpoint)
+    const listId = parseInt(process.env.BREVO_LIST_ID || '1', 10);
+
+    // Submit to Brevo
     const brevoResponse = await fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'api-key': process.env.BREVO_API_KEY || '',
+        'api-key': process.env.BREVO_API_KEY,
       },
       body: JSON.stringify({
         email: email,
         attributes: {
           FIRSTNAME: name,
         },
-        listIds: [1], // Replace with your actual list ID
+        listIds: [listId],
         updateEnabled: true,
       }),
     });
