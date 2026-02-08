@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
@@ -7,10 +7,14 @@ import Footer from "@/components/footer";
 import { inter } from "@/utils/font";
 
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
   title: "Tex N Wash - Professional Cleaning Services",
   description: "Professional residential and commercial cleaning services in Fort Worth. House washing, driveway cleaning, and more.",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
 };
 
 export default function RootLayout({
@@ -21,7 +25,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         {/* MailerLite Universal */}
         <script
           dangerouslySetInnerHTML={{

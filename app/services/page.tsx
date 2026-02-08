@@ -6,7 +6,7 @@ import { useState } from "react";
 export default function PricesPage() {
   const [activeTab, setActiveTab] = useState("residential");
   return (
-    <main className="max-w-6xl mx-auto px-4 py-12 space-y-12">
+    <section className="max-w-6xl mx-auto px-4 py-12 space-y-12">
       <section className="text-center space-y-4">
         <h1 className="text-4xl font-bold text-[#4E3629]">Our Pricing Guide</h1>
         <p className="text-gray-700 max-w-2xl mx-auto">
@@ -19,13 +19,7 @@ export default function PricesPage() {
 
       <div className="flex justify-center gap-4 mt-4">
         <button
-          onClick={() => {
-            setActiveTab("residential");
-            const residentialEl = document.getElementById("residential");
-            const commercialEl = document.getElementById("commercial");
-            if (residentialEl) residentialEl.style.display = "block";
-            if (commercialEl) commercialEl.style.display = "none";
-          }}
+          onClick={() => setActiveTab("residential")}
           className={`px-4 py-2 rounded transition-colors duration-300 ${
             activeTab === "residential"
               ? "bg-[#BD5700] text-white"
@@ -35,13 +29,7 @@ export default function PricesPage() {
           Residential
         </button>
         <button
-          onClick={() => {
-            setActiveTab("commercial");
-            const residentialEl = document.getElementById("residential");
-            const commercialEl = document.getElementById("commercial");
-            if (residentialEl) residentialEl.style.display = "none";
-            if (commercialEl) commercialEl.style.display = "block";
-          }}
+          onClick={() => setActiveTab("commercial")}
           className={`px-4 py-2 rounded transition-colors duration-300 ${
             activeTab === "commercial"
               ? "bg-[#BD5700] text-white"
@@ -52,7 +40,7 @@ export default function PricesPage() {
         </button>
       </div>
 
-      <div id="residential" className="space-y-8">
+      {activeTab === "residential" && <div className="space-y-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Concrete Surfaces */}
           <section className="bg-white rounded-lg p-6 shadow-md flex flex-col items-center">
@@ -153,9 +141,9 @@ export default function PricesPage() {
             Get Your Free Quote
           </a>
         </div>
-      </div>
+      </div>}
 
-      <div id="commercial" className="hidden space-y-8">
+      {activeTab === "commercial" && <div className="space-y-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Storefront/Walkway Cleaning */}
           <section className="bg-white rounded-lg p-6 shadow-md flex flex-col items-center">
@@ -229,7 +217,7 @@ export default function PricesPage() {
             Get Your Free Quote
           </a>
         </div>
-      </div>
-    </main>
+      </div>}
+    </section>
   );
 }

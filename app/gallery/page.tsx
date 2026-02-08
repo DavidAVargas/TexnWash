@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 export default function GalleryPage() {
-  const initialSlides = [
+  const initialSlides = useMemo(() => [
     { type: "image", src: "/images/action1.png" },
     { type: "image", src: "/images/action2.png" },
     { type: "image", src: "/images/action3.png" },
@@ -20,7 +20,7 @@ export default function GalleryPage() {
     { type: "video", src: "/videos/vid2.mp4" },
     { type: "video", src: "/videos/vid3.mp4" },
     { type: "video", src: "/videos/vid4.mp4" }
-  ];
+  ], []);
 
   const [queue, setQueue] = useState(() => {
     const shuffled = initialSlides.slice().sort(() => Math.random() - 0.5);

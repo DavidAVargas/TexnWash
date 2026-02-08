@@ -1,56 +1,52 @@
 "use client";
 type Feature = { place_name: string };
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Swal from "sweetalert2";
 
 export default function QuotePage() {
   const [activeTab, setActiveTab] = useState("residential");
   const [serviceSelected, setServiceSelected] = useState(false);
+  const [suggestions, setSuggestions] = useState<Feature[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [addressValue, setAddressValue] = useState("");
+  const suggestionsRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    const input = document.getElementById("addressInput") as HTMLInputElement;
-    if (!input) return;
-    const suggestionBox = document.createElement("div");
-    suggestionBox.className =
-      "absolute bg-white border border-gray-300 rounded shadow mt-1 z-50 w-full max-h-60 overflow-y-auto";
-    suggestionBox.style.display = "none";
-    input.parentElement?.appendChild(suggestionBox);
-
-    input.addEventListener("input", async () => {
-      const query = input.value.trim();
-      if (query.length < 3) {
-        suggestionBox.style.display = "none";
-        return;
-      }
-
+  const handleAddressInput = useCallback(async (query: string) => {
+    setAddressValue(query);
+    if (query.trim().length < 3) {
+      setShowSuggestions(false);
+      return;
+    }
+    try {
       const response = await fetch(
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
-          query
+          query.trim()
         )}.json?access_token=${process.env.NEXT_PUBLIC_MAPBOX_TOKEN}&autocomplete=true&country=us&proximity=-97.3308,32.7555`
       );
       const data = await response.json();
+      setSuggestions(data.features || []);
+      setShowSuggestions(data.features?.length > 0);
+    } catch {
+      setSuggestions([]);
+      setShowSuggestions(false);
+    }
+  }, []);
 
-      suggestionBox.innerHTML = "";
-      data.features.forEach((feature: Feature) => {
-        const option = document.createElement("div");
-        option.className = "p-2 hover:bg-gray-100 cursor-pointer";
-        option.textContent = feature.place_name;
-        option.addEventListener("click", () => {
-          input.value = feature.place_name;
-          suggestionBox.style.display = "none";
-        });
-        suggestionBox.appendChild(option);
-      });
-
-      suggestionBox.style.display = data.features.length ? "block" : "none";
-    });
-
-    document.addEventListener("click", (e) => {
-      if (!suggestionBox.contains(e.target as Node) && e.target !== input) {
-        suggestionBox.style.display = "none";
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        suggestionsRef.current &&
+        !suggestionsRef.current.contains(e.target as Node) &&
+        inputRef.current &&
+        e.target !== inputRef.current
+      ) {
+        setShowSuggestions(false);
       }
-    });
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
   return (
@@ -159,6 +155,7 @@ export default function QuotePage() {
                 });
                 form.reset();
                 setServiceSelected(false);
+                setAddressValue("");
               } else {
                 throw new Error("Network error");
               }
@@ -329,15 +326,37 @@ export default function QuotePage() {
             />
             <div className="relative w-full mb-4">
               <input
+                ref={inputRef}
                 type="text"
                 id="addressInput"
                 name="address"
                 placeholder="Property Address"
+                value={addressValue}
+                onChange={(e) => handleAddressInput(e.target.value)}
                 className={`border border-[#C3B091] p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#BD5700] ${
                   !serviceSelected ? "opacity-50 text-gray-400" : "text-black"
                 }`}
                 disabled={!serviceSelected}
               />
+              {showSuggestions && (
+                <div
+                  ref={suggestionsRef}
+                  className="absolute bg-white border border-gray-300 rounded shadow mt-1 z-50 w-full max-h-60 overflow-y-auto"
+                >
+                  {suggestions.map((feature, i) => (
+                    <div
+                      key={i}
+                      className="p-2 hover:bg-gray-100 cursor-pointer"
+                      onClick={() => {
+                        setAddressValue(feature.place_name);
+                        setShowSuggestions(false);
+                      }}
+                    >
+                      {feature.place_name}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
             {activeTab === "commercial" && (
               <input
