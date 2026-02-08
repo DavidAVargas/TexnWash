@@ -1,4 +1,3 @@
-"use client";
 import React from 'react'
 import Image from 'next/image'
 import { Star, StarHalf } from 'lucide-react'
@@ -63,25 +62,6 @@ export default function ReviewsHome() {
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes scroll-slow {
-          0% {
-            transform: translateX(0%);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-        .animate-scroll-slow {
-          display: flex;
-          animation: scroll-slow 40s linear infinite;
-        }
-        @media (max-width: 768px) {
-          .animate-scroll-slow {
-            animation: scroll-slow 50s linear infinite;
-          }
-        }
-      `}</style>
     </section>
   )
 }

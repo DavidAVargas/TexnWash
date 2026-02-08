@@ -38,7 +38,7 @@ export default function Contact() {
               const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
               const wordCount = message.trim().split(/\s+/).length;
 
-              if (fullName.length < 2 || /[^a-zA-Z\s]/.test(fullName)) {
+              if (fullName.length < 2 || /[^a-zA-Z\s'\-]/.test(fullName)) {
                 Swal.fire({
                   icon: "warning",
                   title: "Invalid Name",
@@ -100,6 +100,7 @@ export default function Contact() {
               type="text"
               name="fullName"
               placeholder="Full Name"
+              aria-label="Full Name"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               className="w-full px-4 py-3 border border-gray-300 rounded text-black"
@@ -108,6 +109,7 @@ export default function Contact() {
               type="email"
               name="email"
               placeholder="Email Address"
+              aria-label="Email Address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 border border-gray-300 rounded text-black"
@@ -116,6 +118,7 @@ export default function Contact() {
               name="message"
               rows={5}
               placeholder="Your Message"
+              aria-label="Your Message"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               className="w-full px-4 py-3 border border-gray-300 rounded text-black"
@@ -134,24 +137,24 @@ export default function Contact() {
           {/* Contact Info */}
           <div className="text-[#4E3629] space-y-6">
             <div>
-              <h3 className="text-xl font-bold text-[#BD5700]">Contact Info</h3>
+              <h2 className="text-xl font-bold text-[#BD5700]">Contact Info</h2>
               <p>Email: <a href="mailto:contact@texnwash.com" className="hover:underline">contact@texnwash.com</a></p>
               <p>Phone: <a href="tel:+12102012123" className="hover:underline">(210) 201-2123</a></p>
             </div>
 
             <div>
-              <h3 className="text-xl font-bold text-[#BD5700]">Hours of Operation</h3>
+              <h2 className="text-xl font-bold text-[#BD5700]">Hours of Operation</h2>
               <p>Mon - Sat: 8am – 9pm</p>
               <p>Sunday: Closed</p>
             </div>
 
             <div>
-              <h3 className="text-xl font-bold text-[#BD5700]">Service Area</h3>
+              <h2 className="text-xl font-bold text-[#BD5700]">Service Area</h2>
               <p>Fort Worth, TX and surrounding areas</p>
             </div>
 
             <div>
-              <h3 className="text-xl font-bold text-[#BD5700]">Follow Our Journey</h3>
+              <h2 className="text-xl font-bold text-[#BD5700]">Follow Our Journey</h2>
               <p>Stay connected and see our latest work:</p>
               <div className="flex space-x-4 mt-2">
                 <a href="https://www.instagram.com/texnwash/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -167,7 +170,7 @@ export default function Contact() {
             </div>
 
             <div>
-              <h3 className="text-xl font-bold text-[#BD5700] mt-6">What People Say</h3>
+              <h2 className="text-xl font-bold text-[#BD5700] mt-6">What People Say</h2>
               <p>Check out what others are saying or leave your own review:</p>
               <a
                 href="https://www.google.com/search?q=texnwash.com+reviews"

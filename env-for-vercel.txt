@@ -1,0 +1,9 @@
+# Copy these into Vercel Environment Variables
+# Settings > Environment Variables
+
+NEXT_PUBLIC_MAPBOX_TOKEN=pk.eyJ1IjoiZHZ0ZXhud2FzaCIsImEiOiJjbWNxaXdoMzMwaXFrMnZuN2lsN3E1YjVpIn0.RiF4qaTaIfTuFnv_1c3iiw
+
+# You need to fill in these values:
+RECAPTCHA_SECRET_KEY=your_recaptcha_secret_key_here
+BREVO_API_KEY=your_brevo_api_key_here
+BREVO_LIST_ID=your_brevo_list_id_here

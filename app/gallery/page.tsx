@@ -95,7 +95,7 @@ export default function GalleryPage() {
                 ) : (
                   <video
                     src={slide.src}
-                    autoPlay
+                    autoPlay={index === currentSlide}
                     muted
                     loop
                     playsInline
@@ -112,12 +112,14 @@ export default function GalleryPage() {
                  }}
             />
             <button
+              aria-label="Previous slide"
               onClick={() => setCurrentSlide((prev) => (prev - 1 + queue.length) % queue.length)}
               className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-[#BD5700] text-white px-3 py-1 rounded z-10"
             >
               ←
             </button>
             <button
+              aria-label="Next slide"
               onClick={() => setCurrentSlide((prev) => (prev + 1) % queue.length)}
               className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#BD5700] text-white px-3 py-1 rounded z-10"
             >

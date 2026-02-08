@@ -1,4 +1,10 @@
 import React from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Us | Tex N Wash",
+  description: "Learn about Tex N Wash, a local Fort Worth pressure washing company. Our mission, cleaning methods, and commitment to quality.",
+};
 
 export default function About() {
   return (

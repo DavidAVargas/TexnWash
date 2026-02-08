@@ -63,7 +63,10 @@ export default function QuotePage() {
         {/* Residential/Commercial toggle */}
         <div className="flex justify-center gap-4 mt-4">
           <button
-            onClick={() => setActiveTab("residential")}
+            onClick={() => {
+              setActiveTab("residential");
+              setServiceSelected(false);
+            }}
             className={`px-6 py-3 text-lg font-semibold rounded transition-colors duration-300 ${
               activeTab === "residential"
                 ? "bg-[#BD5700] text-white"
@@ -73,7 +76,10 @@ export default function QuotePage() {
             Residential
           </button>
           <button
-            onClick={() => setActiveTab("commercial")}
+            onClick={() => {
+              setActiveTab("commercial");
+              setServiceSelected(false);
+            }}
             className={`px-6 py-3 text-lg font-semibold rounded transition-colors duration-300 ${
               activeTab === "commercial"
                 ? "bg-[#BD5700] text-white"
@@ -92,15 +98,14 @@ export default function QuotePage() {
             const form = e.target as HTMLFormElement;
             const formData = new FormData(form);
             const fullName = form.fullName.value.trim();
-            const phone = form.phone.value.trim();
+            const phone = form.phone.value.trim().replace(/\D/g, '');
             const email = form.email.value.trim();
             const address = form.address.value.trim();
-            const phoneRegex = /^\d{10}$/;
             const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
             if (
               fullName.split(" ").length < 2 ||
-              /[^a-zA-Z\s]/.test(fullName)
+              /[^a-zA-Z\s'\-]/.test(fullName)
             ) {
               Swal.fire({
                 icon: "warning",
@@ -110,7 +115,7 @@ export default function QuotePage() {
               });
               return;
             }
-            if (!phoneRegex.test(phone)) {
+            if (phone.length !== 10) {
               Swal.fire({
                 icon: "warning",
                 title: "Invalid Phone",
@@ -177,7 +182,7 @@ export default function QuotePage() {
                   <input
                     type="checkbox"
                     name="services"
-                    value="Driveway "
+                    value="Driveway"
                     className="accent-[#BD5700]"
                     onChange={() => {
                       const anyChecked = document.querySelectorAll('input[name="services"]:checked').length > 0;
@@ -297,6 +302,7 @@ export default function QuotePage() {
             <input
               type="text"
               placeholder="Full Name"
+              aria-label="Full Name"
               name="fullName"
               className={`border border-[#C3B091] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#BD5700] ${
                 !serviceSelected ? "opacity-50 text-gray-400" : "text-black"
@@ -307,6 +313,7 @@ export default function QuotePage() {
             <input
               type="email"
               placeholder="Email Address"
+              aria-label="Email Address"
               name="email"
               className={`border border-[#C3B091] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#BD5700] ${
                 !serviceSelected ? "opacity-50 text-gray-400" : "text-black"
@@ -317,6 +324,7 @@ export default function QuotePage() {
             <input
               type="tel"
               placeholder="Phone Number"
+              aria-label="Phone Number"
               name="phone"
               className={`border border-[#C3B091] p-3 rounded w-full mb-4 focus:outline-none focus:ring-2 focus:ring-[#BD5700] ${
                 !serviceSelected ? "opacity-50 text-gray-400" : "text-black"
@@ -331,6 +339,7 @@ export default function QuotePage() {
                 id="addressInput"
                 name="address"
                 placeholder="Property Address"
+                aria-label="Property Address"
                 value={addressValue}
                 onChange={(e) => handleAddressInput(e.target.value)}
                 className={`border border-[#C3B091] p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#BD5700] ${
@@ -362,6 +371,7 @@ export default function QuotePage() {
               <input
                 type="text"
                 placeholder="Business Name"
+                aria-label="Business Name"
                 name="businessName"
                 className={`border border-[#C3B091] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#BD5700] ${
                   !serviceSelected ? "opacity-50 text-gray-400" : "text-black"
@@ -373,6 +383,7 @@ export default function QuotePage() {
 
           <textarea
             placeholder="Any additional notes?"
+            aria-label="Additional notes"
             name="notes"
             className={`border border-[#C3B091] p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#BD5700] ${
               !serviceSelected ? "opacity-50 text-gray-400" : "text-black"

@@ -44,7 +44,7 @@ export default function PricesPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Concrete Surfaces */}
           <section className="bg-white rounded-lg p-6 shadow-md flex flex-col items-center">
-            <Image src="/images/concrete.png" alt="Concrete Cleaning" width={3000} height={200} className="rounded-lg object-cover mb-4" />
+            <Image src="/images/concrete.png" alt="Concrete Cleaning" width={800} height={200} className="rounded-lg object-cover mb-4" />
             <div>
               <h2 className="text-3xl font-bold text-[#BD5700] mb-2">Concrete Surfaces</h2>
               <p className="text-gray-700 text-base">
@@ -65,7 +65,7 @@ export default function PricesPage() {
 
           {/* Garbage Bins */}
           <section className="bg-white rounded-lg p-6 shadow-md flex flex-col items-center">
-            <Image src="/images/garbage.png" alt="Garbage Bin Cleaning" width={3000} height={200} className="rounded-lg object-cover mb-4" />
+            <Image src="/images/garbage.png" alt="Garbage Bin Cleaning" width={800} height={200} className="rounded-lg object-cover mb-4" />
             <div>
               <h2 className="text-3xl font-bold text-[#BD5700] mb-2">Garbage Bin Cleaning</h2>
               <p className="text-gray-700 text-base">
@@ -85,7 +85,7 @@ export default function PricesPage() {
 
           {/* Fences / Decks */}
           <section className="bg-white rounded-lg p-6 shadow-md flex flex-col items-center">
-            <Image src="/images/fnd.png" alt="Wood Fence Cleaning" width={3000} height={200} className="rounded-lg object-cover mb-4" />
+            <Image src="/images/fnd.png" alt="Wood Fence Cleaning" width={800} height={200} className="rounded-lg object-cover mb-4" />
             <div>
               <h2 className="text-3xl font-bold text-[#BD5700] mb-2">Fences / Decks</h2>
               <p className="text-gray-700 text-base">
@@ -105,7 +105,7 @@ export default function PricesPage() {
 
           {/* House Walls */}
           <section className="bg-white rounded-lg p-6 shadow-md flex flex-col items-center">
-            <Image src="/images/housewalls.png" alt="House Wall Soft Wash" width={3000} height={200} className="rounded-lg object-cover mb-4" />
+            <Image src="/images/housewalls.png" alt="House Wall Soft Wash" width={800} height={200} className="rounded-lg object-cover mb-4" />
             <div>
               <h2 className="text-3xl font-bold text-[#BD5700] mb-2">House Walls</h2>
               <p className="text-gray-700 text-base">
@@ -147,7 +147,7 @@ export default function PricesPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Storefront/Walkway Cleaning */}
           <section className="bg-white rounded-lg p-6 shadow-md flex flex-col items-center">
-            <Image src="/images/storefront.png" alt="Storefront Cleaning" width={3000} height={200} className="rounded-lg object-cover mb-4" />
+            <Image src="/images/storefront.png" alt="Storefront Cleaning" width={800} height={200} className="rounded-lg object-cover mb-4" />
             <div>
               <h2 className="text-3xl font-bold text-[#BD5700] mb-2">Storefront & Walkway</h2>
               <p className="text-gray-700 text-base">
@@ -166,7 +166,7 @@ export default function PricesPage() {
 
           {/* Parking Lot Cleaning */}
           <section className="bg-white rounded-lg p-6 shadow-md flex flex-col items-center">
-            <Image src="/images/parkinglot.png" alt="Parking Lot Cleaning" width={3000} height={200} className="rounded-lg object-cover mb-4" />
+            <Image src="/images/parkinglot.png" alt="Parking Lot Cleaning" width={800} height={200} className="rounded-lg object-cover mb-4" />
             <div>
               <h2 className="text-3xl font-bold text-[#BD5700] mb-2">Parking Lot</h2>
               <p className="text-gray-700 text-base">
@@ -186,7 +186,7 @@ export default function PricesPage() {
 
           {/* Store Wall Cleaning */}
           <section className="bg-white rounded-lg p-6 shadow-md flex flex-col items-center">
-            <Image src="/images/storewalls.png" alt="Store Wall Cleaning" width={3000} height={200} className="rounded-lg object-cover mb-4" />
+            <Image src="/images/storewalls.png" alt="Store Wall Cleaning" width={800} height={200} className="rounded-lg object-cover mb-4" />
             <div>
               <h2 className="text-3xl font-bold text-[#BD5700] mb-2">Store Walls</h2>
               <p className="text-gray-700 text-base">
@@ -199,7 +199,7 @@ export default function PricesPage() {
 
           {/* Signage Cleaning */}
           <section className="bg-white rounded-lg p-6 shadow-md flex flex-col items-center">
-            <Image src="/images/sign.png" alt="Signage Cleaning" width={3000} height={200} className="rounded-lg object-cover mb-4" />
+            <Image src="/images/sign.png" alt="Signage Cleaning" width={800} height={200} className="rounded-lg object-cover mb-4" />
             <div>
               <h2 className="text-3xl font-bold text-[#BD5700] mb-2">Signage Cleaning</h2>
               <p className="text-gray-700 text-base">
