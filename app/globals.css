@@ -126,22 +126,34 @@
   }
 }
 
-@keyframes scroll-slow {
+@keyframes marquee {
   0% {
-    transform: translateX(0%);
+    transform: translateX(0);
   }
   100% {
     transform: translateX(-50%);
   }
 }
 
-.animate-scroll-slow {
-  display: flex;
-  animation: scroll-slow 40s linear infinite;
+.animate-marquee {
+  animation: marquee 50s linear infinite;
 }
 
 @media (max-width: 768px) {
-  .animate-scroll-slow {
-    animation: scroll-slow 50s linear infinite;
+  .animate-marquee {
+    animation: marquee 60s linear infinite;
   }
+}
+
+@keyframes progress-bar {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.animate-progress-bar {
+  animation: progress-bar linear forwards;
 }

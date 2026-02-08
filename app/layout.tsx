@@ -50,7 +50,7 @@ export default function RootLayout({
           >
             <div className="grid min-h-[100dvh] grid-rows-[auto_1fr_auto]">
               <Header/>
-              <main className="pt-1 overflow-x-hidden">
+              <main className="overflow-x-hidden">
               {children}
               </main>
               <Footer/>
