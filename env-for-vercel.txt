@@ -1,7 +1,7 @@
 # Copy these into Vercel Environment Variables
 # Settings > Environment Variables
 
-NEXT_PUBLIC_MAPBOX_TOKEN=pk.eyJ1IjoiZHZ0ZXhud2FzaCIsImEiOiJjbWNxaXdoMzMwaXFrMnZuN2lsN3E1YjVpIn0.RiF4qaTaIfTuFnv_1c3iiw
+NEXT_PUBLIC_MAPBOX_TOKEN=your_mapbox_token_here
 
 NEXT_PUBLIC_RECAPTCHA_SITE_KEY=6Ld8gNArAAAAANXXUA_GDpoD2_LfaXC1z1Qd7eT9
 RECAPTCHA_SECRET_KEY=6Ld8gNArAAAAAALQ5hlUu7N0_gprZ9zcMQ1Lw-kR
