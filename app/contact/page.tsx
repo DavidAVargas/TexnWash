@@ -3,11 +3,13 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
+import ReCaptcha, { resetReCaptcha } from "@/components/recaptcha";
 
 export default function Contact() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [recaptchaToken, setRecaptchaToken] = useState("");
 
   return (
     <section className="bg-white text-[#4E3629] py-20 px-6">
@@ -66,11 +68,21 @@ export default function Contact() {
                 return;
               }
 
+              if (!recaptchaToken) {
+                Swal.fire({
+                  icon: "warning",
+                  title: "reCAPTCHA Required",
+                  text: "Please check the \"I'm not a robot\" box.",
+                  confirmButtonColor: "#BD5700",
+                });
+                return;
+              }
+
               try {
-                const response = await fetch("https://formspree.io/f/xpwreryr", {
+                const response = await fetch("/api/contact", {
                   method: "POST",
-                  body: new FormData(form),
-                  headers: { Accept: "application/json" },
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ fullName, email, message, recaptchaToken }),
                 });
                 if (response.ok) {
                   Swal.fire({
@@ -82,6 +94,8 @@ export default function Contact() {
                   setFullName("");
                   setEmail("");
                   setMessage("");
+                  setRecaptchaToken("");
+                  resetReCaptcha();
                   form.reset();
                 } else {
                   throw new Error("Network error");
@@ -125,6 +139,10 @@ export default function Contact() {
             />
             {/* honeypot */}
             <input type="text" name="honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+            <ReCaptcha
+              onVerify={(token) => setRecaptchaToken(token)}
+              onExpire={() => setRecaptchaToken("")}
+            />
             <button
               type="submit"
               disabled={!fullName || !email || !message}

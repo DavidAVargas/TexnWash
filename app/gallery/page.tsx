@@ -22,13 +22,15 @@ export default function GalleryPage() {
     { type: "video", src: "/videos/vid4.mp4" }
   ], []);
 
-  const [queue, setQueue] = useState(() => {
-    return initialSlides.slice().sort(() => Math.random() - 0.5);
-  });
-
+  const [queue, setQueue] = useState(initialSlides);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [progressKey, setProgressKey] = useState(0);
   const [slideDuration, setSlideDuration] = useState(5000);
+
+  // Shuffle on client only to avoid hydration mismatch
+  useEffect(() => {
+    setQueue(initialSlides.slice().sort(() => Math.random() - 0.5));
+  }, [initialSlides]);
 
   const goToSlide = useCallback((next: number) => {
     setCurrentSlide(next);
@@ -93,18 +95,19 @@ export default function GalleryPage() {
                 ) : index === currentSlide ? (
                   <video
                     key={slide.src}
-                    src={slide.src}
                     autoPlay
                     muted
                     playsInline
                     preload="auto"
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain bg-black"
                     onLoadedMetadata={(e) => {
                       const duration = Math.round(e.currentTarget.duration * 1000);
                       setSlideDuration(duration);
                       setProgressKey((k) => k + 1);
                     }}
-                  />
+                  >
+                    <source src={slide.src} type="video/mp4" />
+                  </video>
                 ) : null}
               </div>
             ))}

@@ -3,6 +3,7 @@ type Feature = { place_name: string };
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import Swal from "sweetalert2";
+import ReCaptcha, { resetReCaptcha } from "@/components/recaptcha";
 
 export default function QuotePage() {
   const [activeTab, setActiveTab] = useState("residential");
@@ -10,6 +11,7 @@ export default function QuotePage() {
   const [suggestions, setSuggestions] = useState<Feature[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [addressValue, setAddressValue] = useState("");
+  const [recaptchaToken, setRecaptchaToken] = useState("");
   const suggestionsRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -143,13 +145,37 @@ export default function QuotePage() {
               return;
             }
 
+            if (!recaptchaToken) {
+              Swal.fire({
+                icon: "warning",
+                title: "reCAPTCHA Required",
+                text: "Please check the \"I'm not a robot\" box.",
+                confirmButtonColor: "#BD5700",
+              });
+              return;
+            }
+
             try {
-              const response = await fetch("https://formspree.io/f/mzzgqrya", {
+              const jsonBody: Record<string, unknown> = {
+                fullName: form.fullName.value,
+                email: form.email.value,
+                phone: form.phone.value,
+                address: form.address.value,
+                services: Array.from(
+                  form.querySelectorAll<HTMLInputElement>('input[name="services"]:checked')
+                ).map((cb) => cb.value),
+                notes: form.notes?.value || "",
+                type: activeTab,
+                recaptchaToken,
+              };
+              if (activeTab === "commercial" && form.businessName) {
+                jsonBody.businessName = form.businessName.value;
+              }
+
+              const response = await fetch("/api/quote", {
                 method: "POST",
-                body: formData,
-                headers: {
-                  Accept: "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(jsonBody),
               });
               if (response.ok) {
                 Swal.fire({
@@ -161,6 +187,8 @@ export default function QuotePage() {
                 form.reset();
                 setServiceSelected(false);
                 setAddressValue("");
+                setRecaptchaToken("");
+                resetReCaptcha();
               } else {
                 throw new Error("Network error");
               }
@@ -404,6 +432,13 @@ export default function QuotePage() {
             style={{ display: "none" }}
             tabIndex={-1}
           />
+
+          {serviceSelected && (
+            <ReCaptcha
+              onVerify={(token) => setRecaptchaToken(token)}
+              onExpire={() => setRecaptchaToken("")}
+            />
+          )}
 
           <button
             type="submit"
