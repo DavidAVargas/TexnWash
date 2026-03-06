@@ -32,37 +32,33 @@ export default function GalleryPage() {
     setQueue(initialSlides.slice().sort(() => Math.random() - 0.5));
   }, [initialSlides]);
 
-  // Advance to next slide — used by image timer and video onEnded
-  const advanceSlide = useCallback(() => {
-    setCurrentSlide((prev) => {
-      const next = prev + 1;
-      if (next >= initialSlides.length) {
-        setQueue(initialSlides.slice().sort(() => Math.random() - 0.5));
-        return 0;
-      }
-      return next;
-    });
-    setProgressKey((k) => k + 1);
-  }, [initialSlides]);
-
   const goToSlide = useCallback((next: number) => {
     setCurrentSlide(next);
     setProgressKey((k) => k + 1);
   }, []);
 
-  // Reset duration for image slides; video duration comes from onLoadedMetadata
+  // Set duration when slide changes — images use 5s, videos wait for metadata
   useEffect(() => {
-    if (queue[currentSlide]?.type === "image") {
+    const current = queue[currentSlide];
+    if (current.type === "image") {
       setSlideDuration(5000);
     }
+    // Video duration is set via onLoadedMetadata on the video element
   }, [currentSlide, queue]);
 
-  // Auto-advance for image slides only — videos self-advance via onEnded
+  // Auto-advance slides
   useEffect(() => {
-    if (queue[currentSlide]?.type !== "image") return;
-    const timer = setTimeout(advanceSlide, slideDuration);
+    const timer = setTimeout(() => {
+      if (currentSlide + 1 >= queue.length) {
+        const reshuffled = initialSlides.slice().sort(() => Math.random() - 0.5);
+        setQueue(reshuffled);
+        goToSlide(0);
+      } else {
+        goToSlide(currentSlide + 1);
+      }
+    }, slideDuration);
     return () => clearTimeout(timer);
-  }, [currentSlide, queue, slideDuration, advanceSlide]);
+  }, [currentSlide, queue, initialSlides, slideDuration, goToSlide]);
 
   return (
     <section className="bg-white text-[#4E3629] py-12 px-4">
@@ -99,17 +95,16 @@ export default function GalleryPage() {
                 ) : index === currentSlide ? (
                   <video
                     key={slide.src}
-                    ref={(el) => { if (el) el.play().catch(() => {}); }}
+                    autoPlay
                     muted
                     playsInline
                     preload="auto"
                     className="w-full h-full object-contain bg-black"
-                    onCanPlay={(e) => e.currentTarget.play().catch(() => {})}
                     onLoadedMetadata={(e) => {
-                      setSlideDuration(Math.round(e.currentTarget.duration * 1000));
+                      const duration = Math.round(e.currentTarget.duration * 1000);
+                      setSlideDuration(duration);
                       setProgressKey((k) => k + 1);
                     }}
-                    onEnded={advanceSlide}
                   >
                     <source src={slide.src} type="video/mp4" />
                   </video>
