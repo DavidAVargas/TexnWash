@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Button } from "./ui/button";
 import { Menu, PointerIcon, X } from "lucide-react";
+import { Show, UserButton, useUser } from "@clerk/nextjs";
 
 const menuItems = [
   { name: "Home", url: "/", newTab: false },
@@ -12,10 +13,14 @@ const menuItems = [
   { name: "Gallery", url: "/gallery", newTab: false },
   { name: "About", url: "/about", newTab: false },
   { name: "Contact", url: "/contact", newTab: false },
+  { name: "Community", url: "/community", newTab: false },
 ];
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { user } = useUser();
+  const isAdmin = (user?.publicMetadata as { role?: string })?.role === "admin";
+
   return (
     <header className="sticky top-0 z-50 bg-white">
       <nav
@@ -54,8 +59,24 @@ export default function Header() {
               {item.name}
             </Link>
           ))}
+          {isAdmin && (
+            <Link
+              href="/admin"
+              className="text-sm font-semibold text-brand hover:text-brand/80 transition-colors"
+            >
+              Admin
+            </Link>
+          )}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-3">
+          <Show when="signed-out">
+            <Button asChild variant="ghost" className="text-sm font-semibold">
+              <Link href="/sign-in">Sign In</Link>
+            </Button>
+          </Show>
+          <Show when="signed-in">
+            <UserButton />
+          </Show>
           <Button asChild className="bg-brand hover:bg-brand/90">
             <Link href={"/quote"}>
               Free Quote
@@ -104,8 +125,30 @@ export default function Header() {
                     {item.name}
                   </Link>
                 ))}
+                {isAdmin && (
+                  <Link
+                    href="/admin"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-brand hover:bg-brand/5 transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Admin
+                  </Link>
+                )}
               </div>
-              <div className="py-6">
+              <div className="py-6 space-y-3">
+                <Show when="signed-out">
+                  <Button asChild variant="outline" className="w-full border-brand text-brand hover:bg-brand/5">
+                    <Link href="/sign-in" onClick={() => setMobileMenuOpen(false)}>
+                      Sign In
+                    </Link>
+                  </Button>
+                </Show>
+                <Show when="signed-in">
+                  <div className="flex items-center gap-3 px-1">
+                    <UserButton />
+                    <span className="text-sm text-gray-600">{user?.firstName}</span>
+                  </div>
+                </Show>
                 <Button asChild className="bg-brand hover:bg-brand/90 w-full">
                   <Link href={"/quote"} onClick={() => setMobileMenuOpen(false)}>
                     <PointerIcon className="mr-2 size-4" />

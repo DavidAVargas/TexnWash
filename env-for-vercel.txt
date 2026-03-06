@@ -9,3 +9,11 @@ RECAPTCHA_SECRET_KEY=6Ld8gNArAAAAAALQ5hlUu7N0_gprZ9zcMQ1Lw-kR
 # You need to fill in these values:
 BREVO_API_KEY=your_brevo_api_key_here
 BREVO_LIST_ID=your_brevo_list_id_here
+
+# Clerk Authentication
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_live_...
+CLERK_SECRET_KEY=sk_live_...
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/community
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/community

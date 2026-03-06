@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/theme-provider"
 import Header from "@/components/header";
 import Footer from "@/components/footer";
@@ -23,6 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider appearance={{ variables: { colorPrimary: "#BD5700" } }}>
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* MailerLite Universal */}
@@ -59,5 +61,6 @@ export default function RootLayout({
         
       </body>
     </html>
+    </ClerkProvider>
   );
 }
