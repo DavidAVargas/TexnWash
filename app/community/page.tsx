@@ -5,60 +5,131 @@ import { Button } from "@/components/ui/button";
 export default async function CommunityPage() {
   const { userId } = await auth();
   const user = userId ? await currentUser() : null;
-  const isAdmin = user?.publicMetadata?.role === "admin";
+  const isAdmin = (user?.publicMetadata as { role?: string })?.role === "admin";
 
   if (!userId) {
     return (
-      <div className="mx-auto max-w-5xl px-6 py-16">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            The Tex N Wash Community
-          </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Join our community of Fort Worth homeowners and get exclusive perks,
-            priority service, and insider tips for keeping your property looking
-            its best.
-          </p>
-          <div className="mt-8">
-            <Button asChild className="bg-brand hover:bg-brand/90 text-white text-lg px-8 py-3 h-auto">
-              <Link href="/sign-up">Join Free</Link>
-            </Button>
-            <p className="mt-3 text-sm text-gray-500">
-              Already a member?{" "}
-              <Link href="/sign-in" className="text-brand hover:underline font-medium">
-                Sign in
-              </Link>
+      <div>
+        {/* Hero */}
+        <div className="relative bg-[#1a0f00] overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_#BD5700_0%,_transparent_60%)] opacity-40" />
+          <div className="relative mx-auto max-w-5xl px-6 py-24 text-center">
+            <span className="inline-block bg-[#BD5700]/20 text-[#BD5700] border border-[#BD5700]/30 text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+              Free to Join
+            </span>
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+              The Tex N Wash<br />
+              <span className="text-[#BD5700]">Community</span>
+            </h1>
+            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+              Join 100+ Fort Worth homeowners who get exclusive perks, priority
+              booking, and a personal record of every clean we do for their property.
             </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button
+                asChild
+                className="bg-[#BD5700] hover:bg-[#BD5700]/90 text-white text-lg px-10 py-4 h-auto rounded-full shadow-lg shadow-[#BD5700]/30"
+              >
+                <Link href="/sign-up">Join Free</Link>
+              </Button>
+              <Link
+                href="/sign-in"
+                className="text-gray-400 hover:text-white text-sm transition-colors"
+              >
+                Already a member? Sign in →
+              </Link>
+            </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-          {[
-            {
-              icon: "💰",
-              title: "Member Discounts",
-              desc: "Exclusive pricing on all services — save up to 15% on every booking.",
-            },
-            {
-              icon: "📅",
-              title: "Priority Booking",
-              desc: "Skip the waitlist. Members get first access to open slots.",
-            },
-            {
-              icon: "📸",
-              title: "Before & After Photos",
-              desc: "View your personal before and after photos for every clean we do.",
-            },
-          ].map((perk) => (
-            <div
-              key={perk.title}
-              className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm"
-            >
-              <div className="text-3xl mb-3">{perk.icon}</div>
-              <h3 className="font-semibold text-gray-900 mb-1">{perk.title}</h3>
-              <p className="text-sm text-gray-600">{perk.desc}</p>
+        {/* Perks */}
+        <div className="bg-gray-50 py-20 px-6">
+          <div className="mx-auto max-w-5xl">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-3">
+                Everything you get as a member
+              </h2>
+              <p className="text-gray-500 max-w-xl mx-auto">
+                We built this community to reward the homeowners who trust us with their property.
+              </p>
             </div>
-          ))}
+
+            {/* Featured perks — full width cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              {/* Before & After — hero featured card */}
+              <div className="relative bg-[#1a0f00] rounded-2xl p-8 overflow-hidden">
+                <div className="absolute top-0 right-0 w-48 h-48 bg-[#BD5700] opacity-10 rounded-full translate-x-16 -translate-y-16" />
+                <span className="inline-block bg-[#BD5700] text-white text-xs font-bold px-3 py-1 rounded-full mb-5 uppercase tracking-wider">
+                  Members Only
+                </span>
+                <div className="text-4xl mb-4">📸</div>
+                <h3 className="text-2xl font-bold text-white mb-3">Before &amp; After Photos</h3>
+                <p className="text-gray-300 leading-relaxed">
+                  Every time we clean your property, we take before and after photos and add them to your personal member account. See the transformation — and share it if you want. Your property&apos;s history, always at your fingertips.
+                </p>
+              </div>
+
+              {/* Member Discounts — featured card */}
+              <div className="relative bg-[#BD5700] rounded-2xl p-8 overflow-hidden">
+                <div className="absolute bottom-0 left-0 w-48 h-48 bg-white opacity-5 rounded-full -translate-x-16 translate-y-16" />
+                <span className="inline-block bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full mb-5 uppercase tracking-wider">
+                  Save Every Visit
+                </span>
+                <div className="text-4xl mb-4">💰</div>
+                <h3 className="text-2xl font-bold text-white mb-3">Member Discounts</h3>
+                <p className="text-white/80 leading-relaxed">
+                  Community members get exclusive pricing on every service we offer — up to 15% off. No coupons, no codes. Your discount is automatically applied every time you book. The more you use us, the more you save.
+                </p>
+              </div>
+            </div>
+
+            {/* Standard perks grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                {
+                  icon: "📅",
+                  title: "Priority Booking",
+                  desc: "Skip the waitlist. Members get first access to open slots, especially during peak season.",
+                },
+                {
+                  icon: "🔔",
+                  title: "Seasonal Reminders",
+                  desc: "We&apos;ll remind you before each season so your property is always ready — no guesswork.",
+                },
+                {
+                  icon: "🎁",
+                  title: "Referral Rewards",
+                  desc: "Refer a neighbor and earn credit toward your next service. Share the love, get rewarded.",
+                },
+                {
+                  icon: "💬",
+                  title: "Direct Access",
+                  desc: "Skip the phone queue. Members get a direct line to our team for fast scheduling and support.",
+                },
+              ].map((perk) => (
+                <div
+                  key={perk.title}
+                  className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="w-11 h-11 bg-[#BD5700]/10 rounded-xl flex items-center justify-center text-xl mb-4">
+                    {perk.icon}
+                  </div>
+                  <h3 className="font-bold text-gray-900 mb-1.5 text-sm">{perk.title}</h3>
+                  <p className="text-gray-500 text-xs leading-relaxed" dangerouslySetInnerHTML={{ __html: perk.desc }} />
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-12 text-center">
+              <Button
+                asChild
+                className="bg-[#BD5700] hover:bg-[#BD5700]/90 text-white px-10 py-4 h-auto rounded-full text-lg shadow-lg shadow-[#BD5700]/20"
+              >
+                <Link href="/sign-up">Join the Community — It&apos;s Free</Link>
+              </Button>
+              <p className="text-gray-400 text-sm mt-3">No credit card required. Sign up with Google in seconds.</p>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -66,67 +137,109 @@ export default async function CommunityPage() {
 
   if (isAdmin) {
     return (
-      <div className="mx-auto max-w-4xl px-6 py-16 text-center">
-        <h1 className="text-3xl font-bold text-gray-900 mb-3">
-          Welcome back, {user?.firstName ?? "Admin"}
-        </h1>
-        <p className="text-gray-600 mb-8">You&apos;re signed in as an admin.</p>
-        <Button asChild className="bg-brand hover:bg-brand/90">
-          <Link href="/admin">Go to Admin Dashboard</Link>
-        </Button>
+      <div className="min-h-[60vh] flex items-center justify-center px-6">
+        <div className="text-center">
+          <div className="w-16 h-16 bg-[#BD5700]/10 rounded-full flex items-center justify-center text-3xl mx-auto mb-5">
+            👋
+          </div>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Welcome back, {user?.firstName ?? "Admin"}
+          </h1>
+          <p className="text-gray-500 mb-8">You&apos;re signed in as an admin.</p>
+          <Button asChild className="bg-[#BD5700] hover:bg-[#BD5700]/90 rounded-full px-8">
+            <Link href="/admin">Go to Admin Dashboard →</Link>
+          </Button>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="mx-auto max-w-5xl px-6 py-16">
-      <div className="mb-10">
-        <h1 className="text-3xl font-bold text-gray-900 mb-1">
-          Welcome, {user?.firstName ?? "member"}!
-        </h1>
-        <p className="text-gray-600">Your Tex N Wash Community portal.</p>
+    <div>
+      {/* Member Welcome Banner */}
+      <div className="bg-[#1a0f00] px-6 py-12">
+        <div className="mx-auto max-w-5xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <p className="text-[#BD5700] text-sm font-semibold uppercase tracking-widest mb-1">
+              Member Portal
+            </p>
+            <h1 className="text-3xl font-bold text-white">
+              Welcome back, {user?.firstName ?? "member"}!
+            </h1>
+            <p className="text-gray-400 mt-1 text-sm">Tex N Wash Community</p>
+          </div>
+          <Button asChild className="bg-[#BD5700] hover:bg-[#BD5700]/90 rounded-full self-start sm:self-auto">
+            <Link href="/quote">Book a Service</Link>
+          </Button>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {[
-          {
-            icon: "💰",
-            title: "Member Discounts",
-            desc: "Show your member status when booking to unlock exclusive pricing.",
-            cta: "Book a Service",
-            href: "/quote",
-          },
-          {
-            icon: "📅",
-            title: "Priority Booking",
-            desc: "Mention you&apos;re a community member and we&apos;ll fit you in first.",
-            cta: "Request Appointment",
-            href: "/quote",
-          },
-          {
-            icon: "📸",
-            title: "Before & After Photos",
-            desc: "Your personal photo record for every clean — coming soon.",
-            cta: null,
-            href: null,
-          },
-        ].map((card) => (
-          <div
-            key={card.title}
-            className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm flex flex-col"
-          >
-            <div className="text-3xl mb-3">{card.icon}</div>
-            <h3 className="font-semibold text-gray-900 mb-1">{card.title}</h3>
-            <p className="text-sm text-gray-600 flex-1">{card.desc}</p>
-            {card.cta && card.href && (
-              <div className="mt-4">
-                <Button asChild variant="outline" size="sm" className="border-brand text-brand hover:bg-brand/5">
-                  <Link href={card.href}>{card.cta}</Link>
-                </Button>
+      {/* Member Cards */}
+      <div className="bg-gray-50 px-6 py-12">
+        <div className="mx-auto max-w-5xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: "💰",
+                title: "Member Discounts",
+                desc: "Mention your community membership when booking to unlock exclusive pricing on every service.",
+                cta: "Get a Quote",
+                href: "/quote",
+                badge: "Active",
+              },
+              {
+                icon: "📅",
+                title: "Priority Booking",
+                desc: "As a community member you get first access to open appointment slots — especially during peak season.",
+                cta: "Book Now",
+                href: "/quote",
+                badge: "Active",
+              },
+              {
+                icon: "📸",
+                title: "Before & After Photos",
+                desc: "Your personal photo record for every clean we complete on your property.",
+                cta: null,
+                href: null,
+                badge: "Coming Soon",
+              },
+            ].map((card) => (
+              <div
+                key={card.title}
+                className="bg-white rounded-2xl border border-gray-100 p-8 shadow-sm flex flex-col"
+              >
+                <div className="flex items-start justify-between mb-5">
+                  <div className="w-12 h-12 bg-[#BD5700]/10 rounded-xl flex items-center justify-center text-xl">
+                    {card.icon}
+                  </div>
+                  <span
+                    className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
+                      card.badge === "Active"
+                        ? "bg-green-50 text-green-700"
+                        : "bg-gray-100 text-gray-500"
+                    }`}
+                  >
+                    {card.badge}
+                  </span>
+                </div>
+                <h3 className="font-bold text-gray-900 mb-2">{card.title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed flex-1">{card.desc}</p>
+                {card.cta && card.href && (
+                  <div className="mt-6">
+                    <Button
+                      asChild
+                      variant="outline"
+                      size="sm"
+                      className="border-[#BD5700] text-[#BD5700] hover:bg-[#BD5700]/5 rounded-full"
+                    >
+                      <Link href={card.href}>{card.cta}</Link>
+                    </Button>
+                  </div>
+                )}
               </div>
-            )}
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </div>
   );
