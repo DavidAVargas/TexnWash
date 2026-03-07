@@ -27,7 +27,6 @@ export default function GalleryPage() {
   const [progressKey, setProgressKey] = useState(0);
   const [slideDuration, setSlideDuration] = useState(5000);
 
-  // Shuffle on client only to avoid hydration mismatch
   useEffect(() => {
     setQueue(initialSlides.slice().sort(() => Math.random() - 0.5));
   }, [initialSlides]);
@@ -37,16 +36,11 @@ export default function GalleryPage() {
     setProgressKey((k) => k + 1);
   }, []);
 
-  // Set duration when slide changes — images use 5s, videos wait for metadata
   useEffect(() => {
     const current = queue[currentSlide];
-    if (current.type === "image") {
-      setSlideDuration(5000);
-    }
-    // Video duration is set via onLoadedMetadata on the video element
+    if (current.type === "image") setSlideDuration(5000);
   }, [currentSlide, queue]);
 
-  // Auto-advance slides
   useEffect(() => {
     const timer = setTimeout(() => {
       if (currentSlide + 1 >= queue.length) {
@@ -61,22 +55,26 @@ export default function GalleryPage() {
   }, [currentSlide, queue, initialSlides, slideDuration, goToSlide]);
 
   return (
-    <section className="bg-white text-[#4E3629] py-12 px-4">
-      <div className="max-w-6xl mx-auto space-y-12">
+    <div className="bg-white">
 
-        {/* Title */}
-        <div className="text-center space-y-2">
-          <h1 className="text-4xl font-bold border-b-4 border-[#BD5700] inline-block tracking-wide">Our Work Gallery</h1>
-          <p className="text-lg text-gray-700 italic">See the Tex N Wash difference — real results, real customers.</p>
-        </div>
+      {/* Page Header */}
+      <div className="border-b border-gray-100 py-12 px-6 text-center">
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">Our Work</h1>
+        <p className="text-gray-500 text-lg max-w-xl mx-auto">
+          Real results from real Fort Worth properties. See what a proper clean looks like.
+        </p>
+      </div>
 
-        {/* Slideshow Section */}
-        <div className="space-y-4 relative max-w-4xl mx-auto">
-          <h2 className="text-2xl font-semibold text-[#BD5700] text-center">In Action</h2>
-          <div className="relative w-full h-[500px] rounded-2xl shadow-xl overflow-hidden bg-gradient-to-r from-[#f4f1ee] via-[#e6ddd3] to-[#f4f1ee]">
-            {/* Decorative blobs */}
-            <div className="absolute w-40 h-40 bg-[#BD5700] rounded-full opacity-10 blur-3xl top-10 left-10 z-0"></div>
-            <div className="absolute w-32 h-32 bg-[#4E3629] rounded-full opacity-10 blur-2xl bottom-10 right-10 z-0"></div>
+      <div className="max-w-5xl mx-auto px-4 py-14 space-y-20">
+
+        {/* Slideshow */}
+        <div>
+          <div className="flex items-center justify-between mb-5">
+            <h2 className="text-xl font-bold text-gray-900">In Action</h2>
+            <span className="text-sm text-gray-400">{currentSlide + 1} / {queue.length}</span>
+          </div>
+
+          <div className="relative w-full h-[700px] rounded-2xl overflow-hidden bg-gray-900 shadow-lg">
             {queue.map((slide, index) => (
               <div
                 key={index}
@@ -87,9 +85,9 @@ export default function GalleryPage() {
                 {slide.type === "image" ? (
                   <Image
                     src={slide.src}
-                    alt={`Action Photo ${index + 1}`}
+                    alt={`Job photo ${index + 1}`}
                     fill
-                    sizes="(max-width: 896px) 100vw, 896px"
+                    sizes="(max-width: 1024px) 100vw, 1024px"
                     className="object-contain"
                   />
                 ) : index === currentSlide ? (
@@ -111,69 +109,128 @@ export default function GalleryPage() {
                 ) : null}
               </div>
             ))}
-            {/* Progress bar — CSS animation for smooth 0-100% fill */}
+
+            {/* Progress bar */}
             <div
               key={progressKey}
-              className="absolute bottom-0 left-0 h-1 bg-[#BD5700] animate-progress-bar z-10"
+              className="absolute bottom-0 left-0 h-[3px] bg-[#BD5700] animate-progress-bar z-10"
               style={{ animationDuration: `${slideDuration}ms` }}
             />
+
+            {/* Nav buttons */}
             <button
               aria-label="Previous slide"
               onClick={() => goToSlide((currentSlide - 1 + queue.length) % queue.length)}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-[#BD5700] text-white px-3 py-1 rounded z-10"
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/40 hover:bg-[#BD5700] text-white rounded-full flex items-center justify-center transition-colors z-10"
             >
               ←
             </button>
             <button
               aria-label="Next slide"
               onClick={() => goToSlide((currentSlide + 1) % queue.length)}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#BD5700] text-white px-3 py-1 rounded z-10"
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/40 hover:bg-[#BD5700] text-white rounded-full flex items-center justify-center transition-colors z-10"
             >
               →
             </button>
           </div>
+
+          {/* Dot indicators */}
+          <div className="flex justify-center gap-1.5 mt-4">
+            {queue.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goToSlide(i)}
+                className={`h-1.5 rounded-full transition-all ${
+                  i === currentSlide ? "bg-[#BD5700] w-6" : "bg-gray-300 w-1.5"
+                }`}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
+          </div>
         </div>
 
-        {/* Before & After Section */}
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="space-y-4 bg-gradient-to-br from-[#f4f1ee] to-[#e6ddd3] p-4 rounded-2xl shadow-inner">
-            <h2 className="text-2xl font-semibold text-[#BD5700]">Before</h2>
-            <Image src="/images/before1.jpg" width={600} height={400} alt="Before cleaning" className="rounded shadow-md" />
-            <Image src="/images/before2.jpg" width={600} height={400} alt="Before cleaning" className="rounded shadow-md" />
+        {/* Before & After */}
+        <div>
+          <div className="mb-8">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Before &amp; After</h2>
+            <p className="text-gray-500 text-sm">The difference a proper clean makes</p>
           </div>
-          <div className="space-y-4 bg-gradient-to-br from-[#f4f1ee] to-[#e6ddd3] p-4 rounded-2xl shadow-inner">
-            <h2 className="text-2xl font-semibold text-[#4E3629]">After</h2>
-            <Image src="/images/after1.jpg" width={600} height={400} alt="After cleaning" className="rounded shadow-md" />
-            <Image src="/images/after2.jpg" width={600} height={400} alt="After cleaning" className="rounded shadow-md" />
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-3">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-2 h-2 rounded-full bg-gray-400 inline-block" />
+                <span className="text-sm font-semibold text-gray-500 uppercase tracking-widest">Before</span>
+              </div>
+              <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-gray-100">
+                <Image src="/images/before1.jpg" fill sizes="50vw" alt="Before cleaning" className="object-cover" />
+              </div>
+              <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-gray-100">
+                <Image src="/images/before2.jpg" fill sizes="50vw" alt="Before cleaning" className="object-cover" />
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-2 h-2 rounded-full bg-[#BD5700] inline-block" />
+                <span className="text-sm font-semibold text-[#BD5700] uppercase tracking-widest">After</span>
+              </div>
+              <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-gray-100">
+                <Image src="/images/after1.jpg" fill sizes="50vw" alt="After cleaning" className="object-cover" />
+              </div>
+              <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-gray-100">
+                <Image src="/images/after2.jpg" fill sizes="50vw" alt="After cleaning" className="object-cover" />
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Follow Our Journey Section */}
-        <div className="bg-gray-50 p-6 rounded-lg shadow mt-12 text-center">
-          <h3 className="text-2xl font-bold text-[#4E3629] mb-4">Follow Our Journey</h3>
-          <p>See even more behind-the-scenes and reviews:</p>
-          <div className="flex justify-center space-x-4 mt-4">
-            <a href="https://www.instagram.com/texnwash/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <Image src="/images/instagram.png" alt="Instagram" width={24} height={24} className="h-6 w-6" />
+        {/* Follow Us */}
+        <div className="border-t border-gray-100 pt-12 text-center">
+          <h3 className="text-xl font-bold text-gray-900 mb-1">See More of Our Work</h3>
+          <p className="text-gray-500 text-sm mb-8">Behind-the-scenes, job highlights, and customer reviews</p>
+
+          <div className="flex justify-center gap-4 mb-8">
+            <a
+              href="https://www.instagram.com/texnwash/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="w-11 h-11 border border-gray-200 hover:border-[#BD5700] hover:bg-[#BD5700]/5 rounded-full flex items-center justify-center transition-colors"
+            >
+              <Image src="/images/instagram.png" alt="Instagram" width={20} height={20} />
             </a>
-            <a href="https://www.tiktok.com/@texnwash?_t=ZP-8xQSKcTy0OV&_r=1" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-              <Image src="/images/tiktok.png" alt="TikTok" width={24} height={24} className="h-6 w-6" />
+            <a
+              href="https://www.tiktok.com/@texnwash?_t=ZP-8xQSKcTy0OV&_r=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok"
+              className="w-11 h-11 border border-gray-200 hover:border-[#BD5700] hover:bg-[#BD5700]/5 rounded-full flex items-center justify-center transition-colors"
+            >
+              <Image src="/images/tiktok.png" alt="TikTok" width={20} height={20} />
             </a>
-            <a href="https://www.facebook.com/people/Tex-N-Wash/pfbid0EvRoWbi8Vx12Z8YZMXwNsYb2tQMWdniRsUYQzvEuUpBbKakZKmCbwPEVmFb7Xv1Kl/?ref=_ig_profile_ac" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-              <Image src="/images/facebook.png" alt="Facebook" width={24} height={24} className="h-6 w-6" />
+            <a
+              href="https://www.facebook.com/people/Tex-N-Wash/pfbid0EvRoWbi8Vx12Z8YZMXwNsYb2tQMWdniRsUYQzvEuUpBbKakZKmFb7Xv1Kl/?ref=_ig_profile_ac"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="w-11 h-11 border border-gray-200 hover:border-[#BD5700] hover:bg-[#BD5700]/5 rounded-full flex items-center justify-center transition-colors"
+            >
+              <Image src="/images/facebook.png" alt="Facebook" width={20} height={20} />
             </a>
           </div>
+
           <a
             href="https://www.google.com/search?q=texnwash.com+reviews"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block mt-4 bg-[#c3b091] text-black px-4 py-2 rounded hover:bg-[#b49f83] transition-colors"
+            className="inline-block border border-[#BD5700] text-[#BD5700] hover:bg-[#BD5700] hover:text-white px-8 py-3 rounded-full text-sm font-semibold transition-colors"
           >
-            Check Our Google Reviews
+            Read Our Google Reviews
           </a>
         </div>
 
       </div>
-    </section>
+    </div>
   );
 }
