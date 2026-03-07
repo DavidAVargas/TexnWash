@@ -12,7 +12,7 @@ export default async function CommunityPage() {
       <div className="mx-auto max-w-5xl px-6 py-16">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            The Texan Watch Community
+            The Tex N Wash Community
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Join our community of Fort Worth homeowners and get exclusive perks,
@@ -45,9 +45,9 @@ export default async function CommunityPage() {
               desc: "Skip the waitlist. Members get first access to open slots.",
             },
             {
-              icon: "📬",
-              title: "Seasonal Tips",
-              desc: "Expert advice delivered to your inbox before each season.",
+              icon: "📸",
+              title: "Before & After Photos",
+              desc: "View your personal before and after photos for every clean we do.",
             },
           ].map((perk) => (
             <div
@@ -84,7 +84,7 @@ export default async function CommunityPage() {
         <h1 className="text-3xl font-bold text-gray-900 mb-1">
           Welcome, {user?.firstName ?? "member"}!
         </h1>
-        <p className="text-gray-600">Your Texan Watch Community portal.</p>
+        <p className="text-gray-600">Your Tex N Wash Community portal.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -104,9 +104,9 @@ export default async function CommunityPage() {
             href: "/quote",
           },
           {
-            icon: "📬",
-            title: "Seasonal Updates",
-            desc: "Stay tuned — member newsletters and tips coming soon.",
+            icon: "📸",
+            title: "Before & After Photos",
+            desc: "Your personal photo record for every clean — coming soon.",
             cta: null,
             href: null,
           },
