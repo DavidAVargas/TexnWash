@@ -4,56 +4,109 @@ import Link from 'next/link'
 
 export default function ServiceHighlights() {
   return (
-    <section className="relative py-12 md:py-20 px-4 bg-white">
-      <div className="absolute top-0 left-0 w-1/2 h-full bg-gray-100 opacity-30 rounded-r-full pointer-events-none -z-10" />
-      {/* Title */}
-      <div className="text-center mb-8 md:mb-12">
-        <h2 className="text-3xl md:text-5xl font-extrabold text-[#4E3629] inline-block relative after:content-[''] after:block after:h-1 after:bg-[#c3b091] after:w-16 md:after:w-24 after:mx-auto after:mt-2 md:after:mt-4">
-          Choose The Best Wash for Your Property
-        </h2>
-      </div>
+    <section className="py-16 md:py-24 px-4 bg-white">
+      <div className="max-w-6xl mx-auto space-y-16">
 
-      {/* Services Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto mb-12 md:mb-20">
-        {[
-          { title: 'Residential Washing', description: 'House, driveway, and patio cleaning.', image: '/images/restnx.png' },
-          { title: 'Commercial Cleaning', description: 'Storefronts, sidewalks, and parking lots.', image: '/images/cctnw.png' },
-          { title: 'Detail & Extras', description: 'Complete the Clean – For the Finishing Touch.', image: '/images/detnw.png' },
-        ].map((service, index) => (
-          <div key={index} className="bg-white shadow-md hover:shadow-lg transition-shadow rounded overflow-hidden">
-            <div className="h-60 md:h-80 relative">
-              <Image src={service.image} alt={service.title} fill className="object-cover" />
-            </div>
-            <div className="p-4">
-              <h3 className="text-lg md:text-xl font-semibold mb-2">{service.title}</h3>
-              <p className="text-sm md:text-base text-gray-600">{service.description}</p>
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+          <div>
+            <p className="text-[#BD5700] font-semibold text-sm uppercase tracking-widest mb-2">Fort Worth, TX</p>
+            <h2 className="text-4xl md:text-6xl font-black text-gray-900 leading-none">
+              What We<br />Clean.
+            </h2>
+          </div>
+          <Link
+            href="/services"
+            className="self-start md:self-auto inline-block bg-[#BD5700] hover:bg-[#BD5700]/90 text-white font-semibold py-3 px-7 rounded-full transition-colors text-sm"
+          >
+            View Our Services →
+          </Link>
+        </div>
+
+        {/* Asymmetric Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Large card — Residential */}
+          <div className="group relative rounded-2xl overflow-hidden bg-[#3d1f00] h-[420px] md:row-span-2 md:h-auto">
+            <Image
+              src="/images/restnx.png"
+              alt="Residential Washing"
+              fill
+              className="object-cover opacity-80 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 p-7">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">Residential Washing</h3>
+              <p className="text-gray-300 text-sm leading-relaxed max-w-xs">
+                House washing, driveway cleaning, patio and fence restoration. Your home, spotless.
+              </p>
             </div>
           </div>
-        ))}
-      </div>
 
-      {/* Why Tex N Wash */}
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
-        {/* Text */}
-        <div className="max-w-xl text-center md:text-left">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Why Tex N Wash?</h2>
-          <p className="text-base md:text-lg text-gray-700 mb-4">
-            At Tex N Wash, we treat every home and business like it&apos;s our own. Backed by professional-grade equipment and years of local experience, we go beyond just a surface clean. From concrete to siding, we target deep grime, buildup, and stains that other companies miss. We show up on time, communicate clearly, and leave your space sparkling — every single time.
-          </p>
-        </div>
-        {/* Image */}
-        <div className="w-full md:w-1/2 h-60 md:h-80 relative">
-          <Image src="/images/ytnw.png" alt="Why Tex N Wash" fill className="object-cover rounded" />
-        </div>
-      </div>
+          {/* Commercial */}
+          <div className="group relative rounded-2xl overflow-hidden bg-[#3d1f00] h-64">
+            <Image
+              src="/images/cctnw.png"
+              alt="Commercial Cleaning"
+              fill
+              className="object-cover opacity-80 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 p-6">
+              <h3 className="text-xl font-bold text-white mb-1">Commercial Cleaning</h3>
+              <p className="text-gray-300 text-sm">Storefronts, sidewalks &amp; parking lots.</p>
+            </div>
+          </div>
 
-      {/* Call to Action */}
-      <div className="mt-12 md:mt-20 bg-[#c3b091] text-white py-8 md:py-12 px-4 text-center rounded-lg shadow-lg">
-        <h3 className="text-2xl md:text-4xl font-bold mb-4">Ready to Make Your Property Shine?</h3>
-        <p className="text-base md:text-lg mb-6">Let us do the dirty work — book your free quote today!</p>
-        <Link href="/quote" className="inline-block bg-[#4E3629] text-white font-semibold py-3 px-6 rounded hover:bg-[#271a15] transition-colors">
-          Get Your Free Quote
-        </Link>
+          {/* Detail & Extras */}
+          <div className="group relative rounded-2xl overflow-hidden bg-[#3d1f00] h-64">
+            <Image
+              src="/images/detnw.png"
+              alt="Detail & Extras"
+              fill
+              className="object-cover opacity-80 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 p-6">
+              <h3 className="text-xl font-bold text-white mb-1">Detail &amp; Extras</h3>
+              <p className="text-gray-300 text-sm">The finishing touches that complete the clean.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Stats Strip */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {[
+            { value: '100+', label: 'Properties Cleaned' },
+            { value: '5★', label: 'Google Rating' },
+            { value: 'Fort Worth', label: 'Locally Based' },
+            { value: 'Free', label: 'Quotes & Estimates' },
+          ].map((stat) => (
+            <div key={stat.label} className="border border-gray-100 rounded-2xl p-5 text-center">
+              <p className="text-2xl font-black text-gray-900 mb-1">{stat.value}</p>
+              <p className="text-xs text-gray-500 uppercase tracking-widest">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA Strip */}
+        <div className="relative bg-[#3d1f00] rounded-2xl overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_right,_#BD5700_0%,_transparent_60%)] opacity-30" />
+          <div className="relative flex flex-col md:flex-row items-center justify-between gap-6 px-8 py-10">
+            <div>
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-1">
+                Ready to make your property shine?
+              </h3>
+              <p className="text-gray-400 text-sm">We show up on time and leave it spotless — every single time.</p>
+            </div>
+            <Link
+              href="/quote"
+              className="shrink-0 inline-block bg-[#BD5700] hover:bg-[#BD5700]/90 text-white font-semibold py-3 px-8 rounded-full transition-colors whitespace-nowrap"
+            >
+              Get Your Free Quote
+            </Link>
+          </div>
+        </div>
+
       </div>
     </section>
   )
