@@ -52,7 +52,7 @@ export default function RootLayout({
           >
             <div className="grid min-h-[100dvh] grid-rows-[auto_1fr_auto]">
               <Header/>
-              <main className="overflow-x-hidden">
+              <main className="overflow-x-hidden bg-white">
               {children}
               </main>
               <Footer/>
