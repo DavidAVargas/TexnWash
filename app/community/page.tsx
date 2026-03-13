@@ -154,9 +154,23 @@ export default async function CommunityPage() {
     );
   }
 
+  const month = new Date().getMonth();
+  const seasonTip =
+    month >= 2 && month <= 4
+      ? { emoji: "🌸", season: "Spring", tip: "Winter buildup is at its worst right now. A spring clean is the #1 thing Fort Worth homeowners book this time of year." }
+      : month >= 5 && month <= 7
+      ? { emoji: "☀️", season: "Summer", tip: "Summer heat bakes in dirt and mildew fast. Keep your property looking sharp all season long." }
+      : month >= 8 && month <= 10
+      ? { emoji: "🍂", season: "Fall", tip: "Clear away summer buildup before the cold sets in. Fall is a great time to prep your driveway and deck." }
+      : { emoji: "❄️", season: "Winter", tip: "Winter grime and oil stains build up fast. Get ahead of the season with a pre-spring clean." };
+
+  const memberName = user?.fullName ?? user?.firstName ?? "Member";
+  const memberEmail = user?.emailAddresses?.[0]?.emailAddress ?? "";
+  const initials = (user?.firstName?.[0] ?? "") + (user?.lastName?.[0] ?? "");
+
   return (
     <div>
-      {/* Member Welcome Banner */}
+      {/* Welcome Banner */}
       <div className="bg-[#1a0f00] px-6 py-12">
         <div className="mx-auto max-w-5xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
@@ -174,15 +188,57 @@ export default async function CommunityPage() {
         </div>
       </div>
 
-      {/* Member Cards */}
       <div className="bg-gray-50 px-6 py-12">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-5xl space-y-6">
+
+          {/* Member Card */}
+          <div className="relative bg-[#1a0f00] rounded-3xl overflow-hidden p-8">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_#BD5700_0%,_transparent_55%)] opacity-20" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-[#BD5700] opacity-5 -translate-x-20 translate-y-20" />
+            <div className="relative flex flex-col sm:flex-row sm:items-center gap-6">
+              {/* Avatar */}
+              <div className="w-16 h-16 rounded-2xl bg-[#BD5700] flex items-center justify-center text-white text-xl font-bold shrink-0">
+                {initials || "👤"}
+              </div>
+              {/* Info */}
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#BD5700]">Community Member</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
+                  <span className="text-xs text-green-400 font-medium">Active</span>
+                </div>
+                <p className="text-2xl font-bold text-white truncate">{memberName}</p>
+                {memberEmail && (
+                  <p className="text-gray-400 text-sm mt-0.5 truncate">{memberEmail}</p>
+                )}
+              </div>
+              {/* Discount badge */}
+              <div className="shrink-0 text-center bg-white/5 border border-white/10 rounded-2xl px-6 py-4">
+                <p className="text-3xl font-black text-[#BD5700]">15%</p>
+                <p className="text-xs text-gray-400 mt-0.5 font-medium">Member Discount</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Seasonal Tip */}
+          <div className="flex items-start gap-4 bg-orange-50 border border-orange-100 rounded-2xl px-6 py-5">
+            <span className="text-2xl shrink-0">{seasonTip.emoji}</span>
+            <div>
+              <p className="text-sm font-bold text-gray-900 mb-0.5">{seasonTip.season} Tip</p>
+              <p className="text-sm text-gray-600 leading-relaxed">{seasonTip.tip}</p>
+            </div>
+            <Button asChild size="sm" className="bg-[#BD5700] hover:bg-[#BD5700]/90 text-white rounded-full shrink-0 self-center ml-auto">
+              <Link href="/quote">Book Now</Link>
+            </Button>
+          </div>
+
+          {/* Perk Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
                 icon: "💰",
                 title: "Member Discounts",
-                desc: "Mention your community membership when booking to unlock exclusive pricing on every service.",
+                desc: "Your 15% member discount is automatically applied every time you book — no codes needed.",
                 cta: "Get a Quote",
                 href: "/quote",
                 badge: "Active",
@@ -239,6 +295,31 @@ export default async function CommunityPage() {
               </div>
             ))}
           </div>
+
+          {/* Direct Line */}
+          <div className="bg-white rounded-2xl border border-gray-100 p-8 shadow-sm flex flex-col sm:flex-row sm:items-center gap-6">
+            <div className="w-12 h-12 bg-[#BD5700]/10 rounded-xl flex items-center justify-center text-xl shrink-0">
+              📞
+            </div>
+            <div className="flex-1">
+              <p className="text-xs font-bold uppercase tracking-widest text-[#BD5700] mb-1">Members Only</p>
+              <h3 className="font-bold text-gray-900 mb-1">Direct Line to Our Team</h3>
+              <p className="text-sm text-gray-500">
+                Skip the contact form. Text or call us directly at{" "}
+                <a href="tel:+12102012123" className="font-semibold text-gray-800 hover:text-[#BD5700] transition-colors">
+                  (210) 201-2123
+                </a>{" "}
+                — mention you&apos;re a community member for priority response.
+              </p>
+            </div>
+            <a
+              href="sms:+12102012123"
+              className="shrink-0 inline-block bg-[#BD5700] hover:bg-[#BD5700]/90 text-white font-semibold px-6 py-3 rounded-full text-sm transition-colors"
+            >
+              Text Us →
+            </a>
+          </div>
+
         </div>
       </div>
     </div>
