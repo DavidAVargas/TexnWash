@@ -1,11 +1,16 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import Link from "next/link";
+import { isAdmin as isAdminUser } from "@/lib/is-admin";
+import Image from "next/image";
+import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
+import { connectDB } from "@/lib/mongodb";
+import { PhotoSet, type IPhotoSet } from "@/lib/models/PhotoSet";
 
 export default async function CommunityPage() {
   const { userId } = await auth();
   const user = userId ? await currentUser() : null;
-  const isAdmin = (user?.publicMetadata as { role?: string })?.role === "admin";
+  const isAdmin = isAdminUser(user?.emailAddresses?.[0]?.emailAddress);
 
   if (!userId) {
     return (
@@ -168,6 +173,20 @@ export default async function CommunityPage() {
   const memberEmail = user?.emailAddresses?.[0]?.emailAddress ?? "";
   const initials = (user?.firstName?.[0] ?? "") + (user?.lastName?.[0] ?? "");
 
+  // Fetch this member's photo sets from MongoDB
+  let photoSets: IPhotoSet[] = [];
+  if (memberEmail) {
+    try {
+      await connectDB();
+      const raw = await PhotoSet.find({ customerEmail: memberEmail })
+        .sort({ jobDate: -1 })
+        .lean();
+      photoSets = JSON.parse(JSON.stringify(raw));
+    } catch {
+      // non-blocking — show Coming Soon if DB unavailable
+    }
+  }
+
   return (
     <div>
       {/* Welcome Banner */}
@@ -254,10 +273,13 @@ export default async function CommunityPage() {
               {
                 icon: "📸",
                 title: "Before & After Photos",
-                desc: "Your personal photo record for every clean we complete on your property.",
-                cta: null,
-                href: null,
-                badge: "Coming Soon",
+                desc:
+                  photoSets.length > 0
+                    ? `${photoSets.length} job${photoSets.length > 1 ? "s" : ""} on record for your property.`
+                    : "Your personal photo record for every clean we complete on your property.",
+                cta: photoSets.length > 0 ? "View Gallery" : null,
+                href: photoSets.length > 0 ? "#gallery" : null,
+                badge: photoSets.length > 0 ? "Active" : "Coming Soon",
               },
             ].map((card) => (
               <div
@@ -295,6 +317,77 @@ export default async function CommunityPage() {
               </div>
             ))}
           </div>
+
+          {/* Before & After Gallery */}
+          {photoSets.length > 0 && (
+            <div id="gallery" className="bg-white rounded-2xl border border-gray-100 p-8 shadow-sm">
+              <h2 className="font-bold text-gray-900 mb-6 flex items-center gap-2">
+                <span className="w-8 h-8 bg-[#BD5700]/10 rounded-lg flex items-center justify-center text-base">📸</span>
+                Your Property Photos
+              </h2>
+              <div className="space-y-8">
+                {photoSets.map((set) => (
+                  <div key={set._id} className="border border-gray-100 rounded-xl p-6">
+                    <div className="flex flex-wrap items-center gap-2 mb-4">
+                      <span className="text-sm font-semibold text-gray-900">
+                        {format(new Date(set.jobDate), "MMMM d, yyyy")}
+                      </span>
+                      <span className="text-xs bg-[#BD5700]/10 text-[#BD5700] px-2 py-0.5 rounded-full font-medium">
+                        {set.serviceType}
+                      </span>
+                    </div>
+                    {set.notes && (
+                      <p className="text-sm text-gray-500 mb-4">{set.notes}</p>
+                    )}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+                          Before
+                        </p>
+                        <div className="grid grid-cols-2 gap-1.5">
+                          {set.beforePhotos.map((url, i) => (
+                            <div
+                              key={i}
+                              className="aspect-square rounded-lg overflow-hidden bg-gray-100"
+                            >
+                              <Image
+                                src={url}
+                                alt={`Before photo ${i + 1}`}
+                                width={200}
+                                height={200}
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+                          After
+                        </p>
+                        <div className="grid grid-cols-2 gap-1.5">
+                          {set.afterPhotos.map((url, i) => (
+                            <div
+                              key={i}
+                              className="aspect-square rounded-lg overflow-hidden bg-gray-100"
+                            >
+                              <Image
+                                src={url}
+                                alt={`After photo ${i + 1}`}
+                                width={200}
+                                height={200}
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Direct Line */}
           <div className="bg-white rounded-2xl border border-gray-100 p-8 shadow-sm flex flex-col sm:flex-row sm:items-center gap-6">
