@@ -137,10 +137,17 @@ export default function QuotePage() {
     setSelectedAddOns([]);
   };
 
+  const CURB_PACKAGE = "Curb Appeal Refresh Package";
+  const CURB_CONFLICTS = ["Driveway"];
+
   const toggleService = (value: string) => {
-    setSelectedServices((prev) =>
-      prev.includes(value) ? prev.filter((s) => s !== value) : [...prev, value]
-    );
+    setSelectedServices((prev) => {
+      if (prev.includes(value)) return prev.filter((s) => s !== value);
+      let next = [...prev, value];
+      if (value === CURB_PACKAGE) next = next.filter((s) => !CURB_CONFLICTS.includes(s));
+      if (CURB_CONFLICTS.includes(value)) next = next.filter((s) => s !== CURB_PACKAGE);
+      return next;
+    });
     setSelectedAddOns([]);
   };
 

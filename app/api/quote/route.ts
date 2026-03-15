@@ -30,10 +30,27 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    const ordered = {
+      fullName: formData.fullName,
+      email: formData.email,
+      phone: formData.phone,
+      ...(formData.businessName && { businessName: formData.businessName }),
+      type: formData.type,
+      services: formData.services,
+      addOns: formData.addOns,
+      address: formData.address,
+      squareFootage: formData.squareFootage,
+      preferredDate: formData.preferredDate,
+      preferredTime: formData.preferredTime,
+      notes: formData.notes,
+      termsAccepted: formData.termsAccepted,
+      verifiedViaClerk: !!userId,
+    };
+
     const formspreeResponse = await fetch("https://formspree.io/f/mzzgqrya", {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({ ...formData, verifiedViaClerk: !!userId }),
+      body: JSON.stringify(ordered),
     });
 
     if (!formspreeResponse.ok) {
