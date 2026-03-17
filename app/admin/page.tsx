@@ -29,7 +29,7 @@ export default async function AdminPage() {
           {
             icon: "👥",
             title: "Community Members",
-            desc: "See who has joined the Texan Watch Community.",
+            desc: "See who has joined the Tex N Wash Community.",
           },
           {
             icon: "📊",

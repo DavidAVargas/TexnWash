@@ -383,7 +383,7 @@ export default function QuotePage() {
 
             <input type="number" placeholder="Approximate Square Footage (optional)"
               aria-label="Square Footage" value={squareFootage}
-              onChange={(e) => setSquareFootage(e.target.value)}
+              onChange={(e) => { if (Number(e.target.value) >= 0) setSquareFootage(e.target.value); }}
               className={inputClass} min="1" />
             <p className="text-xs text-gray-400">
               Don&apos;t know your square footage? No problem — we&apos;ll measure on-site.
