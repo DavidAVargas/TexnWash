@@ -212,8 +212,10 @@ export default async function CommunityPage({
     }
   }
 
-  const manualServiceCount = (user?.publicMetadata?.serviceCount as number) ?? 0;
-  const serviceCount = Math.max(photoSets.length, manualServiceCount);
+  const rawServiceCount = user?.publicMetadata?.serviceCount;
+  const serviceCount = rawServiceCount !== undefined && rawServiceCount !== null
+    ? (rawServiceCount as number)
+    : photoSets.length;
   const autoTier = serviceCount >= 5 ? 3 : serviceCount >= 3 ? 2 : serviceCount >= 1 ? 1 : 0;
   const loyaltyTier = Math.max(autoTier, manualTier);
 
