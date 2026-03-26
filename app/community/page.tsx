@@ -82,21 +82,9 @@ export default async function CommunityPage() {
                 </span>
                 <div className="text-4xl mb-4">💰</div>
                 <h3 className="text-2xl font-bold text-white mb-3">Member Pricing</h3>
-                <p className="text-white/80 leading-relaxed mb-5">
-                  Your discount grows the more you use us. No coupons, no codes — it&apos;s applied automatically every time you book.
+                <p className="text-white/80 leading-relaxed">
+                  Members unlock exclusive pricing that gets better the longer they stay with us. No coupons, no codes, no asking — your discount is applied automatically every time you book. The details are for members only.
                 </p>
-                <div className="space-y-2">
-                  {[
-                    { label: "1st Service", value: "5% off" },
-                    { label: "3rd Service", value: "10% off" },
-                    { label: "5th Service+", value: "15% off" },
-                  ].map((tier) => (
-                    <div key={tier.label} className="flex items-center justify-between bg-white/10 rounded-xl px-4 py-2.5">
-                      <span className="text-white/80 text-sm">{tier.label}</span>
-                      <span className="text-white font-bold text-sm">{tier.value}</span>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
 
@@ -137,6 +125,11 @@ export default async function CommunityPage() {
                   icon: "⭐",
                   title: "Review Reward",
                   desc: "Leave us a Google review and we'll thank you with a special discount on your next service.",
+                },
+                {
+                  icon: "🔒",
+                  title: "More Perks Coming Soon",
+                  desc: "We're always adding new benefits for our community. Join now and be the first to get access.",
                 },
               ].map((perk) => (
                 <div
