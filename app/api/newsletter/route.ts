@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'reCAPTCHA verification failed' }, { status: 400 });
     }
 
-    const listId = parseInt(process.env.BREVO_LIST_ID || '1', 10);
+    const listId = 7; // Community list
 
     // Submit to Brevo
     const brevoResponse = await fetch('https://api.brevo.com/v3/contacts', {

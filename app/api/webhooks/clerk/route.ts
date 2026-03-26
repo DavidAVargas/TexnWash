@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
         FIRSTNAME: first_name || "",
         LASTNAME: last_name || "",
       },
-      listIds: [],
+      listIds: [7], // Community list
       updateEnabled: true,
     }),
   });

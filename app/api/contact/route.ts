@@ -61,6 +61,21 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Add to Brevo Leads list (non-blocking)
+    if (process.env.BREVO_API_KEY) {
+      const [firstName, ...rest] = fullName.trim().split(" ");
+      fetch("https://api.brevo.com/v3/contacts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "api-key": process.env.BREVO_API_KEY },
+        body: JSON.stringify({
+          email,
+          attributes: { FIRSTNAME: firstName, LASTNAME: rest.join(" ") },
+          listIds: [6],
+          updateEnabled: true,
+        }),
+      }).catch((err) => console.error("Brevo contact error:", err));
+    }
+
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Contact form error:", error);
