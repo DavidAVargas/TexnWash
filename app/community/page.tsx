@@ -6,11 +6,18 @@ import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { connectDB } from "@/lib/mongodb";
 import { PhotoSet, type IPhotoSet } from "@/lib/models/PhotoSet";
+import SocialHandlesForm from "./_components/SocialHandlesForm";
 
-export default async function CommunityPage() {
+export default async function CommunityPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ preview?: string }>;
+}) {
+  const params = await searchParams;
   const { userId } = await auth();
   const user = userId ? await currentUser() : null;
   const isAdmin = isAdminUser(user?.emailAddresses?.[0]?.emailAddress);
+  const isPreview = params?.preview === "true";
 
   if (!userId) {
     return (
@@ -160,7 +167,7 @@ export default async function CommunityPage() {
     );
   }
 
-  if (isAdmin) {
+  if (isAdmin && !isPreview) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center px-6">
         <div className="text-center">
@@ -171,9 +178,14 @@ export default async function CommunityPage() {
             Welcome back, {user?.firstName ?? "Admin"}
           </h1>
           <p className="text-gray-500 mb-8">You&apos;re signed in as an admin.</p>
-          <Button asChild className="bg-[#BD5700] hover:bg-[#BD5700]/90 rounded-full px-8">
-            <Link href="/admin">Go to Admin Dashboard →</Link>
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Button asChild className="bg-[#BD5700] hover:bg-[#BD5700]/90 rounded-full px-8">
+              <Link href="/admin">Go to Admin Dashboard →</Link>
+            </Button>
+            <Button asChild variant="outline" className="rounded-full px-8 border-gray-300">
+              <Link href="/community?preview=true">View Member Portal</Link>
+            </Button>
+          </div>
         </div>
       </div>
     );
@@ -192,6 +204,7 @@ export default async function CommunityPage() {
   const memberName = user?.fullName ?? user?.firstName ?? "Member";
   const memberEmail = user?.emailAddresses?.[0]?.emailAddress ?? "";
   const initials = (user?.firstName?.[0] ?? "") + (user?.lastName?.[0] ?? "");
+  const socials = (user?.unsafeMetadata ?? {}) as { instagram?: string; tiktok?: string; facebook?: string };
 
   // Fetch this member's photo sets from MongoDB
   let photoSets: IPhotoSet[] = [];
@@ -209,6 +222,16 @@ export default async function CommunityPage() {
 
   return (
     <div>
+      {/* Admin Preview Banner */}
+      {isPreview && (
+        <div className="bg-yellow-50 border-b border-yellow-200 px-6 py-3 flex items-center justify-between">
+          <p className="text-sm text-yellow-800 font-medium">Previewing as member — this is what customers see.</p>
+          <Button asChild size="sm" variant="outline" className="rounded-full border-yellow-400 text-yellow-800 hover:bg-yellow-100">
+            <Link href="/community">Exit Preview</Link>
+          </Button>
+        </div>
+      )}
+
       {/* Welcome Banner */}
       <div className="bg-[#1a0f00] px-6 py-12">
         <div className="mx-auto max-w-5xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -312,10 +335,10 @@ export default async function CommunityPage() {
               {
                 icon: "🏠",
                 title: "Property Profile",
-                desc: "We keep notes on your property — surfaces, problem areas, special instructions — so every visit we already know your place.",
+                desc: "We'll keep notes on your property — surfaces, problem areas, special instructions — so every visit we already know your place.",
                 cta: null,
                 href: null,
-                badge: "Active",
+                badge: "Coming Soon",
               },
               {
                 icon: "🔔",
@@ -329,14 +352,6 @@ export default async function CommunityPage() {
                 icon: "🎁",
                 title: "Referral Rewards",
                 desc: "Refer a neighbor and earn credit toward your next service. Share the love, get rewarded.",
-                cta: null,
-                href: null,
-                badge: "Active",
-              },
-              {
-                icon: "📲",
-                title: "We Follow You Back",
-                desc: "Add your social handles below and we'll follow you on Instagram, TikTok, and Facebook.",
                 cta: null,
                 href: null,
                 badge: "Active",
@@ -456,6 +471,13 @@ export default async function CommunityPage() {
               </div>
             </div>
           )}
+
+          {/* Social Handles */}
+          <SocialHandlesForm
+            instagram={socials.instagram}
+            tiktok={socials.tiktok}
+            facebook={socials.facebook}
+          />
 
           {/* Direct Line */}
           <div className="bg-white rounded-2xl border border-gray-100 p-8 shadow-sm flex flex-col sm:flex-row sm:items-center gap-6">
