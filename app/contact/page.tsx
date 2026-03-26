@@ -171,7 +171,7 @@ export default function Contact() {
               <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Reviews</h3>
               <p className="text-sm text-gray-500 mb-3">See what others are saying or leave your own review.</p>
               <a
-                href="https://maps.app.goo.gl/h7vFS8ZFDHFfZU4n7"
+                href="https://g.page/r/CSd5bbR6nHl4EBM/review"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block border border-[#BD5700] text-[#BD5700] hover:bg-[#BD5700] hover:text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors"

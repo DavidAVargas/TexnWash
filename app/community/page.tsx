@@ -440,7 +440,7 @@ export default async function CommunityPage({
                 title: "Review Reward",
                 desc: "Leave us a Google review and we'll thank you with a special discount on your next service.",
                 cta: "Leave a Review",
-                href: "https://maps.app.goo.gl/h7vFS8ZFDHFfZU4n7",
+                href: "https://g.page/r/CSd5bbR6nHl4EBM/review",
                 badge: "Active",
               },
             ].map((card) => (

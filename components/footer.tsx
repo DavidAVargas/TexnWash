@@ -78,7 +78,7 @@ export default function Footer() {
             Happy with our work? Leave us a review — it means the world.
           </p>
           <a
-            href="https://maps.app.goo.gl/h7vFS8ZFDHFfZU4n7"
+            href="https://g.page/r/CSd5bbR6nHl4EBM/review"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block border border-[#BD5700] text-[#BD5700] hover:bg-[#BD5700] hover:text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors"
