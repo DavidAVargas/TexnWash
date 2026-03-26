@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { connectDB } from "@/lib/mongodb";
 import { PhotoSet, type IPhotoSet } from "@/lib/models/PhotoSet";
 import SocialHandlesForm from "./_components/SocialHandlesForm";
+import SeasonalTipsCarousel from "./_components/SeasonalTipsCarousel";
 
 export default async function CommunityPage({
   searchParams,
@@ -104,7 +105,7 @@ export default async function CommunityPage({
                   desc: "Skip the waitlist. Members get first access to open slots, especially during peak season.",
                 },
                 {
-                  icon: "🌧️",
+                  icon: "🌦️",
                   title: "Priority Rescheduling",
                   desc: "Bad weather? Members get first pick on rescheduled slots so you never lose your spot.",
                 },
@@ -191,20 +192,11 @@ export default async function CommunityPage({
     );
   }
 
-  const month = new Date().getMonth();
-  const seasonTip =
-    month >= 2 && month <= 4
-      ? { emoji: "🌸", season: "Spring", tip: "Winter buildup is at its worst right now. A spring clean is the #1 thing Fort Worth homeowners book this time of year." }
-      : month >= 5 && month <= 7
-      ? { emoji: "☀️", season: "Summer", tip: "Summer heat bakes in dirt and mildew fast. Keep your property looking sharp all season long." }
-      : month >= 8 && month <= 10
-      ? { emoji: "🍂", season: "Fall", tip: "Clear away summer buildup before the cold sets in. Fall is a great time to prep your driveway and deck." }
-      : { emoji: "❄️", season: "Winter", tip: "Winter grime and oil stains build up fast. Get ahead of the season with a pre-spring clean." };
-
   const memberName = user?.fullName ?? user?.firstName ?? "Member";
   const memberEmail = user?.emailAddresses?.[0]?.emailAddress ?? "";
   const initials = (user?.firstName?.[0] ?? "") + (user?.lastName?.[0] ?? "");
   const socials = (user?.unsafeMetadata ?? {}) as { instagram?: string; tiktok?: string; facebook?: string };
+  const manualTier = (user?.publicMetadata?.loyaltyTier as number) ?? 1;
 
   // Fetch this member's photo sets from MongoDB
   let photoSets: IPhotoSet[] = [];
@@ -219,6 +211,17 @@ export default async function CommunityPage({
       // non-blocking — show Coming Soon if DB unavailable
     }
   }
+
+  const manualServiceCount = (user?.publicMetadata?.serviceCount as number) ?? 0;
+  const serviceCount = Math.max(photoSets.length, manualServiceCount);
+  const autoTier = serviceCount >= 5 ? 3 : serviceCount >= 3 ? 2 : 1;
+  const loyaltyTier = Math.max(autoTier, manualTier);
+
+  const nextMilestone =
+    serviceCount < 1 ? { at: 1, discount: "5%", remaining: 1 - serviceCount } :
+    serviceCount < 3 ? { at: 3, discount: "10%", remaining: 3 - serviceCount } :
+    serviceCount < 5 ? { at: 5, discount: "15%", remaining: 5 - serviceCount } :
+    null;
 
   return (
     <div>
@@ -274,25 +277,99 @@ export default async function CommunityPage({
                   <p className="text-gray-400 text-sm mt-0.5 truncate">{memberEmail}</p>
                 )}
               </div>
-              {/* Discount badge */}
-              <div className="shrink-0 text-center bg-white/5 border border-white/10 rounded-2xl px-6 py-4">
-                <p className="text-3xl font-black text-[#BD5700]">5–15%</p>
-                <p className="text-xs text-gray-400 mt-0.5 font-medium">Loyalty Pricing</p>
+              {/* Loyalty Tier */}
+              <div className="shrink-0 bg-white/5 border border-white/10 rounded-2xl p-4 min-w-[160px]">
+                <p className="text-xs text-gray-400 font-medium mb-2 text-center">Loyalty Tier</p>
+                <div className="space-y-1.5">
+                  {([
+                    { t: 1, label: "1st Service", discount: "5% off" },
+                    { t: 2, label: "3rd Service", discount: "10% off" },
+                    { t: 3, label: "5th Service+", discount: "15% off" },
+                  ] as { t: number; label: string; discount: string }[]).map(({ t, label, discount }) => (
+                    <div
+                      key={t}
+                      className={`flex items-center justify-between rounded-lg px-3 py-1.5 text-xs ${
+                        t === loyaltyTier
+                          ? "bg-[#BD5700] text-white font-semibold"
+                          : t < loyaltyTier
+                          ? "bg-white/10 text-gray-400 line-through"
+                          : "bg-white/5 text-gray-500"
+                      }`}
+                    >
+                      <span>{label}</span>
+                      <span>{discount}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Seasonal Tip */}
-          <div className="flex items-start gap-4 bg-orange-50 border border-orange-100 rounded-2xl px-6 py-5">
-            <span className="text-2xl shrink-0">{seasonTip.emoji}</span>
-            <div>
-              <p className="text-sm font-bold text-gray-900 mb-0.5">{seasonTip.season} Tip</p>
-              <p className="text-sm text-gray-600 leading-relaxed">{seasonTip.tip}</p>
+          {/* Service Journey */}
+          <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
+            <div className="flex items-center justify-between mb-5">
+              <div>
+                <h3 className="font-bold text-gray-900 text-sm">Your Service Journey</h3>
+                <p className="text-xs text-gray-400 mt-0.5">
+                  {nextMilestone
+                    ? `${serviceCount} service${serviceCount !== 1 ? "s" : ""} completed — ${nextMilestone.remaining} more to unlock ${nextMilestone.discount} off`
+                    : `${serviceCount} services completed — you're at max loyalty (15% off every service)`}
+                </p>
+              </div>
+              <span className="text-2xl font-black text-[#BD5700]">{serviceCount}</span>
             </div>
-            <Button asChild size="sm" className="bg-[#BD5700] hover:bg-[#BD5700]/90 text-white rounded-full shrink-0 self-center ml-auto">
-              <Link href="/quote">Book Now</Link>
-            </Button>
+
+            {/* Step track */}
+            <div className="flex items-end gap-2">
+              {[
+                { step: 1, milestone: "5% off" },
+                { step: 2, milestone: null },
+                { step: 3, milestone: "10% off" },
+                { step: 4, milestone: null },
+                { step: 5, milestone: "15% off" },
+              ].map(({ step, milestone }) => {
+                const done = serviceCount >= step;
+                const isNext = serviceCount === step - 1;
+                return (
+                  <div key={step} className="flex-1 flex flex-col items-center gap-1.5">
+                    {milestone && (
+                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${done ? "bg-[#BD5700] text-white" : "bg-gray-100 text-gray-400"}`}>
+                        {milestone}
+                      </span>
+                    )}
+                    {!milestone && <span className="h-5" />}
+                    <div className={`w-full h-10 rounded-xl flex items-center justify-center text-sm font-bold border-2 transition-all ${
+                      done
+                        ? "bg-[#BD5700] border-[#BD5700] text-white"
+                        : isNext
+                        ? "bg-gray-50 border-gray-300 border-dashed text-gray-300"
+                        : "bg-gray-50 border-gray-200 text-gray-300"
+                    }`}>
+                      {step === 5 ? "5+" : step}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* CTA when no services yet */}
+            {serviceCount === 0 && (
+              <div className="mt-5 flex items-center justify-between bg-[#BD5700]/5 border border-[#BD5700]/20 rounded-xl px-4 py-3">
+                <p className="text-xs text-gray-700">
+                  <span className="font-semibold text-[#BD5700]">Community perk:</span> Book your first service and unlock 5% off instantly.
+                </p>
+                <Link
+                  href="/quote"
+                  className="shrink-0 ml-4 bg-[#BD5700] hover:bg-[#BD5700]/90 text-white text-xs font-semibold px-4 py-2 rounded-full transition-colors"
+                >
+                  Book Now
+                </Link>
+              </div>
+            )}
           </div>
+
+          {/* Seasonal Tips */}
+          <SeasonalTipsCarousel />
 
           {/* Perk Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -325,7 +402,7 @@ export default async function CommunityPage({
                 badge: photoSets.length > 0 ? "Active" : "Coming Soon",
               },
               {
-                icon: "🌧️",
+                icon: "🌦️",
                 title: "Priority Rescheduling",
                 desc: "Bad weather? Members get first pick on rescheduled slots so you never lose your spot.",
                 cta: null,
@@ -367,10 +444,10 @@ export default async function CommunityPage({
             ].map((card) => (
               <div
                 key={card.title}
-                className="bg-white rounded-2xl border border-gray-100 p-8 shadow-sm flex flex-col"
+                className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm flex flex-col"
               >
                 <div className="flex items-start justify-between mb-5">
-                  <div className="w-12 h-12 bg-[#BD5700]/10 rounded-xl flex items-center justify-center text-xl">
+                  <div className="w-10 h-10 bg-[#BD5700]/10 rounded-xl flex items-center justify-center text-lg">
                     {card.icon}
                   </div>
                   <span
@@ -478,30 +555,6 @@ export default async function CommunityPage({
             tiktok={socials.tiktok}
             facebook={socials.facebook}
           />
-
-          {/* Direct Line */}
-          <div className="bg-white rounded-2xl border border-gray-100 p-8 shadow-sm flex flex-col sm:flex-row sm:items-center gap-6">
-            <div className="w-12 h-12 bg-[#BD5700]/10 rounded-xl flex items-center justify-center text-xl shrink-0">
-              📞
-            </div>
-            <div className="flex-1">
-              <p className="text-xs font-bold uppercase tracking-widest text-[#BD5700] mb-1">Members Only</p>
-              <h3 className="font-bold text-gray-900 mb-1">Direct Line to Our Team</h3>
-              <p className="text-sm text-gray-500">
-                Skip the contact form. Text or call us directly at{" "}
-                <a href="tel:+12102012123" className="font-semibold text-gray-800 hover:text-[#BD5700] transition-colors">
-                  (210) 201-2123
-                </a>{" "}
-                — mention you&apos;re a community member for priority response.
-              </p>
-            </div>
-            <a
-              href="sms:+12102012123"
-              className="shrink-0 inline-block bg-[#BD5700] hover:bg-[#BD5700]/90 text-white font-semibold px-6 py-3 rounded-full text-sm transition-colors"
-            >
-              Text Us →
-            </a>
-          </div>
 
         </div>
       </div>

@@ -27,11 +27,6 @@ export default async function AdminPage() {
             desc: "View and manage incoming quote requests and customer leads.",
           },
           {
-            icon: "👥",
-            title: "Community Members",
-            desc: "See who has joined the Tex N Wash Community.",
-          },
-          {
             icon: "📊",
             title: "Analytics",
             desc: "Track site traffic, form submissions, and service demand.",
@@ -49,6 +44,23 @@ export default async function AdminPage() {
             </span>
           </div>
         ))}
+
+        {/* Community Members — live */}
+        <div className="rounded-xl border border-[#BD5700]/30 bg-white p-6 shadow-sm flex flex-col">
+          <div className="text-3xl mb-3">👥</div>
+          <h3 className="font-semibold text-gray-900 mb-1">Community Members</h3>
+          <p className="text-sm text-gray-600 mb-4 flex-1">
+            See who has joined the Tex N Wash Community.
+          </p>
+          <div className="flex gap-2">
+            <Link
+              href="/admin/members"
+              className="inline-block text-center rounded-full border border-[#BD5700] px-4 py-1.5 text-xs text-[#BD5700] font-semibold hover:bg-[#BD5700]/5 transition-colors"
+            >
+              View Members
+            </Link>
+          </div>
+        </div>
 
         {/* Before & After Photos — live */}
         <div className="rounded-xl border border-[#BD5700]/30 bg-white p-6 shadow-sm flex flex-col">

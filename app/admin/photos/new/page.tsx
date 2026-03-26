@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Swal from "sweetalert2";
 import { UploadDropzone } from "@/lib/uploadthing";
@@ -29,6 +29,24 @@ export default function NewPhotoSetPage() {
   const [beforeUrls, setBeforeUrls] = useState<string[]>([]);
   const [afterUrls, setAfterUrls] = useState<string[]>([]);
   const [submitting, setSubmitting] = useState(false);
+  const [memberInfo, setMemberInfo] = useState<{ isMember: boolean; name?: string; tier?: number } | null>(null);
+
+  useEffect(() => {
+    if (!form.customerEmail || !form.customerEmail.includes("@")) {
+      setMemberInfo(null);
+      return;
+    }
+    const timer = setTimeout(async () => {
+      try {
+        const res = await fetch(`/api/admin/member-lookup?email=${encodeURIComponent(form.customerEmail)}`);
+        const data = await res.json();
+        setMemberInfo(data);
+      } catch {
+        setMemberInfo(null);
+      }
+    }, 600);
+    return () => clearTimeout(timer);
+  }, [form.customerEmail]);
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -116,6 +134,19 @@ export default function NewPhotoSetPage() {
                 placeholder="jane@example.com"
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#BD5700]/40"
               />
+              {memberInfo?.isMember && (
+                <div className="mt-2 flex items-center gap-2">
+                  <span className="text-xs bg-[#BD5700]/10 text-[#BD5700] font-semibold px-2.5 py-1 rounded-full">
+                    Community Member
+                  </span>
+                  <span className="text-xs text-gray-500">
+                    Tier {memberInfo.tier} · {memberInfo.tier === 1 ? "5%" : memberInfo.tier === 2 ? "10%" : "15%"} loyalty discount
+                  </span>
+                </div>
+              )}
+              {memberInfo !== null && !memberInfo.isMember && (
+                <p className="mt-2 text-xs text-gray-400">Not a community member</p>
+              )}
             </div>
           </div>
           <div>
