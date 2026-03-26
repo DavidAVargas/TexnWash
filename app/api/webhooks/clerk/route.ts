@@ -63,5 +63,19 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Failed to add contact to Brevo" }, { status: 500 });
   }
 
+  // Send welcome email via Brevo template #6 (non-blocking)
+  fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "api-key": process.env.BREVO_API_KEY!,
+    },
+    body: JSON.stringify({
+      templateId: 6,
+      to: [{ email, name: `${first_name || ""} ${last_name || ""}`.trim() }],
+      params: { FIRSTNAME: first_name || "there" },
+    }),
+  }).catch((err) => console.error("Brevo welcome email error:", err));
+
   return NextResponse.json({ success: true });
 }

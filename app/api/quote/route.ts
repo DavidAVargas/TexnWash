@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Failed to send quote request" }, { status: 500 });
     }
 
-    // Add to Brevo Leads list (non-blocking)
+    // Add to Brevo Leads list + send quote confirmation email (non-blocking)
     if (process.env.BREVO_API_KEY && formData.email) {
       const [firstName, ...rest] = (formData.fullName || "").trim().split(" ");
       fetch("https://api.brevo.com/v3/contacts", {
@@ -70,6 +70,16 @@ export async function POST(request: NextRequest) {
           updateEnabled: true,
         }),
       }).catch((err) => console.error("Brevo contact error:", err));
+
+      fetch("https://api.brevo.com/v3/smtp/email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "api-key": process.env.BREVO_API_KEY },
+        body: JSON.stringify({
+          templateId: 7,
+          to: [{ email: formData.email, name: formData.fullName || "" }],
+          params: { FIRSTNAME: firstName || "there" },
+        }),
+      }).catch((err) => console.error("Brevo quote email error:", err));
     }
 
     return NextResponse.json({ success: true });
