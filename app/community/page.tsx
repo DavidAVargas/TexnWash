@@ -78,13 +78,25 @@ export default async function CommunityPage() {
               <div className="relative bg-[#BD5700] rounded-2xl p-8 overflow-hidden">
                 <div className="absolute bottom-0 left-0 w-48 h-48 bg-white opacity-5 rounded-full -translate-x-16 translate-y-16" />
                 <span className="inline-block bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full mb-5 uppercase tracking-wider">
-                  Save Every Visit
+                  Loyalty Pricing
                 </span>
                 <div className="text-4xl mb-4">💰</div>
-                <h3 className="text-2xl font-bold text-white mb-3">Member Discounts</h3>
-                <p className="text-white/80 leading-relaxed">
-                  Community members get exclusive pricing on every service we offer — up to 15% off. No coupons, no codes. Your discount is automatically applied every time you book. The more you use us, the more you save.
+                <h3 className="text-2xl font-bold text-white mb-3">Member Pricing</h3>
+                <p className="text-white/80 leading-relaxed mb-5">
+                  Your discount grows the more you use us. No coupons, no codes — it&apos;s applied automatically every time you book.
                 </p>
+                <div className="space-y-2">
+                  {[
+                    { label: "1st Service", value: "5% off" },
+                    { label: "3rd Service", value: "10% off" },
+                    { label: "5th Service+", value: "15% off" },
+                  ].map((tier) => (
+                    <div key={tier.label} className="flex items-center justify-between bg-white/10 rounded-xl px-4 py-2.5">
+                      <span className="text-white/80 text-sm">{tier.label}</span>
+                      <span className="text-white font-bold text-sm">{tier.value}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -97,9 +109,19 @@ export default async function CommunityPage() {
                   desc: "Skip the waitlist. Members get first access to open slots, especially during peak season.",
                 },
                 {
+                  icon: "🌧️",
+                  title: "Priority Rescheduling",
+                  desc: "Bad weather? Members get first pick on rescheduled slots so you never lose your spot.",
+                },
+                {
+                  icon: "🏠",
+                  title: "Property Profile",
+                  desc: "We keep notes on your property — surfaces, problem areas, special instructions. Every visit we already know your place.",
+                },
+                {
                   icon: "🔔",
                   title: "Seasonal Reminders",
-                  desc: "We&apos;ll remind you before each season so your property is always ready — no guesswork.",
+                  desc: "We reach out before each season so your property is always ready — no guesswork on your end.",
                 },
                 {
                   icon: "🎁",
@@ -107,9 +129,14 @@ export default async function CommunityPage() {
                   desc: "Refer a neighbor and earn credit toward your next service. Share the love, get rewarded.",
                 },
                 {
-                  icon: "💬",
-                  title: "Direct Access",
-                  desc: "Skip the phone queue. Members get a direct line to our team for fast scheduling and support.",
+                  icon: "📲",
+                  title: "We Follow You Back",
+                  desc: "Add your social handles in your portal and we'll follow you on Instagram, TikTok, and Facebook for direct DM access.",
+                },
+                {
+                  icon: "⭐",
+                  title: "Review Reward",
+                  desc: "Leave us a Google review and we'll thank you with a special discount on your next service.",
                 },
               ].map((perk) => (
                 <div
@@ -120,7 +147,7 @@ export default async function CommunityPage() {
                     {perk.icon}
                   </div>
                   <h3 className="font-bold text-gray-900 mb-1.5 text-sm">{perk.title}</h3>
-                  <p className="text-gray-500 text-xs leading-relaxed" dangerouslySetInnerHTML={{ __html: perk.desc }} />
+                  <p className="text-gray-500 text-xs leading-relaxed">{perk.desc}</p>
                 </div>
               ))}
             </div>
@@ -233,8 +260,8 @@ export default async function CommunityPage() {
               </div>
               {/* Discount badge */}
               <div className="shrink-0 text-center bg-white/5 border border-white/10 rounded-2xl px-6 py-4">
-                <p className="text-3xl font-black text-[#BD5700]">15%</p>
-                <p className="text-xs text-gray-400 mt-0.5 font-medium">Member Discount</p>
+                <p className="text-3xl font-black text-[#BD5700]">5–15%</p>
+                <p className="text-xs text-gray-400 mt-0.5 font-medium">Loyalty Pricing</p>
               </div>
             </div>
           </div>
@@ -256,8 +283,8 @@ export default async function CommunityPage() {
             {[
               {
                 icon: "💰",
-                title: "Member Discounts",
-                desc: "Your 15% member discount is automatically applied every time you book — no codes needed.",
+                title: "Loyalty Pricing",
+                desc: "Your discount grows with every service — 5% on your 1st, 10% on your 3rd, and 15% from your 5th service onward. No codes needed.",
                 cta: "Get a Quote",
                 href: "/quote",
                 badge: "Active",
@@ -280,6 +307,54 @@ export default async function CommunityPage() {
                 cta: photoSets.length > 0 ? "View Gallery" : null,
                 href: photoSets.length > 0 ? "#gallery" : null,
                 badge: photoSets.length > 0 ? "Active" : "Coming Soon",
+              },
+              {
+                icon: "🌧️",
+                title: "Priority Rescheduling",
+                desc: "Bad weather? Members get first pick on rescheduled slots so you never lose your spot.",
+                cta: null,
+                href: null,
+                badge: "Active",
+              },
+              {
+                icon: "🏠",
+                title: "Property Profile",
+                desc: "We keep notes on your property — surfaces, problem areas, special instructions — so every visit we already know your place.",
+                cta: null,
+                href: null,
+                badge: "Active",
+              },
+              {
+                icon: "🔔",
+                title: "Seasonal Reminders",
+                desc: "We reach out before each season so your property is always ready — no guesswork on your end.",
+                cta: null,
+                href: null,
+                badge: "Active",
+              },
+              {
+                icon: "🎁",
+                title: "Referral Rewards",
+                desc: "Refer a neighbor and earn credit toward your next service. Share the love, get rewarded.",
+                cta: null,
+                href: null,
+                badge: "Active",
+              },
+              {
+                icon: "📲",
+                title: "We Follow You Back",
+                desc: "Add your social handles below and we'll follow you on Instagram, TikTok, and Facebook.",
+                cta: null,
+                href: null,
+                badge: "Active",
+              },
+              {
+                icon: "⭐",
+                title: "Review Reward",
+                desc: "Leave us a Google review and we'll thank you with a special discount on your next service.",
+                cta: "Leave a Review",
+                href: "https://maps.app.goo.gl/h7vFS8ZFDHFfZU4n7",
+                badge: "Active",
               },
             ].map((card) => (
               <div
