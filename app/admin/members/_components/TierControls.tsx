@@ -66,7 +66,7 @@ export default function TierControls({
         {TIERS.map(({ tier: t, label, discount }) => (
           <button
             key={t}
-            onClick={() => save({ tier: t })}
+            onClick={() => save({ tier: tier === t ? 0 : t })}
             disabled={saving}
             className={`text-xs font-semibold px-3 py-1.5 rounded-full border transition-colors disabled:opacity-60 ${
               tier === t

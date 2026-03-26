@@ -196,7 +196,7 @@ export default async function CommunityPage({
   const memberEmail = user?.emailAddresses?.[0]?.emailAddress ?? "";
   const initials = (user?.firstName?.[0] ?? "") + (user?.lastName?.[0] ?? "");
   const socials = (user?.unsafeMetadata ?? {}) as { instagram?: string; tiktok?: string; facebook?: string };
-  const manualTier = (user?.publicMetadata?.loyaltyTier as number) ?? 1;
+  const manualTier = (user?.publicMetadata?.loyaltyTier as number) ?? 0;
 
   // Fetch this member's photo sets from MongoDB
   let photoSets: IPhotoSet[] = [];
@@ -214,7 +214,7 @@ export default async function CommunityPage({
 
   const manualServiceCount = (user?.publicMetadata?.serviceCount as number) ?? 0;
   const serviceCount = Math.max(photoSets.length, manualServiceCount);
-  const autoTier = serviceCount >= 5 ? 3 : serviceCount >= 3 ? 2 : 1;
+  const autoTier = serviceCount >= 5 ? 3 : serviceCount >= 3 ? 2 : serviceCount >= 1 ? 1 : 0;
   const loyaltyTier = Math.max(autoTier, manualTier);
 
   const nextMilestone =

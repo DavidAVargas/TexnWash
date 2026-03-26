@@ -221,7 +221,7 @@ export default function GalleryPage() {
           </div>
 
           <a
-            href="https://www.google.com/search?q=texnwash.com+reviews"
+            href="https://maps.app.goo.gl/h7vFS8ZFDHFfZU4n7"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block border border-[#BD5700] text-[#BD5700] hover:bg-[#BD5700] hover:text-white px-8 py-3 rounded-full text-sm font-semibold transition-colors"

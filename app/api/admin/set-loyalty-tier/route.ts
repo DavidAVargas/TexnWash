@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
   const currentMeta = (existing.publicMetadata ?? {}) as Record<string, unknown>;
 
   const updates: Record<string, unknown> = { ...currentMeta };
-  if (tier !== undefined && [1, 2, 3].includes(tier)) updates.loyaltyTier = tier;
+  if (tier !== undefined && [0, 1, 2, 3].includes(tier)) updates.loyaltyTier = tier;
   if (serviceCount !== undefined && serviceCount >= 0) updates.serviceCount = serviceCount;
 
   await client.users.updateUser(targetUserId, { publicMetadata: updates });
