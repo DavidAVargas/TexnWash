@@ -198,9 +198,9 @@ export default async function CommunityPage({
   const socials = (user?.unsafeMetadata ?? {}) as { instagram?: string; tiktok?: string; facebook?: string };
   const manualTier = (user?.publicMetadata?.loyaltyTier as number) ?? 0;
 
-  // Fetch this member's photo sets from MongoDB
+  // Fetch this member's photo sets from MongoDB (skip in admin preview mode)
   let photoSets: IPhotoSet[] = [];
-  if (memberEmail) {
+  if (memberEmail && !isPreview) {
     try {
       await connectDB();
       const raw = await PhotoSet.find({ customerEmail: memberEmail })
