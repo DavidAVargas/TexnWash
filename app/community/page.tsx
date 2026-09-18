@@ -85,12 +85,12 @@ export default async function CommunityPage({
               {/* Member Discounts — featured card */}
               <div className="relative bg-[#BD5700] rounded-2xl p-8 overflow-hidden">
                 <div className="absolute bottom-0 left-0 w-48 h-48 bg-white opacity-5 rounded-full -translate-x-16 translate-y-16" />
-                <span className="inline-block bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full mb-5 uppercase tracking-wider">
+                <span className="inline-block bg-white text-[#BD5700] text-xs font-bold px-3 py-1 rounded-full mb-5 uppercase tracking-wider">
                   Loyalty Pricing
                 </span>
                 <div className="text-4xl mb-4">💰</div>
                 <h3 className="text-2xl font-bold text-white mb-3">Member Pricing</h3>
-                <p className="text-white/80 leading-relaxed">
+                <p className="text-white leading-relaxed">
                   Members unlock exclusive pricing that gets better the longer they stay with us. No coupons, no codes, no asking — your discount is applied automatically every time you book. The details are for members only.
                 </p>
               </div>

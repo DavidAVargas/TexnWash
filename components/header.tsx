@@ -77,7 +77,7 @@ export default function Header() {
           <Show when="signed-in">
             <UserButton />
           </Show>
-          <Button asChild className="bg-brand hover:bg-brand/90">
+          <Button asChild className="bg-brand hover:bg-brand/90 text-white">
             <Link href={"/quote"}>
               Free Quote
               <PointerIcon className="ml-2 size-4" />
@@ -149,7 +149,7 @@ export default function Header() {
                     <span className="text-sm text-gray-600">{user?.firstName}</span>
                   </div>
                 </Show>
-                <Button asChild className="bg-brand hover:bg-brand/90 w-full">
+                <Button asChild className="bg-brand hover:bg-brand/90 w-full text-white">
                   <Link href={"/quote"} onClick={() => setMobileMenuOpen(false)}>
                     <PointerIcon className="mr-2 size-4" />
                     Free Quote

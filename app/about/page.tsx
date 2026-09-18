@@ -47,7 +47,7 @@ export default function About() {
 
             {/* Inspiration */}
             <div className="bg-[#BD5700] rounded-2xl p-8 text-white ring-1 ring-black/10">
-              <h2 className="text-xs font-bold uppercase tracking-widest text-white/80 mb-3">The Inspiration</h2>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-white mb-3">The Inspiration</h2>
               <p className="text-white text-sm leading-relaxed">
                 I started this company after needing home services myself and realizing very few companies had a great website, solid communication, or even showed up on time. That&apos;s where Tex N Wash comes in — we&apos;re setting a new standard in Fort Worth for what it means to be professional, easy to work with, and proud of our work.
               </p>
@@ -104,7 +104,7 @@ export default function About() {
 
             {/* Photo Transparency */}
             <div className="bg-[#BD5700] rounded-2xl p-8 text-white ring-1 ring-black/10">
-              <h2 className="text-xs font-bold uppercase tracking-widest text-white/80 mb-3">Photo &amp; Video Transparency</h2>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-white mb-3">Photo &amp; Video Transparency</h2>
               <p className="text-white text-sm leading-relaxed">
                 📸 We document every project with photos and videos — for our records, marketing, and to give you before-and-after proof of our results as part of your invoice and service summary.
               </p>

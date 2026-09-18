@@ -339,12 +339,12 @@ export default function QuotePage() {
             <div className="inline-flex bg-gray-100 rounded-full p-1 mb-6">
               <button type="button" onClick={() => handleTabChange("residential")}
                 aria-pressed={activeTab === "residential"}
-                className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${focusRingClass} ${activeTab === "residential" ? "bg-[#BD5700] text-white" : "text-gray-500 hover:text-gray-700"}`}>
+                className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${focusRingClass} ${activeTab === "residential" ? "bg-[#BD5700] text-white" : "text-gray-600 hover:text-gray-700"}`}>
                 🏠 Residential
               </button>
               <button type="button" onClick={() => handleTabChange("commercial")}
                 aria-pressed={activeTab === "commercial"}
-                className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${focusRingClass} ${activeTab === "commercial" ? "bg-[#BD5700] text-white" : "text-gray-500 hover:text-gray-700"}`}>
+                className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${focusRingClass} ${activeTab === "commercial" ? "bg-[#BD5700] text-white" : "text-gray-600 hover:text-gray-700"}`}>
                 🏢 Commercial
               </button>
             </div>
@@ -499,7 +499,7 @@ export default function QuotePage() {
             <SectionLabel n={sectionNum++} text="Your Info" />
 
             {!isSignedIn && (
-              <div className="flex items-center justify-between bg-gray-50 border border-gray-100 rounded-xl px-4 py-3 mb-3">
+              <div className="flex items-center justify-between bg-white border border-gray-100 rounded-xl px-4 py-3 mb-3">
                 <p className="text-sm text-gray-600">Have an account? Sign in to skip this step.</p>
                 <a href="/sign-in" className="text-sm font-semibold text-[#BD5700] hover:underline shrink-0 ml-3">Sign In →</a>
               </div>
