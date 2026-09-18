@@ -295,7 +295,7 @@ export default async function CommunityPage({
                           ? "bg-[#BD5700] text-white font-semibold"
                           : t < loyaltyTier
                           ? "bg-white/10 text-gray-400 line-through"
-                          : "bg-white/5 text-gray-500"
+                          : "bg-white/5 text-gray-400"
                       }`}
                     >
                       <span>{label}</span>
@@ -335,7 +335,7 @@ export default async function CommunityPage({
                 return (
                   <div key={step} className="flex-1 flex flex-col items-center gap-1.5">
                     {milestone && (
-                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${done ? "bg-[#BD5700] text-white" : "bg-gray-100 text-gray-500"}`}>
+                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${done ? "bg-[#BD5700] text-white" : "bg-gray-100 text-gray-600"}`}>
                         {milestone}
                       </span>
                     )}
@@ -344,8 +344,8 @@ export default async function CommunityPage({
                       done
                         ? "bg-[#BD5700] border-[#BD5700] text-white"
                         : isNext
-                        ? "bg-gray-50 border-gray-300 border-dashed text-gray-300"
-                        : "bg-gray-50 border-gray-200 text-gray-300"
+                        ? "bg-gray-50 border-gray-300 border-dashed text-gray-500"
+                        : "bg-gray-50 border-gray-200 text-gray-500"
                     }`}>
                       {step === 5 ? "5+" : step}
                     </div>
@@ -456,7 +456,7 @@ export default async function CommunityPage({
                     className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
                       card.badge === "Active"
                         ? "bg-green-50 text-green-700"
-                        : "bg-gray-100 text-gray-500"
+                        : "bg-gray-100 text-gray-600"
                     }`}
                   >
                     {card.badge}

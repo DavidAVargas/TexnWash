@@ -39,7 +39,7 @@ export default async function AdminPage() {
             <div className="text-3xl mb-3">{card.icon}</div>
             <h3 className="font-semibold text-gray-900 mb-1">{card.title}</h3>
             <p className="text-sm text-gray-600 mb-4">{card.desc}</p>
-            <span className="inline-block rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-500 font-medium">
+            <span className="inline-block rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-600 font-medium">
               Coming soon
             </span>
           </div>
