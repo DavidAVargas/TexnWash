@@ -145,7 +145,7 @@ export default function NewPhotoSetPage() {
                 </div>
               )}
               {memberInfo !== null && !memberInfo.isMember && (
-                <p className="mt-2 text-xs text-gray-400">Not a community member</p>
+                <p className="mt-2 text-xs text-gray-500">Not a community member</p>
               )}
             </div>
           </div>
@@ -200,7 +200,7 @@ export default function NewPhotoSetPage() {
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Notes{" "}
-              <span className="text-gray-400 font-normal">(optional)</span>
+              <span className="text-gray-500 font-normal">(optional)</span>
             </label>
             <textarea
               name="notes"

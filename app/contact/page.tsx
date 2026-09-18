@@ -125,7 +125,7 @@ export default function Contact() {
           <div className="space-y-8">
 
             <div>
-              <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Contact</h3>
+              <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">Contact</h3>
               <div className="space-y-2">
                 <a href="mailto:contact@texnwash.com" className="flex items-center gap-2 text-gray-700 hover:text-[#BD5700] transition-colors text-sm">
                   contact@texnwash.com
@@ -137,7 +137,7 @@ export default function Contact() {
             </div>
 
             <div>
-              <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Hours</h3>
+              <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">Hours</h3>
               <div className="space-y-1 text-sm text-gray-700">
                 <p>Mon – Sat: 8am – 9pm</p>
                 <p>Sunday: Closed</p>
@@ -145,12 +145,12 @@ export default function Contact() {
             </div>
 
             <div>
-              <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Service Area</h3>
+              <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">Service Area</h3>
               <p className="text-sm text-gray-700">Fort Worth, TX and surrounding areas</p>
             </div>
 
             <div>
-              <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Follow Us</h3>
+              <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">Follow Us</h3>
               <div className="flex gap-3">
                 <a href="https://www.instagram.com/texnwash/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
                   className="w-10 h-10 border border-gray-200 hover:border-[#BD5700] hover:bg-[#BD5700]/5 rounded-full flex items-center justify-center transition-colors">
@@ -168,7 +168,7 @@ export default function Contact() {
             </div>
 
             <div>
-              <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Reviews</h3>
+              <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">Reviews</h3>
               <p className="text-sm text-gray-500 mb-3">See what others are saying or leave your own review.</p>
               <a
                 href="https://g.page/r/CSd5bbR6nHl4EBM/review"

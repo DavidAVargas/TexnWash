@@ -43,7 +43,7 @@ export function SearchablePhotoList({ customers }: { customers: GroupedCustomer[
     <div className="space-y-4">
       {/* Search bar */}
       <div className="relative">
-        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">🔍</span>
+        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">🔍</span>
         <input
           type="text"
           value={query}
@@ -54,7 +54,7 @@ export function SearchablePhotoList({ customers }: { customers: GroupedCustomer[
         {query && (
           <button
             onClick={() => setQuery("")}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-lg"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-600 text-lg"
           >
             ×
           </button>
@@ -62,7 +62,7 @@ export function SearchablePhotoList({ customers }: { customers: GroupedCustomer[
       </div>
 
       {filtered.length === 0 && (
-        <div className="text-center py-16 text-gray-400">
+        <div className="text-center py-16 text-gray-500">
           {customers.length === 0 ? (
             <>
               <p className="text-4xl mb-3">📸</p>
@@ -106,7 +106,7 @@ export function SearchablePhotoList({ customers }: { customers: GroupedCustomer[
                   {set.address && (
                     <p className="text-xs text-gray-500 mb-1">📍 {set.address}</p>
                   )}
-                  <p className="text-xs text-gray-400">
+                  <p className="text-xs text-gray-500">
                     {set.beforePhotos.length} before · {set.afterPhotos.length} after
                     {set.notes && <> · <span className="italic">{set.notes}</span></>}
                   </p>
@@ -120,7 +120,7 @@ export function SearchablePhotoList({ customers }: { customers: GroupedCustomer[
                   </Link>
                   <button
                     onClick={() => handleDelete(set._id)}
-                    className="text-xs text-gray-400 hover:text-red-500 font-medium transition-colors"
+                    className="text-xs text-gray-500 hover:text-red-500 font-medium transition-colors"
                   >
                     Delete
                   </button>

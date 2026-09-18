@@ -82,7 +82,7 @@ export default function GalleryPage() {
         <div>
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-xl font-bold text-gray-900">In Action</h2>
-            <span className="text-sm text-gray-400">{currentSlide + 1} / {queue.length}</span>
+            <span className="text-sm text-gray-500">{currentSlide + 1} / {queue.length}</span>
           </div>
 
           <div

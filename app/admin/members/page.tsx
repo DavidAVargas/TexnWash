@@ -30,7 +30,7 @@ export default async function AdminMembersPage() {
       </div>
 
       {members.length === 0 ? (
-        <div className="text-center py-20 text-gray-400 text-sm">No members yet.</div>
+        <div className="text-center py-20 text-gray-500 text-sm">No members yet.</div>
       ) : (
         <div className="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100 shadow-sm">
           {members.map((member) => {
@@ -55,7 +55,7 @@ export default async function AdminMembersPage() {
                     <span className="shrink-0 text-xs bg-[#BD5700]/10 text-[#BD5700] font-semibold px-2 py-0.5 rounded-full">Member</span>
                   </div>
                   <p className="text-xs text-gray-500 truncate mt-0.5">{memberEmail}</p>
-                  <p className="text-xs text-gray-400 mt-0.5">Joined {format(joined, "MMM d, yyyy")}</p>
+                  <p className="text-xs text-gray-500 mt-0.5">Joined {format(joined, "MMM d, yyyy")}</p>
                   {socialLinks.length > 0 && (
                     <div className="flex flex-wrap gap-2 mt-1.5">
                       {socialLinks.map(({ icon, label, handle, url }) => (

@@ -42,7 +42,7 @@ export default function TierControls({
     <div className="flex flex-col gap-3">
       {/* Service count stepper */}
       <div className="flex items-center gap-2">
-        <span className="text-xs text-gray-400 font-medium w-24">Services:</span>
+        <span className="text-xs text-gray-500 font-medium w-24">Services:</span>
         <button
           onClick={() => save({ serviceCount: Math.max(0, count - 1) })}
           disabled={saving || count === 0}
@@ -62,7 +62,7 @@ export default function TierControls({
 
       {/* Tier override */}
       <div className="flex items-center gap-2 flex-wrap">
-        <span className="text-xs text-gray-400 font-medium w-24">Tier override:</span>
+        <span className="text-xs text-gray-500 font-medium w-24">Tier override:</span>
         {TIERS.map(({ tier: t, label, discount }) => (
           <button
             key={t}

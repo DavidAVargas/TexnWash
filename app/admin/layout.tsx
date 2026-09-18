@@ -15,7 +15,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   return (
     <div>
       <div className="bg-[#1a0f00] px-6 py-3 flex items-center justify-between">
-        <span className="text-xs font-bold uppercase tracking-widest text-[#BD5700]">Admin</span>
+        <span className="text-xs font-bold uppercase tracking-widest text-orange-300">Admin</span>
         <Link
           href="/community"
           className="text-xs text-gray-400 hover:text-white transition-colors flex items-center gap-1"

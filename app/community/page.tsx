@@ -27,7 +27,7 @@ export default async function CommunityPage({
         <div className="relative bg-[#1a0f00] overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_#BD5700_0%,_transparent_60%)] opacity-40" />
           <div className="relative mx-auto max-w-5xl px-6 py-24 text-center">
-            <span className="inline-block bg-[#BD5700]/20 text-[#BD5700] border border-[#BD5700]/30 text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+            <span className="inline-block bg-[#BD5700]/20 text-orange-300 border border-[#BD5700]/30 text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
               Free to Join
             </span>
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
@@ -160,7 +160,7 @@ export default async function CommunityPage({
               >
                 <Link href="/sign-up">Join the Community — It&apos;s Free</Link>
               </Button>
-              <p className="text-gray-400 text-sm mt-3">No credit card required. Sign up with Google in seconds.</p>
+              <p className="text-gray-500 text-sm mt-3">No credit card required. Sign up with Google in seconds.</p>
             </div>
           </div>
         </div>
@@ -241,7 +241,7 @@ export default async function CommunityPage({
       <div className="bg-[#1a0f00] px-6 py-12">
         <div className="mx-auto max-w-5xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <p className="text-[#BD5700] text-sm font-semibold uppercase tracking-widest mb-1">
+            <p className="text-orange-300 text-sm font-semibold uppercase tracking-widest mb-1">
               Member Portal
             </p>
             <h1 className="text-3xl font-bold text-white">
@@ -270,7 +270,7 @@ export default async function CommunityPage({
               {/* Info */}
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#BD5700]">Community Member</span>
+                  <span className="text-xs font-bold uppercase tracking-widest text-orange-300">Community Member</span>
                   <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
                   <span className="text-xs text-green-400 font-medium">Active</span>
                 </div>
@@ -312,7 +312,7 @@ export default async function CommunityPage({
             <div className="flex items-center justify-between mb-5">
               <div>
                 <h3 className="font-bold text-gray-900 text-sm">Your Service Journey</h3>
-                <p className="text-xs text-gray-400 mt-0.5">
+                <p className="text-xs text-gray-500 mt-0.5">
                   {nextMilestone
                     ? `${serviceCount} service${serviceCount !== 1 ? "s" : ""} completed — ${nextMilestone.remaining} more to unlock ${nextMilestone.discount} off`
                     : `${serviceCount} services completed — you're at max loyalty (15% off every service)`}
@@ -335,7 +335,7 @@ export default async function CommunityPage({
                 return (
                   <div key={step} className="flex-1 flex flex-col items-center gap-1.5">
                     {milestone && (
-                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${done ? "bg-[#BD5700] text-white" : "bg-gray-100 text-gray-400"}`}>
+                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${done ? "bg-[#BD5700] text-white" : "bg-gray-100 text-gray-500"}`}>
                         {milestone}
                       </span>
                     )}
@@ -503,7 +503,7 @@ export default async function CommunityPage({
                     )}
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+                        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                           Before
                         </p>
                         <div className="grid grid-cols-2 gap-1.5">
@@ -524,7 +524,7 @@ export default async function CommunityPage({
                         </div>
                       </div>
                       <div>
-                        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+                        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                           After
                         </p>
                         <div className="grid grid-cols-2 gap-1.5">

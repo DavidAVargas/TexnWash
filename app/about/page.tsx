@@ -39,7 +39,7 @@ export default function About() {
 
             {/* Mission */}
             <div className="border border-gray-100 rounded-2xl p-8">
-              <h2 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Our Mission</h2>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">Our Mission</h2>
               <p className="text-gray-700 text-sm leading-relaxed">
                 Hey y&apos;all — I&apos;m a proud Fort Worth local who started Tex N Wash with one mission: to bring professional, reliable, and convenient pressure washing services to the community I love.
               </p>
@@ -55,7 +55,7 @@ export default function About() {
 
             {/* Payments */}
             <div className="border border-gray-100 rounded-2xl p-8">
-              <h2 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Payments &amp; Security</h2>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">Payments &amp; Security</h2>
               <p className="text-gray-700 text-sm leading-relaxed">
                 We accept secure payments through Chase Business Invoicing. Pay with confidence, knowing your transactions are processed by a trusted national banking partner.
               </p>
@@ -72,7 +72,7 @@ export default function About() {
 
             {/* Why Tex N Wash */}
             <div className="border border-gray-100 rounded-2xl p-8">
-              <h2 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Why Tex N Wash?</h2>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">Why Tex N Wash?</h2>
               <p className="text-gray-700 text-sm leading-relaxed">
                 The name &quot;Tex N Wash&quot; is a nod to our Texas roots and our easy booking system — you can reach out and book your entire service by text! But if we&apos;re not on a job, we&apos;re always happy to answer your call too.
               </p>
@@ -89,7 +89,7 @@ export default function About() {
 
             {/* Cleaning Methods */}
             <div className="border border-gray-100 rounded-2xl p-8 space-y-4">
-              <h2 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Our Cleaning Methods</h2>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Our Cleaning Methods</h2>
               <p className="text-gray-700 text-sm leading-relaxed">
                 We specialize in soft washing — a powerful but safe method using eco-friendly bleach solutions combined with a surfactant to break down dirt, algae, and grime. The soap enhances cleaning and masks any bleach odor, so you get a fresh result without the harsh smell.
               </p>

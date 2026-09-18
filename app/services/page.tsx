@@ -155,7 +155,7 @@ function ServiceSection({ service }: { service: Service }) {
           <div className="pb-1.5 space-y-0.5">
             <span className="block text-sm font-semibold text-gray-500">{service.rateLabel}</span>
             {service.example && (
-              <span className="block text-xs text-gray-400">e.g. {service.example}</span>
+              <span className="block text-xs text-gray-500">e.g. {service.example}</span>
             )}
           </div>
         </div>
@@ -168,7 +168,7 @@ function ServiceSection({ service }: { service: Service }) {
         {/* Add-Ons */}
         {service.addOns.length > 0 && (
           <div className="border-t border-gray-100 pt-5">
-            <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">
+            <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">
               Optional Add-Ons
             </p>
             <div className="space-y-2.5">
@@ -216,7 +216,7 @@ export default function PricesPage() {
             <button
               onClick={() => setActiveTab("residential")}
               aria-pressed={activeTab === "residential"}
-              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 ${
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BD5700] focus-visible:ring-offset-2 ${
                 activeTab === "residential"
                   ? "bg-[#BD5700] text-white"
                   : "text-gray-500 hover:text-gray-700"
@@ -227,7 +227,7 @@ export default function PricesPage() {
             <button
               onClick={() => setActiveTab("commercial")}
               aria-pressed={activeTab === "commercial"}
-              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 ${
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BD5700] focus-visible:ring-offset-2 ${
                 activeTab === "commercial"
                   ? "bg-[#BD5700] text-white"
                   : "text-gray-500 hover:text-gray-700"
@@ -251,7 +251,7 @@ export default function PricesPage() {
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_right,_#BD5700_0%,_transparent_60%)] opacity-20" />
             <div className="relative flex flex-col md:flex-row items-center justify-between gap-6 px-8 py-10">
               <div>
-                <span className="text-xs font-bold uppercase tracking-widest text-[#BD5700] mb-2 block">
+                <span className="text-xs font-bold uppercase tracking-widest text-orange-300 mb-2 block">
                   Bundle & Save $50
                 </span>
                 <h3 className="text-2xl font-bold text-white mb-2">Curb Appeal Refresh Package</h3>
@@ -272,7 +272,7 @@ export default function PricesPage() {
 
         {/* Bottom CTA */}
         <div className="mt-12 text-center">
-          <p className="text-gray-400 text-sm mb-4">
+          <p className="text-gray-500 text-sm mb-4">
             Not sure what you need? We&apos;ll walk you through it — no pressure.
           </p>
           <Link

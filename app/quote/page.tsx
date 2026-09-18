@@ -71,6 +71,9 @@ const ADDON_MAP: Record<string, AddOn[]> = {
 const inputClass =
   "w-full px-4 py-3 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#BD5700] transition-colors text-sm bg-white";
 
+const focusRingClass =
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BD5700] focus-visible:ring-offset-2";
+
 function SectionLabel({ n, text }: { n: number; text: string }) {
   return (
     <div className="flex items-center gap-3 mb-5">
@@ -336,12 +339,12 @@ export default function QuotePage() {
             <div className="inline-flex bg-gray-100 rounded-full p-1 mb-6">
               <button type="button" onClick={() => handleTabChange("residential")}
                 aria-pressed={activeTab === "residential"}
-                className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${activeTab === "residential" ? "bg-[#BD5700] text-white" : "text-gray-500 hover:text-gray-700"}`}>
+                className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${focusRingClass} ${activeTab === "residential" ? "bg-[#BD5700] text-white" : "text-gray-500 hover:text-gray-700"}`}>
                 🏠 Residential
               </button>
               <button type="button" onClick={() => handleTabChange("commercial")}
                 aria-pressed={activeTab === "commercial"}
-                className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${activeTab === "commercial" ? "bg-[#BD5700] text-white" : "text-gray-500 hover:text-gray-700"}`}>
+                className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${focusRingClass} ${activeTab === "commercial" ? "bg-[#BD5700] text-white" : "text-gray-500 hover:text-gray-700"}`}>
                 🏢 Commercial
               </button>
             </div>
@@ -352,7 +355,7 @@ export default function QuotePage() {
                 return (
                   <button key={svc.value} type="button" onClick={() => toggleService(svc.value)}
                     aria-pressed={selected}
-                    className={`relative text-left p-4 rounded-2xl border-2 transition-all ${selected ? "border-[#BD5700] bg-orange-50" : "border-gray-100 hover:border-gray-200 bg-white"}`}>
+                    className={`relative text-left p-4 rounded-2xl border-2 transition-all ${focusRingClass} ${selected ? "border-[#BD5700] bg-orange-50" : "border-gray-100 hover:border-gray-200 bg-white"}`}>
                     {selected && (
                       <div className="absolute top-2.5 right-2.5 w-5 h-5 bg-[#BD5700] rounded-full flex items-center justify-center">
                         <span className="text-white text-[10px] font-bold">✓</span>
@@ -361,7 +364,7 @@ export default function QuotePage() {
                     <div className="text-2xl mb-2">{svc.emoji}</div>
                     <div className="font-semibold text-gray-900 text-sm leading-tight">{svc.label}</div>
                     {svc.subtitle && (
-                      <div className="text-xs text-gray-400 mt-0.5">{svc.subtitle}</div>
+                      <div className="text-xs text-gray-500 mt-0.5">{svc.subtitle}</div>
                     )}
                     <div className="text-xs text-[#BD5700] font-semibold mt-1.5">{svc.price}</div>
                   </button>
@@ -374,7 +377,7 @@ export default function QuotePage() {
           {selectedServices.length > 0 && availableAddOns.length > 0 && (
             <div className="border-t border-gray-100 pt-12">
               <SectionLabel n={sectionNum++} text="Optional Add-Ons" />
-              <p className="text-xs text-gray-400 -mt-3 mb-5">Select any that apply — these will be included in your quote.</p>
+              <p className="text-xs text-gray-500 -mt-3 mb-5">Select any that apply — these will be included in your quote.</p>
               <div className="space-y-2.5">
                 {availableAddOns.map((addon) => {
                   const checked = selectedAddOns.includes(addon.label);
@@ -431,7 +434,7 @@ export default function QuotePage() {
               aria-label="Square Footage" value={squareFootage}
               onChange={(e) => { if (Number(e.target.value) >= 0) setSquareFootage(e.target.value); }}
               className={inputClass} min="1" />
-            <p className="text-xs text-gray-400">
+            <p className="text-xs text-gray-500">
               Don&apos;t know your square footage? No problem — we&apos;ll measure on-site.
             </p>
           </div>
@@ -439,7 +442,7 @@ export default function QuotePage() {
           {/* ── 4. Preferred Date & Time ── */}
           <div className="border-t border-gray-100 pt-12">
             <SectionLabel n={sectionNum++} text="Preferred Date & Time" />
-            <p className="text-xs text-gray-400 -mt-3 mb-6">Mon – Sat only · We&apos;ll confirm your exact time by text or call</p>
+            <p className="text-xs text-gray-500 -mt-3 mb-6">Mon – Sat only · We&apos;ll confirm your exact time by text or call</p>
 
             <div className="flex justify-center mb-5">
               <div className="[&_[data-selected-single=true]]:bg-[#BD5700] [&_[data-selected-single=true]]:text-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
@@ -468,7 +471,7 @@ export default function QuotePage() {
             {/* Time slots — appear after date is picked */}
             {preferredDate && (
               <div>
-                <p className="text-xs text-gray-400 mb-3 font-medium">Pick a preferred time window:</p>
+                <p className="text-xs text-gray-500 mb-3 font-medium">Pick a preferred time window:</p>
                 <div className="grid grid-cols-3 gap-3">
                   {TIME_SLOTS.map((slot) => {
                     const selected = preferredTime === slot.label;
@@ -476,16 +479,16 @@ export default function QuotePage() {
                       <button key={slot.label} type="button"
                         onClick={() => setPreferredTime(selected ? "" : slot.label)}
                         aria-pressed={selected}
-                        className={`text-center p-4 rounded-2xl border-2 transition-all ${selected ? "border-[#BD5700] bg-orange-50" : "border-gray-100 hover:border-gray-200 bg-white"}`}>
+                        className={`text-center p-4 rounded-2xl border-2 transition-all ${focusRingClass} ${selected ? "border-[#BD5700] bg-orange-50" : "border-gray-100 hover:border-gray-200 bg-white"}`}>
                         <div className="text-2xl mb-1.5">{slot.emoji}</div>
                         <div className="font-semibold text-gray-900 text-sm">{slot.label}</div>
-                        <div className="text-[11px] text-gray-400 mt-0.5 leading-tight">{slot.window}</div>
+                        <div className="text-[11px] text-gray-500 mt-0.5 leading-tight">{slot.window}</div>
                       </button>
                     );
                   })}
                 </div>
                 {!preferredTime && (
-                  <p className="text-xs text-gray-400 mt-2">Optional — skip if flexible</p>
+                  <p className="text-xs text-gray-500 mt-2">Optional — skip if flexible</p>
                 )}
               </div>
             )}
@@ -527,7 +530,7 @@ export default function QuotePage() {
               aria-label="Additional notes" value={notes}
               onChange={(e) => setNotes(e.target.value)}
               rows={4} className={`${inputClass} resize-none`} />
-            <div className="flex items-start gap-2 text-xs text-gray-400">
+            <div className="flex items-start gap-2 text-xs text-gray-500">
               <span className="shrink-0">📸</span>
               <span>
                 Have photos? Text them to{" "}
@@ -587,13 +590,13 @@ export default function QuotePage() {
                       <p className="font-semibold text-gray-800 mb-1">Stain Results</p>
                       <p>Some stains (rust, deep oil, paint) may not fully remove. We will advise you on arrival if we believe results may be limited before beginning work.</p>
                     </div>
-                    <p className="text-xs text-gray-400 pt-1">
+                    <p className="text-xs text-gray-500 pt-1">
                       Questions? Reach us at contact@texnwash.com or (210) 201-2123.
                     </p>
                   </div>
 
                   {!termsRead && (
-                    <div className="flex items-center justify-center gap-2 bg-gray-50 border-t border-gray-100 py-2.5 text-xs text-gray-400">
+                    <div className="flex items-center justify-center gap-2 bg-gray-50 border-t border-gray-100 py-2.5 text-xs text-gray-500">
                       <span>↓</span>
                       <span>Scroll to the bottom to accept</span>
                     </div>
@@ -612,7 +615,7 @@ export default function QuotePage() {
               </span>
             </label>
             {!termsRead && !showTerms && (
-              <p className="text-xs text-gray-400 mt-2 ml-7">Open the terms above and scroll to the bottom to enable this checkbox.</p>
+              <p className="text-xs text-gray-500 mt-2 ml-7">Open the terms above and scroll to the bottom to enable this checkbox.</p>
             )}
           </div>
 
@@ -628,7 +631,7 @@ export default function QuotePage() {
               className="w-full bg-[#BD5700] hover:bg-[#BD5700]/90 text-white font-semibold px-6 py-4 rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-base">
               {isSubmitting ? "Sending..." : "Request My Free Quote →"}
             </button>
-            <p className="text-xs text-center text-gray-400">
+            <p className="text-xs text-center text-gray-500">
               We&apos;ll never share your info. A team member will contact you within 24 hours.
             </p>
           </div>

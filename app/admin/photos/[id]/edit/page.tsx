@@ -84,7 +84,7 @@ export default function EditPhotoSetPage() {
 
   if (!job) {
     return (
-      <div className="flex items-center justify-center min-h-[40vh] text-gray-400">
+      <div className="flex items-center justify-center min-h-[40vh] text-gray-500">
         Loading...
       </div>
     );
@@ -208,7 +208,7 @@ function PhotoSection({
     <div className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
       <div className="flex items-center justify-between">
         <h2 className="font-semibold text-gray-800 text-sm uppercase tracking-wider">{title}</h2>
-        <span className="text-xs text-gray-400">{urls.length} photo{urls.length !== 1 ? "s" : ""}</span>
+        <span className="text-xs text-gray-500">{urls.length} photo{urls.length !== 1 ? "s" : ""}</span>
       </div>
 
       {/* Current photos */}
@@ -247,7 +247,7 @@ function PhotoSection({
           onUploadError={(err) => { Swal.fire("Upload Error", err.message, "error"); }}
           appearance={{
             container: "border-2 border-dashed border-gray-200 rounded-lg bg-gray-50 !py-6",
-            label: "text-sm text-gray-400",
+            label: "text-sm text-gray-500",
             uploadIcon: "text-gray-300",
             button: "bg-[#BD5700] text-white rounded-full px-4 py-1.5 text-xs font-medium",
           }}

@@ -33,7 +33,7 @@ export default function Footer() {
 
         {/* Pages */}
         <div>
-          <h4 className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">Pages</h4>
+          <h4 className="text-xs font-bold uppercase tracking-widest text-white/60 mb-4">Pages</h4>
           <ul className="space-y-2.5">
             {[
               { label: "Home", href: "/" },
@@ -53,7 +53,7 @@ export default function Footer() {
 
         {/* Contact */}
         <div>
-          <h4 className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">Contact</h4>
+          <h4 className="text-xs font-bold uppercase tracking-widest text-white/60 mb-4">Contact</h4>
           <ul className="space-y-2.5">
             <li>
               <a href="mailto:contact@texnwash.com" className="text-sm text-white/60 hover:text-white transition-colors">
@@ -73,7 +73,7 @@ export default function Footer() {
 
         {/* Reviews CTA */}
         <div>
-          <h4 className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">Reviews</h4>
+          <h4 className="text-xs font-bold uppercase tracking-widest text-white/60 mb-4">Reviews</h4>
           <p className="text-sm text-white/60 mb-4 leading-relaxed">
             Happy with our work? Leave us a review — it means the world.
           </p>
@@ -81,7 +81,7 @@ export default function Footer() {
             href="https://g.page/r/CSd5bbR6nHl4EBM/review"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block border border-[#BD5700] text-[#BD5700] hover:bg-[#BD5700] hover:text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors"
+            className="inline-block border border-orange-300 text-orange-300 hover:bg-[#BD5700] hover:text-white hover:border-[#BD5700] text-sm font-semibold px-5 py-2.5 rounded-full transition-colors"
           >
             Google Reviews
           </a>
@@ -91,14 +91,14 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-white/10 px-6 py-5">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-white/40">
+          <p className="text-xs text-white/60">
             &copy; {new Date().getFullYear()} Tex N Wash. All rights reserved.
           </p>
           <a
             href="https://github.com/DavidAVargas"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-xs text-white/40 hover:text-white/70 transition-colors"
+            className="flex items-center gap-1.5 text-xs text-white/60 hover:text-white/70 transition-colors"
           >
             <Image src="/images/github.png" alt="GitHub" width={14} height={14} />
             Made by David A Vargas
