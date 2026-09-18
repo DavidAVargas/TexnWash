@@ -50,29 +50,30 @@ export default function SocialHandlesForm({ instagram = "", tiktok = "", faceboo
           { label: "Instagram", icon: "📸", value: ig, setter: setIg, placeholder: "@yourhandle" },
           { label: "TikTok", icon: "🎵", value: tt, setter: setTt, placeholder: "@yourhandle" },
           { label: "Facebook", icon: "👤", value: fb, setter: setFb, placeholder: "Profile name or URL" },
-        ].map(({ label, icon, value, setter, placeholder }) => (
-          <div key={label} className="flex items-center gap-3">
-            <span className="w-8 text-center text-lg shrink-0">{icon}</span>
-            <span className="w-24 text-sm font-medium text-gray-700 shrink-0">{label}</span>
-            <input
-              type="text"
-              value={value}
-              onChange={(e) => setter(e.target.value)}
-              placeholder={placeholder}
-              className="flex-1 px-4 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#BD5700] transition-colors"
-            />
-          </div>
-        ))}
+        ].map(({ label, icon, value, setter, placeholder }) => {
+          const inputId = `social-${label.toLowerCase()}`;
+          return (
+            <div key={label} className="flex items-center gap-3">
+              <span aria-hidden="true" className="w-8 text-center text-lg shrink-0">{icon}</span>
+              <label htmlFor={inputId} className="w-24 text-sm font-medium text-gray-700 shrink-0">{label}</label>
+              <input
+                id={inputId}
+                type="text"
+                value={value}
+                onChange={(e) => setter(e.target.value)}
+                placeholder={placeholder}
+                className="flex-1 px-4 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#BD5700] transition-colors"
+              />
+            </div>
+          );
+        })}
       </div>
 
       <div className="flex items-center justify-between mt-6">
-        {status === "saved" && (
-          <p className="text-sm text-green-600 font-medium">Saved! We&apos;ll follow you shortly.</p>
-        )}
-        {status === "error" && (
-          <p className="text-sm text-red-500 font-medium">Something went wrong. Try again.</p>
-        )}
-        {(status === "idle" || status === "saving") && <span />}
+        <p role="status" aria-live="polite" className="text-sm font-medium">
+          {status === "saved" && <span className="text-green-600">Saved! We&apos;ll follow you shortly.</span>}
+          {status === "error" && <span className="text-red-500">Something went wrong. Try again.</span>}
+        </p>
         <Button
           onClick={handleSave}
           disabled={status === "saving"}

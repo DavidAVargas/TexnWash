@@ -88,7 +88,10 @@ export default function SeasonalTipsCarousel() {
           {tips.map((_, i) => (
             <button
               key={i}
+              type="button"
               onClick={() => setCurrent(i)}
+              aria-label={`Go to tip ${i + 1} of ${tips.length}`}
+              aria-current={i === current}
               className={`rounded-full transition-all ${i === current ? "w-4 h-2 bg-[#BD5700]" : "w-2 h-2 bg-[#BD5700]/30"}`}
             />
           ))}
@@ -104,21 +107,25 @@ export default function SeasonalTipsCarousel() {
         </div>
       </div>
 
-      <p className="text-sm text-gray-700 leading-relaxed min-h-[3rem] mb-4">{tip.text}</p>
+      <p aria-live="polite" className="text-sm text-gray-700 leading-relaxed min-h-[3rem] mb-4">{tip.text}</p>
 
       <div className="flex items-center justify-between">
         <div className="flex gap-2">
           <button
+            type="button"
             onClick={() => setCurrent((p) => (p - 1 + tips.length) % tips.length)}
+            aria-label="Previous tip"
             className="w-8 h-8 rounded-full border border-orange-200 flex items-center justify-center text-[#BD5700] hover:bg-orange-100 transition-colors text-sm"
           >
-            ←
+            <span aria-hidden="true">←</span>
           </button>
           <button
+            type="button"
             onClick={() => setCurrent((p) => (p + 1) % tips.length)}
+            aria-label="Next tip"
             className="w-8 h-8 rounded-full border border-orange-200 flex items-center justify-center text-[#BD5700] hover:bg-orange-100 transition-colors text-sm"
           >
-            →
+            <span aria-hidden="true">→</span>
           </button>
         </div>
         {tip.cta && (

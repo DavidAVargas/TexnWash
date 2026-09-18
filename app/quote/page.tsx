@@ -106,6 +106,7 @@ export default function QuotePage() {
 
   const [suggestions, setSuggestions] = useState<Feature[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const suggestionsRef = useRef<HTMLDivElement>(null);
   const addressInputRef = useRef<HTMLInputElement>(null);
   const termsScrollRef = useRef<HTMLDivElement>(null);
@@ -174,6 +175,7 @@ export default function QuotePage() {
 
   const handleAddressInput = useCallback(async (query: string) => {
     setAddress(query);
+    setHighlightedIndex(-1);
     if (query.trim().length < 3) { setShowSuggestions(false); return; }
     try {
       const res = await fetch(
@@ -186,6 +188,31 @@ export default function QuotePage() {
       setShowSuggestions(false);
     }
   }, []);
+
+  const selectAddressSuggestion = useCallback((feature: Feature) => {
+    setAddress(feature.place_name);
+    setShowSuggestions(false);
+    setHighlightedIndex(-1);
+  }, []);
+
+  const handleAddressKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!showSuggestions || suggestions.length === 0) return;
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setHighlightedIndex((prev) => (prev + 1) % suggestions.length);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setHighlightedIndex((prev) => (prev - 1 + suggestions.length) % suggestions.length);
+    } else if (e.key === "Enter") {
+      if (highlightedIndex >= 0) {
+        e.preventDefault();
+        selectAddressSuggestion(suggestions[highlightedIndex]);
+      }
+    } else if (e.key === "Escape") {
+      setShowSuggestions(false);
+      setHighlightedIndex(-1);
+    }
+  };
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -324,6 +351,7 @@ export default function QuotePage() {
                 const selected = selectedServices.includes(svc.value);
                 return (
                   <button key={svc.value} type="button" onClick={() => toggleService(svc.value)}
+                    aria-pressed={selected}
                     className={`relative text-left p-4 rounded-2xl border-2 transition-all ${selected ? "border-[#BD5700] bg-orange-50" : "border-gray-100 hover:border-gray-200 bg-white"}`}>
                     {selected && (
                       <div className="absolute top-2.5 right-2.5 w-5 h-5 bg-[#BD5700] rounded-full flex items-center justify-center">
@@ -377,13 +405,21 @@ export default function QuotePage() {
               <input ref={addressInputRef} type="text" placeholder="Property Address"
                 aria-label="Property Address" value={address}
                 onChange={(e) => handleAddressInput(e.target.value)}
+                onKeyDown={handleAddressKeyDown}
+                role="combobox" aria-haspopup="listbox" aria-expanded={showSuggestions}
+                aria-controls="address-suggestions-listbox" aria-autocomplete="list"
+                aria-activedescendant={highlightedIndex >= 0 ? `address-suggestion-${highlightedIndex}` : undefined}
                 className={inputClass} required />
               {showSuggestions && (
-                <div ref={suggestionsRef} className="absolute bg-white border border-gray-200 rounded-xl shadow-lg mt-1 z-50 w-full max-h-60 overflow-y-auto">
+                <div ref={suggestionsRef} id="address-suggestions-listbox" role="listbox"
+                  className="absolute bg-white border border-gray-200 rounded-xl shadow-lg mt-1 z-50 w-full max-h-60 overflow-y-auto">
                   {suggestions.map((feature, i) => (
                     <div key={i}
-                      className="px-4 py-3 hover:bg-gray-50 cursor-pointer text-sm text-gray-700 border-b border-gray-100 last:border-0"
-                      onClick={() => { setAddress(feature.place_name); setShowSuggestions(false); }}>
+                      id={`address-suggestion-${i}`}
+                      role="option"
+                      aria-selected={i === highlightedIndex}
+                      className={`px-4 py-3 cursor-pointer text-sm text-gray-700 border-b border-gray-100 last:border-0 ${i === highlightedIndex ? "bg-gray-50" : "hover:bg-gray-50"}`}
+                      onClick={() => selectAddressSuggestion(feature)}>
                       {feature.place_name}
                     </div>
                   ))}
@@ -439,6 +475,7 @@ export default function QuotePage() {
                     return (
                       <button key={slot.label} type="button"
                         onClick={() => setPreferredTime(selected ? "" : slot.label)}
+                        aria-pressed={selected}
                         className={`text-center p-4 rounded-2xl border-2 transition-all ${selected ? "border-[#BD5700] bg-orange-50" : "border-gray-100 hover:border-gray-200 bg-white"}`}>
                         <div className="text-2xl mb-1.5">{slot.emoji}</div>
                         <div className="font-semibold text-gray-900 text-sm">{slot.label}</div>
@@ -510,6 +547,7 @@ export default function QuotePage() {
 
             <div className="border border-gray-200 rounded-2xl overflow-hidden">
               <button type="button" onClick={() => setShowTerms(!showTerms)}
+                aria-expanded={showTerms} aria-controls="terms-content"
                 className="w-full flex items-center justify-between px-5 py-4 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors">
                 <span>Read our service terms</span>
                 <span className={`text-[#BD5700] transition-transform duration-200 ${showTerms ? "rotate-180" : ""}`}>▼</span>
@@ -518,6 +556,7 @@ export default function QuotePage() {
               {showTerms && (
                 <>
                   <div ref={termsScrollRef} onScroll={handleTermsScroll}
+                    id="terms-content"
                     tabIndex={0} role="region" aria-label="Service terms — scroll to read all sections"
                     className="max-h-64 overflow-y-auto px-5 pb-5 pt-4 space-y-4 border-t border-gray-100 text-sm text-gray-600 leading-relaxed focus:outline-none focus-visible:ring-2 focus-visible:ring-[#BD5700]">
                     <div>
