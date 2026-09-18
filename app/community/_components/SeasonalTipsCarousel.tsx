@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { Pause, Play } from "lucide-react";
 
 type Tip = { text: string; cta?: { label: string; href: string } };
 type Season = "spring" | "summer" | "fall" | "winter";
@@ -61,11 +62,13 @@ export default function SeasonalTipsCarousel() {
   const tips = TIPS[season];
   const info = SEASON_INFO[season];
   const [current, setCurrent] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
+    if (isPaused) return;
     const timer = setInterval(() => setCurrent((p) => (p + 1) % tips.length), 6000);
     return () => clearInterval(timer);
-  }, [tips.length]);
+  }, [tips.length, isPaused]);
 
   const tip = tips[current];
 
@@ -84,6 +87,15 @@ export default function SeasonalTipsCarousel() {
               className={`rounded-full transition-all ${i === current ? "w-4 h-2 bg-[#BD5700]" : "w-2 h-2 bg-[#BD5700]/30"}`}
             />
           ))}
+          <button
+            type="button"
+            aria-label={isPaused ? "Resume tip rotation" : "Pause tip rotation"}
+            aria-pressed={isPaused}
+            onClick={() => setIsPaused((p) => !p)}
+            className="ml-1 w-6 h-6 rounded-full border border-orange-200 flex items-center justify-center text-[#BD5700] hover:bg-orange-100 transition-colors"
+          >
+            {isPaused ? <Play aria-hidden="true" className="w-3 h-3" /> : <Pause aria-hidden="true" className="w-3 h-3" />}
+          </button>
         </div>
       </div>
 

@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback, useRef } from "react";
+import { Pause, Play } from "lucide-react";
 
 export default function GalleryPage() {
   const initialSlides = useMemo(() => [
@@ -26,6 +27,8 @@ export default function GalleryPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [progressKey, setProgressKey] = useState(0);
   const [slideDuration, setSlideDuration] = useState(5000);
+  const [isPaused, setIsPaused] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     setQueue(initialSlides.slice().sort(() => Math.random() - 0.5));
@@ -42,6 +45,7 @@ export default function GalleryPage() {
   }, [currentSlide, queue]);
 
   useEffect(() => {
+    if (isPaused) return;
     const timer = setTimeout(() => {
       if (currentSlide + 1 >= queue.length) {
         const reshuffled = initialSlides.slice().sort(() => Math.random() - 0.5);
@@ -52,7 +56,14 @@ export default function GalleryPage() {
       }
     }, slideDuration);
     return () => clearTimeout(timer);
-  }, [currentSlide, queue, initialSlides, slideDuration, goToSlide]);
+  }, [currentSlide, queue, initialSlides, slideDuration, goToSlide, isPaused]);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (isPaused) v.pause();
+    else v.play().catch(() => {});
+  }, [isPaused, currentSlide]);
 
   return (
     <div className="bg-white">
@@ -93,7 +104,8 @@ export default function GalleryPage() {
                 ) : index === currentSlide ? (
                   <video
                     key={slide.src}
-                    autoPlay
+                    ref={videoRef}
+                    autoPlay={!isPaused}
                     muted
                     playsInline
                     preload="auto"
@@ -102,6 +114,7 @@ export default function GalleryPage() {
                       const duration = Math.round(e.currentTarget.duration * 1000);
                       setSlideDuration(duration);
                       setProgressKey((k) => k + 1);
+                      if (isPaused) e.currentTarget.pause();
                     }}
                   >
                     <source src={slide.src} type="video/mp4" />
@@ -114,7 +127,7 @@ export default function GalleryPage() {
             <div
               key={progressKey}
               className="absolute bottom-0 left-0 h-[3px] bg-[#BD5700] animate-progress-bar z-10"
-              style={{ animationDuration: `${slideDuration}ms` }}
+              style={{ animationDuration: `${slideDuration}ms`, animationPlayState: isPaused ? "paused" : "running" }}
             />
 
             {/* Nav buttons */}
@@ -131,6 +144,15 @@ export default function GalleryPage() {
               className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/40 hover:bg-[#BD5700] text-white rounded-full flex items-center justify-center transition-colors z-10"
             >
               →
+            </button>
+            <button
+              type="button"
+              aria-label={isPaused ? "Play slideshow" : "Pause slideshow"}
+              aria-pressed={isPaused}
+              onClick={() => setIsPaused((p) => !p)}
+              className="absolute top-4 right-4 w-10 h-10 bg-black/40 hover:bg-[#BD5700] text-white rounded-full flex items-center justify-center transition-colors z-10"
+            >
+              {isPaused ? <Play aria-hidden="true" className="w-4 h-4" /> : <Pause aria-hidden="true" className="w-4 h-4" />}
             </button>
           </div>
 

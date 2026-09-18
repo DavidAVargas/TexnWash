@@ -44,6 +44,12 @@ export default function RootLayout({
       <body
         className={`${inter.variable} antialiased overflow-x-hidden`}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:rounded-md focus:bg-[#BD5700] focus:px-4 focus:py-2 focus:font-semibold focus:text-white"
+        >
+          Skip to main content
+        </a>
         <ThemeProvider
             attribute="class"
             defaultTheme="light"
@@ -52,7 +58,7 @@ export default function RootLayout({
           >
             <div className="grid min-h-[100dvh] grid-rows-[auto_1fr_auto]">
               <Header/>
-              <main className="overflow-x-hidden bg-white">
+              <main id="main-content" tabIndex={-1} className="overflow-x-hidden bg-white outline-none">
               {children}
               </main>
               <Footer/>

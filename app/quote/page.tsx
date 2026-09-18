@@ -164,6 +164,14 @@ export default function QuotePage() {
     }
   };
 
+  useEffect(() => {
+    if (!showTerms) return;
+    const el = termsScrollRef.current;
+    if (el && el.scrollHeight <= el.clientHeight + 16) {
+      setTermsRead(true);
+    }
+  }, [showTerms]);
+
   const handleAddressInput = useCallback(async (query: string) => {
     setAddress(query);
     if (query.trim().length < 3) { setShowSuggestions(false); return; }
@@ -508,7 +516,8 @@ export default function QuotePage() {
               {showTerms && (
                 <>
                   <div ref={termsScrollRef} onScroll={handleTermsScroll}
-                    className="max-h-64 overflow-y-auto px-5 pb-5 pt-4 space-y-4 border-t border-gray-100 text-sm text-gray-600 leading-relaxed">
+                    tabIndex={0} role="region" aria-label="Service terms — scroll to read all sections"
+                    className="max-h-64 overflow-y-auto px-5 pb-5 pt-4 space-y-4 border-t border-gray-100 text-sm text-gray-600 leading-relaxed focus:outline-none focus-visible:ring-2 focus-visible:ring-[#BD5700]">
                     <div>
                       <p className="font-semibold text-gray-800 mb-1">Payment</p>
                       <p>Payment is due upon job completion via Chase Business Invoicing. All services include the required 8.25% Texas sales tax. Card payments include a 3.5% + $0.10 processing fee per transaction.</p>
