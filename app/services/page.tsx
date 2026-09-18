@@ -215,6 +215,7 @@ export default function PricesPage() {
           <div className="inline-flex bg-gray-100 rounded-full p-1">
             <button
               onClick={() => setActiveTab("residential")}
+              aria-pressed={activeTab === "residential"}
               className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 ${
                 activeTab === "residential"
                   ? "bg-[#BD5700] text-white"
@@ -225,6 +226,7 @@ export default function PricesPage() {
             </button>
             <button
               onClick={() => setActiveTab("commercial")}
+              aria-pressed={activeTab === "commercial"}
               className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 ${
                 activeTab === "commercial"
                   ? "bg-[#BD5700] text-white"

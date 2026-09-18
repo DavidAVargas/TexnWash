@@ -85,7 +85,12 @@ export default function GalleryPage() {
             <span className="text-sm text-gray-400">{currentSlide + 1} / {queue.length}</span>
           </div>
 
-          <div className="relative w-full h-[700px] rounded-2xl overflow-hidden bg-gray-900 shadow-lg">
+          <div
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="In Action photo and video slideshow"
+            className="relative w-full h-[700px] rounded-2xl overflow-hidden bg-gray-900 shadow-lg"
+          >
             {queue.map((slide, index) => (
               <div
                 key={index}

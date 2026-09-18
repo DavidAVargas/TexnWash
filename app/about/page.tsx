@@ -39,7 +39,7 @@ export default function About() {
 
             {/* Mission */}
             <div className="border border-gray-100 rounded-2xl p-8">
-              <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Our Mission</h3>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Our Mission</h2>
               <p className="text-gray-700 text-sm leading-relaxed">
                 Hey y&apos;all — I&apos;m a proud Fort Worth local who started Tex N Wash with one mission: to bring professional, reliable, and convenient pressure washing services to the community I love.
               </p>
@@ -47,7 +47,7 @@ export default function About() {
 
             {/* Inspiration */}
             <div className="bg-[#BD5700] rounded-2xl p-8 text-white ring-1 ring-black/10">
-              <h3 className="text-xs font-bold uppercase tracking-widest text-white/80 mb-3">The Inspiration</h3>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-white/80 mb-3">The Inspiration</h2>
               <p className="text-white text-sm leading-relaxed">
                 I started this company after needing home services myself and realizing very few companies had a great website, solid communication, or even showed up on time. That&apos;s where Tex N Wash comes in — we&apos;re setting a new standard in Fort Worth for what it means to be professional, easy to work with, and proud of our work.
               </p>
@@ -55,7 +55,7 @@ export default function About() {
 
             {/* Payments */}
             <div className="border border-gray-100 rounded-2xl p-8">
-              <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Payments &amp; Security</h3>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Payments &amp; Security</h2>
               <p className="text-gray-700 text-sm leading-relaxed">
                 We accept secure payments through Chase Business Invoicing. Pay with confidence, knowing your transactions are processed by a trusted national banking partner.
               </p>
@@ -72,7 +72,7 @@ export default function About() {
 
             {/* Why Tex N Wash */}
             <div className="border border-gray-100 rounded-2xl p-8">
-              <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Why Tex N Wash?</h3>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Why Tex N Wash?</h2>
               <p className="text-gray-700 text-sm leading-relaxed">
                 The name &quot;Tex N Wash&quot; is a nod to our Texas roots and our easy booking system — you can reach out and book your entire service by text! But if we&apos;re not on a job, we&apos;re always happy to answer your call too.
               </p>
@@ -81,7 +81,7 @@ export default function About() {
             {/* Always Improving */}
             <div className="bg-[#2d1500] rounded-2xl p-8 text-white relative overflow-hidden ring-1 ring-[#BD5700]/30">
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#BD5700] opacity-20 rounded-full -translate-x-10 translate-y-10" />
-              <h3 className="text-xs font-bold uppercase tracking-widest text-white/80 mb-3">Always Improving</h3>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-white/80 mb-3">Always Improving</h2>
               <p className="text-white/90 text-sm leading-relaxed">
                 We&apos;re constantly improving every single day — whether it&apos;s upgrading our equipment, fine-tuning our services, or making our website better. We&apos;re here for you, and we&apos;re always working hard to raise the bar.
               </p>
@@ -89,7 +89,7 @@ export default function About() {
 
             {/* Cleaning Methods */}
             <div className="border border-gray-100 rounded-2xl p-8 space-y-4">
-              <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Our Cleaning Methods</h3>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Our Cleaning Methods</h2>
               <p className="text-gray-700 text-sm leading-relaxed">
                 We specialize in soft washing — a powerful but safe method using eco-friendly bleach solutions combined with a surfactant to break down dirt, algae, and grime. The soap enhances cleaning and masks any bleach odor, so you get a fresh result without the harsh smell.
               </p>
@@ -104,7 +104,7 @@ export default function About() {
 
             {/* Photo Transparency */}
             <div className="bg-[#BD5700] rounded-2xl p-8 text-white ring-1 ring-black/10">
-              <h3 className="text-xs font-bold uppercase tracking-widest text-white/80 mb-3">Photo &amp; Video Transparency</h3>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-white/80 mb-3">Photo &amp; Video Transparency</h2>
               <p className="text-white text-sm leading-relaxed">
                 📸 We document every project with photos and videos — for our records, marketing, and to give you before-and-after proof of our results as part of your invoice and service summary.
               </p>

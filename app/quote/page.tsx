@@ -308,10 +308,12 @@ export default function QuotePage() {
 
             <div className="inline-flex bg-gray-100 rounded-full p-1 mb-6">
               <button type="button" onClick={() => handleTabChange("residential")}
+                aria-pressed={activeTab === "residential"}
                 className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${activeTab === "residential" ? "bg-[#BD5700] text-white" : "text-gray-500 hover:text-gray-700"}`}>
                 🏠 Residential
               </button>
               <button type="button" onClick={() => handleTabChange("commercial")}
+                aria-pressed={activeTab === "commercial"}
                 className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${activeTab === "commercial" ? "bg-[#BD5700] text-white" : "text-gray-500 hover:text-gray-700"}`}>
                 🏢 Commercial
               </button>

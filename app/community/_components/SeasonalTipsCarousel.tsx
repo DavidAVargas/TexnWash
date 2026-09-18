@@ -73,7 +73,12 @@ export default function SeasonalTipsCarousel() {
   const tip = tips[current];
 
   return (
-    <div className="bg-orange-50 border border-orange-100 rounded-2xl p-6">
+    <div
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Seasonal tips"
+      className="bg-orange-50 border border-orange-100 rounded-2xl p-6"
+    >
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           <span className="text-lg">{info.emoji}</span>
